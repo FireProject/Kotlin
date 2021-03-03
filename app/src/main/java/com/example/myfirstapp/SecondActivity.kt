@@ -25,7 +25,7 @@ class SecondActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if(intent.hasExtra("WMI")){
-            binding.welcomeTv.text = "Welcome "+intent.getStringExtra("WMI")+"!"
+            binding.welcomeTv.text = "Welcome "+intent.getStringExtra("WMI")
         }
     }
 
