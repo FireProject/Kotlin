@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.myfirstapp.databinding.ActivityLoginBinding
-import com.example.myfirstapp.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -33,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        binding.registerTv.setOnClickListener {
+        binding.registerBtn.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java);
             startActivity(intent)
         }
@@ -56,12 +55,12 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val user = auth.currentUser;
-        if(user!=null){
-            val intent = Intent(this, DashboardActivity::class.java);
-            startActivity(intent)
-        }else{
-            Toast.makeText(this,"User first time login", Toast.LENGTH_LONG).show()
-        }
+//        if(user!=null){
+//            val intent = Intent(this, DashboardActivity::class.java);
+//            startActivity(intent)
+//        }else{
+//            Toast.makeText(this,"User first time login", Toast.LENGTH_LONG).show()
+//        }
     }
 
     // 액티비티가 파괴될 때..

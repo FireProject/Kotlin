@@ -60,12 +60,12 @@ class RegisterActivity : AppCompatActivity() {
         super.onStart()
 
         val user = auth.currentUser;
-
-        if(user != null){
-            val intent = Intent(this, DashboardActivity::class.java);
-            startActivity(intent)
-        }else{
-            Log.e("user status", "User null")
-        }
+//
+//        if(user != null){
+//            val intent = Intent(this, DashboardActivity::class.java);
+//            startActivity(intent)
+//        }else{
+//            Log.e("user status", "User null")
+//        }
     }
 }
