@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginBtn.setOnClickListener{
 
-            if(binding.usernameEt.text.trim().isNotEmpty()||binding.passwordEt.text.trim().isNotEmpty()){
+            if(binding.usernameEt.text.trim().isNotEmpty()&&binding.passwordEt.text.trim().isNotEmpty()){
                 signInUser();
             }else{
                 Toast.makeText(this, "Input required", Toast.LENGTH_LONG).show()
@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun signInUser(){
-        auth.signInWithEmailAndPassword(binding.usernameEt.text.trim().toString(), binding.usernameEt.text.trim().toString())
+        auth.signInWithEmailAndPassword(binding.usernameEt.text.trim().toString(), binding.passwordEt.text.trim().toString())
             .addOnCompleteListener(this){
                 task->
                 if(task.isSuccessful){

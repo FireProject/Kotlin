@@ -25,7 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         binding.registerBtn.setOnClickListener{
-            if(binding.emailEdit.text.isNotEmpty()||binding.passwordEdit.text.isNotEmpty()||binding.passwordEditC.text.isNotEmpty()){
+            if(binding.emailEdit.text.isNotEmpty()&&binding.passwordEdit.text.isNotEmpty()&&binding.passwordEditC.text.isNotEmpty()){
                 registerUser();
             }else{
                 Toast.makeText(this, "Input required", Toast.LENGTH_LONG).show()
