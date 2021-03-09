@@ -1,10 +1,10 @@
-package com.example.myfirstapp
+package com.example.BurningUp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.myfirstapp.databinding.ActivityLoginBinding
+import com.example.BurningUp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
             if(binding.usernameEt.text.trim().isNotEmpty()&&binding.passwordEt.text.trim().isNotEmpty()){
                 signInUser();
             }else{
-                Toast.makeText(this, "Input required", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "아이디 or 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this){
                 task->
                 if(task.isSuccessful){
-                    val intent = Intent(this,DashboardActivity::class.java);
+                    val intent = Intent(this,MainActivity::class.java);
                     startActivity(intent);
                 }else{
                     Toast.makeText(this, "Authentication Error "+task.exception, Toast.LENGTH_LONG).show()
@@ -55,12 +55,12 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val user = auth.currentUser;
-//        if(user!=null){
-//            val intent = Intent(this, DashboardActivity::class.java);
-//            startActivity(intent)
-//        }else{
-//            Toast.makeText(this,"User first time login", Toast.LENGTH_LONG).show()
-//        }
+        if(user!=null){
+            val intent = Intent(this, MainActivity::class.java);
+            startActivity(intent)
+        }else{
+            Toast.makeText(this,"User first time login", Toast.LENGTH_LONG).show()
+        }
     }
 
     // 액티비티가 파괴될 때..

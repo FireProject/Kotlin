@@ -1,12 +1,11 @@
-package com.example.myfirstapp
+package com.example.BurningUp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.example.myfirstapp.databinding.ActivityLoginBinding
-import com.example.myfirstapp.databinding.ActivityRegisterBinding
+import com.example.BurningUp.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
@@ -25,11 +24,15 @@ class RegisterActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         binding.registerBtn.setOnClickListener{
-            if(binding.emailEdit.text.isNotEmpty()&&binding.passwordEdit.text.isNotEmpty()&&binding.passwordEditC.text.isNotEmpty()){
+
+            if(!binding.passwordEdit.getText().toString().equals(binding.passwordEditC.getText().toString())){
+                Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show()
+            }else if(binding.emailEdit.text.isNotEmpty()&&binding.passwordEdit.text.isNotEmpty()&&binding.passwordEditC.text.isNotEmpty()){
                 registerUser();
             }else{
                 Toast.makeText(this, "Input required", Toast.LENGTH_LONG).show()
             }
+
         }
 
         binding.loginTv.setOnClickListener {
@@ -47,6 +50,9 @@ class RegisterActivity : AppCompatActivity() {
                 if(task.isSuccessful){
 
                     Toast.makeText(this, "Register successful", Toast.LENGTH_LONG).show()
+                    auth.signOut();
+                    val intent = Intent(this, LoginActivity::class.java);
+                    startActivity(intent)
 
                 }else{
 
@@ -60,12 +66,12 @@ class RegisterActivity : AppCompatActivity() {
         super.onStart()
 
         val user = auth.currentUser;
-//
-//        if(user != null){
-//            val intent = Intent(this, DashboardActivity::class.java);
-//            startActivity(intent)
-//        }else{
-//            Log.e("user status", "User null")
-//        }
+
+        if(user != null){
+            val intent = Intent(this, MainActivity::class.java);
+            startActivity(intent)
+        }else{
+            Log.e("user status", "User null")
+        }
     }
 }

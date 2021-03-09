@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.BurningUp
 
 import org.junit.Test
 

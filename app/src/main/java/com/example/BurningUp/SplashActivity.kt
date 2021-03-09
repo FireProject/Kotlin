@@ -1,4 +1,4 @@
-package com.example.myfirstapp
+package com.example.BurningUp
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

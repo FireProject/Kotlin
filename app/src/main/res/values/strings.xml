@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyFirstApp</string>
+    <string name="app_name">Burning Up</string>
 
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar"></style>
 
