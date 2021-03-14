@@ -5,20 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.example.BurningUp.databinding.ActivityRegisterBinding
+import com.example.BurningUp.databinding.ActivityRegister1Binding
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
 
-    private var mBinding: ActivityRegisterBinding? = null
+    private var mBinding: ActivityRegister1Binding? = null
     private val binding get() = mBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        mBinding = ActivityRegisterBinding.inflate(layoutInflater)
+        mBinding = ActivityRegister1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
@@ -35,10 +35,6 @@ class RegisterActivity : AppCompatActivity() {
 
         }
 
-        binding.loginTv.setOnClickListener {
-            val intent = Intent(this,LoginActivity::class.java);
-            startActivity(intent);
-        }
 
     }
 
