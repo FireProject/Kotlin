@@ -76,14 +76,23 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:text="인원 수"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:text="최대 인원 수" />
 
             <SeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="8" />
+                android:layout_weight="10" />
+
+            <TextView
+                android:id="@+id/tv_max_person_cnt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text = "0"
+                 />
 
         </LinearLayout>
 
