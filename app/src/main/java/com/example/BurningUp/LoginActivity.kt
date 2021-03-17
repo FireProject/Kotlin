@@ -37,6 +37,11 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnGoChatroom.setOnClickListener {
+            val intent_go_add_chat_room = Intent(this,AddChatRoomActivity::class.java)
+            startActivity(intent_go_add_chat_room)
+        }
+
     }
 
     fun signInUser(){
