@@ -11,20 +11,17 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        <activity android:name="com.example.BurningUp.SplashActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
-
-        <activity android:name="com.example.BurningUp.MainActivity"></activity>
-        <activity android:name="com.example.BurningUp.RegisterActivity"></activity>
-        <activity android:name="com.example.BurningUp.LoginActivity"></activity>
-
+        <activity android:name=".MainActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity" />
+    <activity android:name=".AddChatRoomActivity"/>
     </application>
 
 </manifest>

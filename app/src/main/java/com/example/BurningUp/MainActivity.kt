@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var auth : FirebaseAuth
+    private lateinit var my_db : FirebaseAuth
     private var mBinding: ActivityMainBinding? = null
     private val binding get() = mBinding!!
 
@@ -22,5 +22,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java);
             startActivity(intent)
         }
+
     }
 }
