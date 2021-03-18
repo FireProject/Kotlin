@@ -1,6 +1,7 @@
 package com.example.BurningUp
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,14 +29,16 @@ import com.google.firebase.database.ktx.getValue
 
 class AddChatRoomActivity : AppCompatActivity()
 {
-    private lateinit var auth : FirebaseAuth
     private var mBinding: ActivityAddChatRoomBinding? = null
     private val binding get() = mBinding!!
     public var vote_rate : Int? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
 
-    private lateinit var database : FirebaseDatabase
-    private lateinit var ref : DatabaseReference
+   /* 내 코드
+   private lateinit var database : FirebaseDatabase
+    private lateinit var ref : DatabaseReference*/
 
+    //대호 코드
+   private lateinit var database: DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -44,14 +47,25 @@ class AddChatRoomActivity : AppCompatActivity()
         mBinding = ActivityAddChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance("https://fire-71c1d-default-rtdb.firebaseio.com")
-        ref = database.getReferenceFromUrl("https://fire-71c1d-default-rtdb.firebaseio.com")
+        binding.btnGo.setOnClickListener {
+            val intent = Intent(this, ChangeBackgroundActivity::class.java);
+            startActivity(intent)
+        }
 
-        TestFirebase()
+        /* 내 코드
+        database = FirebaseDatabase.getInstance("https://fire-71c1d-default-rtdb.firebaseio.com")
+        ref = Firebase.database.reference
+        ref.child("Rooms").child("curPerson").setValue((3))*/
+
+        // 대호 코드
+        database = Firebase.database.reference
+        database.child("Rooms").child("curPerson").setValue(3)
+
+        //TestFirebase()
         MakeBaseSeekBar()
         ChangeSeekBar()
         ChangeRadioBox()
+
 
 
 
@@ -110,7 +124,7 @@ class AddChatRoomActivity : AppCompatActivity()
         })
     }
 
-    fun TestFirebase()
+    /*fun TestFirebase()
     {
         Log.d("jiwon" , "call up")
 
@@ -133,7 +147,7 @@ class AddChatRoomActivity : AppCompatActivity()
 
             }
         })
-    }
+    }*/
 
 
 }
