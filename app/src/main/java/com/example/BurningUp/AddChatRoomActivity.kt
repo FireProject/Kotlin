@@ -5,15 +5,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.CheckBox
+import android.widget.RadioGroup
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
 import com.google.firebase.auth.FirebaseAuth
-
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 
 /* TODO :
 <UI>
-1. 체크 박스 함수
+1. 
 2. 인원수 조절 -> DB
 3. 이미지 추가 기능 + 동그랗게
 4. 채팅방 배경색 설정(가장 나중에)  
@@ -27,15 +31,30 @@ class AddChatRoomActivity : AppCompatActivity()
     private lateinit var auth : FirebaseAuth
     private var mBinding: ActivityAddChatRoomBinding? = null
     private val binding get() = mBinding!!
+    public var vote_rate : Int? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
+
+    private lateinit var database : FirebaseDatabase
+    private lateinit var ref : DatabaseReference
+
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         mBinding = ActivityAddChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance("https://fire-71c1d-default-rtdb.firebaseio.com")
+        ref = database.getReferenceFromUrl("https://fire-71c1d-default-rtdb.firebaseio.com")
+
+        TestFirebase()
         MakeBaseSeekBar()
         ChangeSeekBar()
-        ChangeCheckBox()
+        ChangeRadioBox()
+
+
+
     }
 
     fun MakeBaseSeekBar()
@@ -69,34 +88,51 @@ class AddChatRoomActivity : AppCompatActivity()
         })
     }
 
-    fun ChangeCheckBox()
+    fun ChangeRadioBox()
     {
-        var vote_rate = 3
-        //매일 : 0
-        //매주 : 1
-        //매월 : 2
-        //Except : 3
-        binding.cbDay.setOnClickListener {
-            if(binding.cbDay.isChecked)
+        binding.radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
+            override fun onCheckedChanged(p0: RadioGroup?, checked_id: Int)
             {
-                vote_rate = 0;
-                binding.cbWeek.isChecked = false;
-                binding.cbMonth.isChecked = false;
+                if(checked_id == binding.rbDay.id)
+                {
+                    vote_rate = 0;
+                }
+                else if(checked_id == binding.rbWeek.id)
+                {
+                    vote_rate = 1;
+                }
+                else
+                {
+                    vote_rate = 2;
+                }
+                Log.d("jiwon" , vote_rate.toString());
             }
-            if(binding.cbWeek.isChecked)
+        })
+    }
+
+    fun TestFirebase()
+    {
+        Log.d("jiwon" , "call up")
+
+        ref.child("Rooms").child("curPerson").setValue(3)
+        var str = ref.child("users").child("nickname").get()
+        Log.d("jiwon" , str.toString());
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                val value = dataSnapshot.getValue<String>()
+                Log.d("jiwon",
+                        "Value is: $value")
+            }
+
+            override fun onCancelled(error: DatabaseError)
             {
-                vote_rate = 1;
-                binding.cbDay.isChecked = false;
-                binding.cbMonth.isChecked = false;
+                Log.d("jiwon",
+                        "Failed to read value.", error.toException())
+
             }
-            if(binding.cbMonth.isChecked)
-            {
-                vote_rate = 2;
-                binding.cbDay.isChecked = false;
-                binding.cbWeek.isChecked = false;
-            }
-            Log.d("test" , vote_rate.toString())
-        }
+        })
     }
 
 
