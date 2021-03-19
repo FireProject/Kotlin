@@ -24,8 +24,7 @@ import com.google.firebase.database.ktx.getValue
 
 /* TODO :
 <UI>
-1. 채팅방 배경색 설정
-2. 이미지 추가 기능 + 동그랗게
+1. 이미지 추가 기능 + 동그랗게
 
 <FireBase>
 1. DB 연결해서 저장해보기
@@ -37,11 +36,10 @@ class AddChatRoomActivity : AppCompatActivity()
     private val binding get() = mBinding!!
     public var vote_rate : Int? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
 
-    /* 내 코드
-    private lateinit var database : FirebaseDatabase
-    private lateinit var my_ref : DatabaseReference*/
+    // 내 코드
+    //private lateinit var database : FirebaseDatabase
+    //private lateinit var my_ref : DatabaseReference
 
-    //대호 코드
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -50,17 +48,9 @@ class AddChatRoomActivity : AppCompatActivity()
         mBinding = ActivityAddChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //exp : CustomDialog 자체를 호출해 버림.
-        val dialog = CustomDialog(this) //hard : dialog가 CustomDialog의 객체이며 생성자를 추가하여 호출.
-        dialog.myDig()
+        OpenDialog()
 
-        /* 내 코드
-        database = FirebaseDatabase.getInstance("https://fire-71c1d-default-rtdb.firebaseio.com")
-        my_ref = Firebase.database.reference
-        my_ref.child("Rooms").child("curPerson").setValue((3))*/
-
-        // 대호 코드
-        database = Firebase.database.reference
+        database = FirebaseDatabase.getInstance().getReference()
         database.child("Rooms").child("curPerson").setValue(3)
 
         //TestFirebase()
@@ -123,7 +113,17 @@ class AddChatRoomActivity : AppCompatActivity()
         })
     }
 
-    /*fun TestFirebase()
+    //exp : button을 누르면 내부에서 CustomDialog 자체를 호출해 버림.
+    fun OpenDialog()
+    {
+        binding.btnDialog.setOnClickListener {
+            val dialog = CustomDialog(this) //hard : dialog가 CustomDialog의 객체이며 생성자를 추가하여 호출.
+            dialog.myDig()
+        }
+    }
+
+    /*
+    fun TestFirebase()
     {
         Log.d("jiwon" , "call up")
 

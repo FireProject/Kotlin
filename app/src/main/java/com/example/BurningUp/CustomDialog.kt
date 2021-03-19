@@ -7,7 +7,13 @@ import android.os.Bundle
 import android.view.WindowManager
 
 //ref : https://magicalcode.tistory.com/19
-//TODO : 3/19에 위의 자료에서 4번 5번 부터 시작.
+/*
+TODO :
+1. 이 Dialog는 새로운 UI이므로 상의
+2. xml을 dialog에 접목시키는 것은 성공 , 하지만 layout의 비율이 깨지며
+method 기능도 추가해야 함.
+ */
+
 class CustomDialog(context : Context)
 {
     private val dialog = Dialog(context)
