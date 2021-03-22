@@ -20,6 +20,18 @@
         android:layout_weight="5"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/btn_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dialog로 가자" />
+
+        <Button
+            android:id="@+id/btn_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notice로 가자" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -248,6 +260,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5" />
+
     </LinearLayout>
 
     <Space
