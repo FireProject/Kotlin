@@ -48,12 +48,16 @@ class AddChatRoomActivity : AppCompatActivity()
         mBinding = ActivityAddChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        OpenDialog()
-
+        //DB method
         database = FirebaseDatabase.getInstance().getReference()
         database.child("Rooms").child("curPerson").setValue(3)
-
         //TestFirebase()
+
+        //Move other Page Method
+        OpenDialog()
+        OpenNotice()
+
+        //Layout Method
         MakeBaseSeekBar()
         ChangeSeekBar()
         ChangeRadioBox()
@@ -119,6 +123,14 @@ class AddChatRoomActivity : AppCompatActivity()
         binding.btnDialog.setOnClickListener {
             val dialog = CustomDialog(this) //hard : dialog가 CustomDialog의 객체이며 생성자를 추가하여 호출.
             dialog.myDig()
+        }
+    }
+
+    fun OpenNotice()
+    {
+        binding.btnNotice.setOnClickListener {
+            val intent = Intent(this, NoticeActivity::class.java);
+            startActivity(intent)
         }
     }
 
