@@ -26,7 +26,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".AddChatRoomActivity" />
-        <activity android:name=".NoticeActivity"></activity>
+        <activity android:name=".NoticeActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
