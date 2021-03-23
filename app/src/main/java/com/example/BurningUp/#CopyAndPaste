@@ -1,0 +1,17 @@
+1. Binding
+private var mBinding: ActivityxxxxxxxxBinding? = null
+private val binding get() = mBinding!!
+
+mBinding = ActivityxxxxxxxBinding.inflate(layoutInflater)
+setContentView(binding.root)
+
+2. Initial Linear Layout
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LL_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+</LinearLayout>
