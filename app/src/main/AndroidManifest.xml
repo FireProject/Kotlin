@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.BurningUp">
     <!-- 인터넷 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,6 +12,9 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".CustomDialog"
+            tools:ignore="Instantiatable" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +25,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-    <activity android:name=".AddChatRoomActivity"/>
+        <activity android:name=".AddChatRoomActivity" />
+        <activity android:name=".NoticeActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>
