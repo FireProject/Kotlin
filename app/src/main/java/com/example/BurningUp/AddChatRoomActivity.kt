@@ -1,26 +1,14 @@
 package com.example.BurningUp
 
-import android.R
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.ContextThemeWrapper
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.CheckBox
 import android.widget.RadioGroup
 import android.widget.SeekBar
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AlertDialog.Builder
 import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
-import com.google.android.material.dialog.MaterialDialogs
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
+import com.google.firebase.database.FirebaseDatabase
+
 
 /* TODO :
 <UI>
@@ -40,7 +28,7 @@ class AddChatRoomActivity : AppCompatActivity()
     //private lateinit var database : FirebaseDatabase
     //private lateinit var my_ref : DatabaseReference
 
-    private lateinit var database: DatabaseReference
+    //private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -49,9 +37,18 @@ class AddChatRoomActivity : AppCompatActivity()
         setContentView(binding.root)
 
         //DB method
-        database = FirebaseDatabase.getInstance().getReference()
-        database.child("Rooms").child("curPerson").setValue(3)
+        //database = FirebaseDatabase.getInstance().getReference()
+        //database.child("Rooms").child("curPerson").setValue(3)
         //TestFirebase()
+
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("message")
+        myRef.setValue("Hello, World!")
+        Log.d("jiwon" , "success");
+        /*val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("Rooms")
+
+        myRef.child("test").setValue("Hello, World!")*/
 
         //Move other Page Method
         OpenDialog()
