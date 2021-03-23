@@ -5,13 +5,20 @@ import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_friendslist.*
+import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
+import com.example.BurningUp.databinding.ActivityFriendslistBinding
+
+//import kotlinx.android.synthetic.main.activity_friendslist.*
 
 class friendsList : AppCompatActivity() {
+    private var mBinding: ActivityFriendslistBinding? = null
+    private val binding get() = mBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_friendslist)
+        mBinding = ActivityFriendslistBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.rvProfile;
 
 
         val profileList= arrayListOf(
@@ -25,10 +32,6 @@ class friendsList : AppCompatActivity() {
                 Profiles(R.drawable.profile,"박예진","알고리즘 개발",R.drawable.fire_mini)
         )
         // layoutmanager는 리사이클러 뷰 사용하려면 연결해줘야하는 애임
-        rv_profile.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        rv_profile.setHasFixedSize(true)
-
-        rv_profile.adapter=ProfileAdapater(profileList)
     }
 
 
