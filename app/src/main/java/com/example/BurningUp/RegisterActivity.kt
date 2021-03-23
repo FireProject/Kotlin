@@ -10,15 +10,15 @@ import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var auth : FirebaseAuth
+                private lateinit var auth : FirebaseAuth
 
-    private var mBinding: ActivityRegister1Binding? = null
-    private val binding get() = mBinding!!
+                private var mBinding: ActivityRegister1Binding? = null
+        private val binding get() = mBinding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
 
-        super.onCreate(savedInstanceState)
-        mBinding = ActivityRegister1Binding.inflate(layoutInflater)
+            super.onCreate(savedInstanceState)
+            mBinding = ActivityRegister1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
