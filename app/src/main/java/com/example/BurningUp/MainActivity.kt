@@ -3,8 +3,10 @@ package com.example.BurningUp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.BurningUp.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_friendslist.*
 
 class MainActivity : AppCompatActivity() {
 
