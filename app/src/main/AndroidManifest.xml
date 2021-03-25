@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".SsivalActivity"></activity>
+        <activity android:name=".Home2Activity" />
         <activity
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" />
@@ -26,8 +28,9 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".AddChatRoomActivity" />
-        <activity android:name=".NoticeActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".NoticeActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

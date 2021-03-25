@@ -16,6 +16,13 @@
         android:layout_weight="0.5"
         android:text="go_addchatroom" />
 
+    <Button
+        android:id="@+id/go_myroom"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:text="go_myroom" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
