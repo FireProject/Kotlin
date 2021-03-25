@@ -29,6 +29,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".VotePostingActivity"
             android:windowSoftInputMode="adjustPan"/>
+
+
         <activity
             android:name=".IntroduceProgrammerFragment"
             android:label="@string/title_activity_introduce_programmer_fragment"
@@ -40,7 +42,7 @@
         <activity android:name=".ChangePasswordFragment" />
         <activity android:name=".ChangeProfileFragment" />
         <activity android:name=".SsivalActivity" />
-        <activity android:name=".Home2Activity" />
+
         <activity
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" />
