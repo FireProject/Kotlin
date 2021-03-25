@@ -2,6 +2,7 @@ package com.example.BurningUp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.widget.RadioGroup
 import android.widget.SeekBar
@@ -9,25 +10,24 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
 import com.google.firebase.database.FirebaseDatabase
 
-
-/* TODO :
-<UI>
-1. 이미지 추가 기능 + 동그랗게
-
-<FireBase>
-1. DB 연결해서 저장해보기
- */
-
+//exp : 당분간(3월)은 박지원의 MainActivity
 class AddChatRoomActivity : AppCompatActivity()
 {
     private var mBinding: ActivityAddChatRoomBinding? = null
     private val binding get() = mBinding!!
     public var vote_rate : Int? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
 
-    // 내 코드
+    //exp : 어플 전체에서 사용할 static 변수
+    companion object
+    {
+        var device_width : Float = 0f
+        var device_height : Float = 0f
+    }
+
+    //TODO : DB 로그인을 하면 연결될 것으로 기대
+    // DB 시행착오
     //private lateinit var database : FirebaseDatabase
     //private lateinit var my_ref : DatabaseReference
-
     //private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -53,11 +53,15 @@ class AddChatRoomActivity : AppCompatActivity()
         //Move other Page Method
         OpenDialog()
         OpenNotice()
+        OpenVotePosting()
 
         //Layout Method
         MakeBaseSeekBar()
         ChangeSeekBar()
         ChangeRadioBox()
+
+        //Other Method
+        GetResolution()
     }
 
     fun MakeBaseSeekBar()
@@ -129,6 +133,30 @@ class AddChatRoomActivity : AppCompatActivity()
             val intent = Intent(this, NoticeActivity::class.java);
             startActivity(intent)
         }
+    }
+
+    fun OpenVotePosting()
+    {
+        binding.btnVotePosting.setOnClickListener {
+            val intent = Intent(this, VotePostingActivity::class.java);
+            startActivity(intent)
+        }
+    }
+
+    //exp : 해상도를 얻는 Method
+    //ref : https://www.androidhuman.com/2016-07-10-kotlin_companion_object
+    //TODO : 지금은 아직 사용할 일이 없어서 Addchatroom에 선언했지만 , 어플이 시작되면
+    //TODO : 바로 해상도를 구해와야 하기 때문에 가장 첫 페에지인 SplashActivity에 추가해야 할 듯 합니다.
+    fun GetResolution()
+    {
+        val display = windowManager.defaultDisplay
+        val outMetrics = DisplayMetrics()
+        display.getRealMetrics(outMetrics)
+
+        var density = resources.displayMetrics.density
+        device_height = outMetrics.heightPixels / density
+        device_width = outMetrics.widthPixels / density
+        //Log.d("jiwon" , device_width.toString() + " " +device_height.toString())
     }
 
     /*
