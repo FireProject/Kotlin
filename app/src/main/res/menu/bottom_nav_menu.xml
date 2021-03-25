@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_profile"
+        android:title="내프로필"
+        android:icon="@drawable/profilebtn"
+        />
+    <item
+        android:id="@+id/menu_home"
+        android:title="홈"
+        android:icon="@drawable/homebtn"
+        />
+    <item
+        android:id="@+id/menu_chat"
+        android:title="채팅"
+        android:icon="@drawable/chattingbtn"
+        />
+</menu>

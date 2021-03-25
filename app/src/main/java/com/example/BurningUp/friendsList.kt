@@ -9,6 +9,9 @@ import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
 import com.example.BurningUp.databinding.ActivityFriendslistBinding
 
 //import kotlinx.android.synthetic.main.activity_friendslist.*
+//ㅅtest
+
+
 
 class friendsList : AppCompatActivity() {
     private var mBinding: ActivityFriendslistBinding? = null
