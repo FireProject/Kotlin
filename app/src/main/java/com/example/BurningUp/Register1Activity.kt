@@ -3,6 +3,7 @@ package com.example.BurningUp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.BurningUp.databinding.ActivityRegister1Binding
 import com.google.firebase.auth.FirebaseAuth
@@ -25,10 +26,13 @@ class Register1Activity : AppCompatActivity() {
         binding.emailVerifyBtn.setOnClickListener{
 
             if(binding.passwordEdit.text.toString() != binding.passwordEditC.text.toString()){
+                Log.d("jiwon" , "daeho1")
                 Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show()
             }else if(binding.emailEdit.text.isNotEmpty()&&binding.passwordEdit.text.isNotEmpty()&&binding.passwordEditC.text.isNotEmpty()){
                 sendVerifyEmail();
+                Log.d("jiwon" , "daeho2")
             }else{
+                Log.d("jiwon" , "daeho3")
                 Toast.makeText(this, "이메일/비밀번호를 입력해주세요", Toast.LENGTH_LONG).show()
             }
 
@@ -39,12 +43,14 @@ class Register1Activity : AppCompatActivity() {
 
     private fun sendVerifyEmail(){
 
+        Log.d("jiwon" , binding.emailEdit.text.trim().toString() + " " + binding.passwordEdit.text.trim().toString())
         auth.createUserWithEmailAndPassword(binding.emailEdit.text.trim().toString(), binding.passwordEdit.text.trim().toString())
             .addOnCompleteListener(this){
                 task->
                 if(task.isSuccessful){
                     //이메일 인증 보내기
                     val user = auth.currentUser;
+                    Log.d("jiwon" , "2")
                     user!!.sendEmailVerification()
                             .addOnCompleteListener{task->
                                 if(task.isSuccessful){
@@ -52,12 +58,14 @@ class Register1Activity : AppCompatActivity() {
                                     //auth.signOut();
                                     val intent = Intent(this, Register2Activity::class.java);
                                     startActivity(intent)
+                                    Log.d("jiwon" , "3")
                                 }else{
                                     Toast.makeText(this,"이메일이 전송되지 않았습니다 "+ task.exception,Toast.LENGTH_LONG).show()
+                                    Log.d("jiwon" , "4")
                                 }
                             }
                 }else{
-
+                    Log.d("jiwon" , "1")
                     Toast.makeText(this, "회원 가입 오류 " + task.exception, Toast.LENGTH_LONG).show()
 
                 }

@@ -8,6 +8,8 @@ import android.widget.RadioGroup
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 //exp : 당분간(3월)은 박지원의 MainActivity
@@ -24,11 +26,9 @@ class AddChatRoomActivity : AppCompatActivity()
         var device_height : Float = 0f
     }
 
-    //TODO : DB 로그인을 하면 연결될 것으로 기대
-    // DB 시행착오
-    //private lateinit var database : FirebaseDatabase
-    //private lateinit var my_ref : DatabaseReference
-    //private lateinit var database: DatabaseReference
+    private lateinit var mAuth : FirebaseAuth
+    private lateinit var mdatabase : FirebaseDatabase
+    private lateinit var mRef : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -36,19 +36,12 @@ class AddChatRoomActivity : AppCompatActivity()
         mBinding = ActivityAddChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //DB method
-        //database = FirebaseDatabase.getInstance().getReference()
-        //database.child("Rooms").child("curPerson").setValue(3)
-        //TestFirebase()
 
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("message")
-        myRef.setValue("Hello, World!")
-        Log.d("jiwon" , "success");
-        /*val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("Rooms")
-
-        myRef.child("test").setValue("Hello, World!")*/
+        mAuth = FirebaseAuth.getInstance()
+        mdatabase = FirebaseDatabase.getInstance()
+        mRef = mdatabase.getReference("users")
+        var uid = mAuth?.uid
+        Log.d("jiwon" , uid.toString());
 
         //Move other Page Method
         OpenDialog()

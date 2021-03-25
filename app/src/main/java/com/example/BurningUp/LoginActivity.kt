@@ -23,6 +23,8 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance();
 
+        GoAddChatRoom()
+
         binding.loginBtn.setOnClickListener{//로그인버튼 클릭시
 
             if(binding.usernameEt.text.trim().isNotEmpty()&&binding.passwordEt.text.trim().isNotEmpty()){ //입력 창에 모두 입력시
@@ -77,6 +79,14 @@ class LoginActivity : AppCompatActivity() {
         // onDestroy 에서 binding class 인스턴스 참조를 정리해주어야 한다.
         mBinding = null
         super.onDestroy()
+    }
+
+    fun GoAddChatRoom()
+    {
+        binding.goAddChat.setOnClickListener {
+            val intent = Intent(this, AddChatRoomActivity::class.java);
+            startActivity(intent)
+        }
     }
 
 }
