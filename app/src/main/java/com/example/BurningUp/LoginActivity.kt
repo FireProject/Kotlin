@@ -50,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
                 task->
                 if(task.isSuccessful){//로그인 성공시
                     if(auth.currentUser.isEmailVerified){//인증된 계정이면
-                        val intent = Intent(this,MainActivity::class.java);
+                        val intent = Intent(this,SsivalActivity::class.java);
                         startActivity(intent);//메인화면으로 이동
                     }else{//아직 인증안한 계정일 경우 로그인 하지 않고 인증하라는 메시지 출력
                         Toast.makeText(this, "Please verify your email address", Toast.LENGTH_LONG).show()
@@ -65,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val user = auth.currentUser
         if(user!=null){ //로그인 되어있으면 바로 메인 화면으로 이동
-            val intent = Intent(this, MainActivity::class.java);
+            val intent = Intent(this, SsivalActivity::class.java);
             startActivity(intent)
         }else{//로그인 되어있지 않으면
             Toast.makeText(this,"User first time login", Toast.LENGTH_LONG).show()
