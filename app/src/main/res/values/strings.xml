@@ -9,7 +9,7 @@
 
     <string name="SignUpBtn"><u>회원가입</u></string>
 
-    <string name="AccountFindBtn"><u>아이디 찾기/비밀번호 변경</u></string>
+    <string name="AccountFindBtn"><u>비밀번호 변경</u></string>
     <string name="title_activity_alarm_setting_fragment">AlarmSettingFragment</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

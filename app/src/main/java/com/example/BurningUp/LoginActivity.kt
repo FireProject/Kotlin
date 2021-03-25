@@ -23,51 +23,51 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance();
 
-        binding.loginBtn.setOnClickListener{
+        binding.loginBtn.setOnClickListener{//로그인버튼 클릭시
 
-            if(binding.usernameEt.text.trim().isNotEmpty()&&binding.passwordEt.text.trim().isNotEmpty()){
-                signInUser();
+            if(binding.usernameEt.text.trim().isNotEmpty()&&binding.passwordEt.text.trim().isNotEmpty()){ //입력 창에 모두 입력시
+                signInUser()
             }else{
                 Toast.makeText(this, "아이디 or 비밀번호를 입력하세요.", Toast.LENGTH_LONG).show()
             }
         }
 
-        binding.registerBtn.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java);
-            startActivity(intent)
+        binding.registerBtn.setOnClickListener {//회원가입 버튼 클릭시
+            val intent = Intent(this, Register1Activity::class.java);
+            startActivity(intent)//회원가입 화면으로 이동
         }
 
-        binding.btnGoChatroom.setOnClickListener {
-            val intent_go_add_chat_room = Intent(this,AddChatRoomActivity::class.java)
-            startActivity(intent_go_add_chat_room)
-        }
-        binding.goMyroom.setOnClickListener{
-            val intent_go_myroom = Intent(this,SsivalActivity::class.java)
-            startActivity(intent_go_myroom)
+        binding.changePasswordBtn.setOnClickListener {
+            val intent = Intent(this, ChangePasswordActivity::class.java);
+            startActivity(intent)//회원가입 화면으로 이동
         }
 
     }
 
-    fun signInUser(){
-        auth.signInWithEmailAndPassword(binding.usernameEt.text.trim().toString(), binding.passwordEt.text.trim().toString())
+    fun signInUser(){//로그인 함수
+        auth.signInWithEmailAndPassword(binding.usernameEt.text.trim().toString(), binding.passwordEt.text.trim().toString()) //이메일 비밀번호 인증
             .addOnCompleteListener(this){
                 task->
-                if(task.isSuccessful){
-                    val intent = Intent(this,MainActivity::class.java);
-                    startActivity(intent);
-                }else{
+                if(task.isSuccessful){//로그인 성공시
+                    if(auth.currentUser.isEmailVerified){//인증된 계정이면
+                        val intent = Intent(this,MainActivity::class.java);
+                        startActivity(intent);//메인화면으로 이동
+                    }else{//아직 인증안한 계정일 경우 로그인 하지 않고 인증하라는 메시지 출력
+                        Toast.makeText(this, "Please verify your email address", Toast.LENGTH_LONG).show()
+                    }
+                }else{//로그인 실패
                     Toast.makeText(this, "Authentication Error "+task.exception, Toast.LENGTH_LONG).show()
                 }
             }
     }
 
-    override fun onStart() {
+    override fun onStart() {//자동 로그인 함수
         super.onStart()
-        val user = auth.currentUser;
-        if(user!=null){
+        val user = auth.currentUser
+        if(user!=null){ //로그인 되어있으면 바로 메인 화면으로 이동
             val intent = Intent(this, MainActivity::class.java);
             startActivity(intent)
-        }else{
+        }else{//로그인 되어있지 않으면
             Toast.makeText(this,"User first time login", Toast.LENGTH_LONG).show()
         }
     }

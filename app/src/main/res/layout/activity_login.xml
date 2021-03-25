@@ -9,20 +9,6 @@
     tools:context=".LoginActivity"
     android:background="@drawable/login_background" >
 
-    <Button
-        android:id="@+id/btn_go_chatroom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:text="go_addchatroom" />
-
-    <Button
-        android:id="@+id/go_myroom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:text="go_myroom" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -38,12 +24,10 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3" />
-
+            android:layout_weight="3"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -54,16 +38,16 @@
                 android:id="@+id/username_tv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:background="@drawable/round_square">
 
                 <EditText
                     android:id="@+id/username_et"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:hint="Username"
                     android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
-                    android:hint="Username" />
+                    android:layout_marginEnd="2dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -75,17 +59,17 @@
                 android:id="@+id/password_tv"
                 android:layout_width="match_parent"
                 android:background="@drawable/round_square"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:layout_height="0dp">
 
                 <EditText
                     android:id="@+id/password_et"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +82,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="2"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -117,7 +101,7 @@
                         <TextView
                             android:id="@+id/register_btn"
                             android:text="@string/SignUpBtn"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:textColor="#808080"
                             android:textAlignment="textStart"
                             android:layout_width="0dp"
@@ -125,13 +109,13 @@
                             android:layout_weight="35"/>
 
                         <TextView
-                            android:id="@+id/find_account_btn"
+                            android:id="@+id/change_password_btn"
                             android:text="@string/AccountFindBtn"
-                            android:textSize="15sp"
+                            android:textSize="18sp"
                             android:textColor="#808080"
                             android:layout_height="match_parent"
                             android:textAlignment="textStart"
-                            android:layout_weight="90"
+                            android:layout_weight="60"
                             android:layout_width="0dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -157,7 +141,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"/>
+                android:layout_weight="2"/>
             <Button
                 android:id="@+id/login_btn"
                 android:layout_width="match_parent"
@@ -167,7 +151,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="6"/>
+                android:layout_weight="7"/>
         </LinearLayout>
 
         <LinearLayout
@@ -180,4 +164,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
 </LinearLayout>

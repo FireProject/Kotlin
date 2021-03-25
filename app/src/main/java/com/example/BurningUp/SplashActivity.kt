@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 
 class SplashActivity : AppCompatActivity() {
-    val DURATION:Long = 1000
+    val DURATION:Long = 2000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

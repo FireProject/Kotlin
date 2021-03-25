@@ -43,6 +43,9 @@ android {
         buildFeatures {
             viewBinding true
         }
+        defaultConfig{
+            multiDexEnabled true
+        }
     }
 }
 
@@ -61,7 +64,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-auth:20.0.3'
-    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-storage:19.0.0'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+
+    //ted permission 안드로이드 마시멜로우 버전 이상부터는 권한에 대한 허용을 사용자로부터 받아야함
+    implementation "gun0912.ted:tedpermission:2.2.3"
+
+    //사진 회전
+    implementation "androidx.exifinterface:exifinterface:1.1.0"
 
     //splash
     implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
@@ -69,10 +79,18 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
 
+    implementation 'com.google.firebase:firebase-database-ktx:19.7.0'
+
+    //ImagePicker
+    implementation 'com.github.dhaval2404:imagepicker:1.7.4'
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //circle Imageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    api "com.theartofdev.edmodo:android-image-cropper:2.8.0"
+
+    implementation "androidx.multidex:multidex:1.0.3"
 }
