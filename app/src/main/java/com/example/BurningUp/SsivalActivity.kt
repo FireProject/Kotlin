@@ -1,12 +1,15 @@
 package com.example.BurningUp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
+import com.example.BurningUp.databinding.ActivitySsivalBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 import kotlinx.android.synthetic.main.activity_ssival.*
 
@@ -20,12 +23,20 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
     private lateinit var settingAlarmFragment: SettingAlarmFragment
     private lateinit var introduceProgrammerFragment: IntroduceProgrammerFragment
 
+    private lateinit var auth : FirebaseAuth
+    private var mBinding: ActivitySsivalBinding? = null
+    private val binding get() = mBinding!!
+
     companion object{
         const val TAG:String="로그"
    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        mBinding = ActivitySsivalBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        auth = FirebaseAuth.getInstance();
         //레이아웃과 연결결
        setContentView(R.layout.activity_ssival)
         Log.d(TAG, "MainActivity_oncreate() called")
@@ -41,6 +52,7 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
         //처음에는 홈화면이 나오도록 함 
         homeFragment= HomeFragment.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.fragments_frame,homeFragment).commit()
+
 
     }
 
@@ -87,9 +99,25 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,settingAlarmFragment).commit()
 
             }
+            //exp : 채팅방만들기로 가기
             R.id.introuduce_p->{
+
+                    val intent = Intent(this, AddChatRoomActivity::class.java);
+                    startActivity(intent)
+
+                /*
                 introduceProgrammerFragment=IntroduceProgrammerFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,introduceProgrammerFragment).commit()
+                */
+            }
+            R.id.logout_btn->{
+
+                auth.signOut()
+                Log.d("jiwon" , "logout success")
+
+                val intent = Intent(this, LoginActivity::class.java);
+                startActivity(intent)//회원가입 화면으로 이동
+
             }
 
 
@@ -114,6 +142,11 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
         {
             super.onBackPressed()
         }
+    }
+
+    fun GoChatRoom()
+    {
+
     }
 }
 

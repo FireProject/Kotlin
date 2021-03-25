@@ -85,7 +85,14 @@
                 android:layout_above="@id/bottom_nav"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:background="@color/design_default_color_primary" />
+                android:background="@color/design_default_color_primary" >
+
+                <Button
+                    android:id="@+id/btn_go_add_chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+            </FrameLayout>
 
            <com.google.android.material.bottomnavigation.BottomNavigationView
 
