@@ -18,7 +18,7 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
+        <activity android:name=".LoadingDialog"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,25 +26,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-
-
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".AddChatRoomActivity" />
         <activity
             android:name=".NoticeActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".VotePostingActivity"
-            android:windowSoftInputMode="adjustPan"/>
-
+        <activity
+            android:name=".VotePostingActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-
-        <activity android:name=".ChangePasswordActivity"></activity>
+        <activity android:name=".ChangePasswordActivity" />
         <activity
             android:name=".IntroduceProgrammerFragment"
             android:label="@string/title_activity_introduce_programmer_fragment"
-            android:theme="@style/NoActionBar"/>
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".AlarmSettingFragment"
             android:label="@string/title_activity_alarm_setting_fragment"
@@ -52,11 +51,9 @@
         <activity android:name=".ChangePasswordFragment" />
         <activity android:name=".ChangeProfileFragment" />
         <activity android:name=".SsivalActivity" />
-
         <activity android:name=".Register1Activity" />
         <activity android:name=".Register2Activity" />
         <activity android:name=".LoginActivity" />
-
         <activity
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" />
@@ -70,7 +67,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

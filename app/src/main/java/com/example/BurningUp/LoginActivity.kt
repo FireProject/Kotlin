@@ -1,8 +1,12 @@
 package com.example.BurningUp
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.BurningUp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -14,6 +18,8 @@ class LoginActivity : AppCompatActivity() {
     private var mBinding: ActivityLoginBinding? = null
     private val binding get() = mBinding!!
 
+    var imm : InputMethodManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -21,10 +27,16 @@ class LoginActivity : AppCompatActivity() {
         mBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance()
+
+        imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
+
+        val loadingDialog = LoadingDialog(this)
+
+        loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.loginBtn.setOnClickListener{//로그인버튼 클릭시
-
+            loadingDialog.show()
             if(binding.usernameEt.text.trim().isNotEmpty()&&binding.passwordEt.text.trim().isNotEmpty()){ //입력 창에 모두 입력시
                 signInUser()
             }else{
@@ -72,11 +84,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    fun hideKeyboard(v:View){
+        if(v!=null){
+            imm?.hideSoftInputFromWindow(v.windowToken,0)
+        }
+    }
+
+
     // 액티비티가 파괴될 때..
     override fun onDestroy() {
         // onDestroy 에서 binding class 인스턴스 참조를 정리해주어야 한다.
         mBinding = null
         super.onDestroy()
     }
+
+
 
 }

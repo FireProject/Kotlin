@@ -3,6 +3,8 @@ package com.example.BurningUp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.BurningUp.databinding.ActivityRegister1Binding
 import com.google.firebase.auth.FirebaseAuth
@@ -14,11 +16,15 @@ class Register1Activity : AppCompatActivity() {
     private var mBinding: ActivityRegister1Binding? = null
     private val binding get() = mBinding!!
 
+    var imm : InputMethodManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         mBinding = ActivityRegister1Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
 
         auth = FirebaseAuth.getInstance()
 
@@ -50,7 +56,7 @@ class Register1Activity : AppCompatActivity() {
                                 if(task.isSuccessful){
                                     Toast.makeText(this, "이메일 인증이 발송되었습니다.", Toast.LENGTH_LONG).show()
                                     //auth.signOut();
-                                    val intent = Intent(this, Register2Activity::class.java);
+                                    val intent = Intent(this, Register2Activity::class.java)
                                     startActivity(intent)
                                 }else{
                                     Toast.makeText(this,"이메일이 전송되지 않았습니다 "+ task.exception,Toast.LENGTH_LONG).show()
@@ -63,6 +69,13 @@ class Register1Activity : AppCompatActivity() {
                 }
             }
     }
+
+    fun hideKeyboard(v: View){
+        if(v!=null){
+            imm?.hideSoftInputFromWindow(v.windowToken,0)
+        }
+    }
+
     // 액티비티가 파괴될 때..
     override fun onDestroy() {
         // onDestroy 에서 binding class 인스턴스 참조를 정리해주어야 한다.

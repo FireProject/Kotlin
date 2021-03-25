@@ -1,12 +1,16 @@
 package com.example.BurningUp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.core.view.GravityCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 import kotlinx.android.synthetic.main.activity_ssival.*
 
@@ -20,14 +24,18 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
     private lateinit var settingAlarmFragment: SettingAlarmFragment
     private lateinit var introduceProgrammerFragment: IntroduceProgrammerFragment
 
+    private lateinit var auth : FirebaseAuth
+
     companion object{
         const val TAG:String="로그"
    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        auth = FirebaseAuth.getInstance()
+
         //레이아웃과 연결결
-       setContentView(R.layout.activity_ssival)
+        setContentView(R.layout.activity_ssival)
         Log.d(TAG, "MainActivity_oncreate() called")
 
 
@@ -91,10 +99,11 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
                 introduceProgrammerFragment=IntroduceProgrammerFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,introduceProgrammerFragment).commit()
             }
-
-
-            //로그아웃 기능 추가하기
-            //프래그먼트 먄들고, 위에처럼 로그아웃 생성자 만들고
+            R.id.logout_btn->{
+                auth.signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
 
         }
 
@@ -103,6 +112,8 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
         return  false
 
     }
+
+
 
     override fun onBackPressed() {  //안드로이드에서 제공되는 백버튼이 입려되었을때
 
