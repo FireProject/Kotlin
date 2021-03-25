@@ -10,5 +10,15 @@
     <string name="SignUpBtn"><u>회원가입</u></string>
 
     <string name="AccountFindBtn"><u>아이디 찾기/비밀번호 변경</u></string>
+    <string name="title_activity_alarm_setting_fragment">AlarmSettingFragment</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_introduce_programmer_fragment">IntroduceProgrammerFragment</string>
 
 </resources>

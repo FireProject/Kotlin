@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 class ProfileFragment:Fragment() {
+    //내프로필 보기 프래그먼트
     companion object{
 
         const val TAG: String ="logg"

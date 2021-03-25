@@ -8,27 +8,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class ChatFragment:Fragment() {
-    //채팅방 프래그먼트
+class ChangeProfileFragment:Fragment() {
+    //홈화면 프래그먼트
     companion object{
 
         const val TAG: String ="logg"
-        fun newInstance():ChatFragment{
-            return ChatFragment()
+        fun newInstance():ChangeProfileFragment{
+            return ChangeProfileFragment()
         }
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "ChatFrag_oncreate() called")
+        Log.d(TAG, "HoemFrag_oncreate() called")
     }
     //
     // 프래그먼트가 메인 액티비티에 붙게되는(?)
     //프래그먼트를 안고 있는 액티비티에 붙었을 때
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.d(TAG, "ChatFrag_oncreate() called")
+        Log.d(TAG, "HoemFrag_oncreate() called")
     }
 
     //뷰가 생성 되었을 때
@@ -39,8 +39,8 @@ class ChatFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d(TAG, "Chat0Frag_oncreate() called")
-        val view=inflater.inflate(R.layout.fragment_chat,container,false)
+        Log.d(TAG, "HoemFrag_oncreate() called")
+        val view=inflater.inflate(R.layout.fragment_chprofile,container,false)
 
         return view
     }
