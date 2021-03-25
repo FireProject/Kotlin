@@ -24,6 +24,7 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
     private lateinit var settingAlarmFragment: SettingAlarmFragment
     private lateinit var introduceProgrammerFragment: IntroduceProgrammerFragment
 
+
     private lateinit var auth : FirebaseAuth
 
     companion object{
@@ -35,7 +36,7 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
         auth = FirebaseAuth.getInstance()
 
         //레이아웃과 연결결
-        setContentView(R.layout.activity_ssival)
+       setContentView(R.layout.activity_ssival)
         Log.d(TAG, "MainActivity_oncreate() called")
 
 
@@ -112,8 +113,6 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
         return  false
 
     }
-
-
 
     override fun onBackPressed() {  //안드로이드에서 제공되는 백버튼이 입려되었을때
 
