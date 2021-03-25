@@ -3,6 +3,8 @@ package com.example.BurningUp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.BurningUp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -14,6 +16,8 @@ class LoginActivity : AppCompatActivity() {
     private var mBinding: ActivityLoginBinding? = null
     private val binding get() = mBinding!!
 
+    var imm : InputMethodManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -21,7 +25,8 @@ class LoginActivity : AppCompatActivity() {
         mBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance()
+        imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
 
         binding.loginBtn.setOnClickListener{//로그인버튼 클릭시
 
@@ -47,10 +52,10 @@ class LoginActivity : AppCompatActivity() {
     fun signInUser(){//로그인 함수
         auth.signInWithEmailAndPassword(binding.usernameEt.text.trim().toString(), binding.passwordEt.text.trim().toString()) //이메일 비밀번호 인증
             .addOnCompleteListener(this){
-                task->
+                    task->
                 if(task.isSuccessful){//로그인 성공시
                     if(auth.currentUser.isEmailVerified){//인증된 계정이면
-                        val intent = Intent(this,MainActivity::class.java);
+                        val intent = Intent(this,SsivalActivity::class.java);
                         startActivity(intent);//메인화면으로 이동
                     }else{//아직 인증안한 계정일 경우 로그인 하지 않고 인증하라는 메시지 출력
                         Toast.makeText(this, "Please verify your email address", Toast.LENGTH_LONG).show()
@@ -65,10 +70,16 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val user = auth.currentUser
         if(user!=null){ //로그인 되어있으면 바로 메인 화면으로 이동
-            val intent = Intent(this, MainActivity::class.java);
+            val intent = Intent(this, SsivalActivity::class.java);
             startActivity(intent)
         }else{//로그인 되어있지 않으면
             Toast.makeText(this,"User first time login", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    fun hideKeyboard(v: View){
+        if(v!=null){
+            imm?.hideSoftInputFromWindow(v.windowToken,0)
         }
     }
 
