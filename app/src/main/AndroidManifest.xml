@@ -12,21 +12,7 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".IntroduceProgrammerFragment"
-            android:label="@string/title_activity_introduce_programmer_fragment"
-            android:theme="@style/NoActionBar"></activity>
-        <activity
-            android:name=".AlarmSettingFragment"
-            android:label="@string/title_activity_alarm_setting_fragment"
-            android:theme="@style/NoActionBar" />
-        <activity android:name=".ChangePasswordFragment" />
-        <activity android:name=".ChangeProfileFragment" />
-        <activity android:name=".SsivalActivity" />
-        <activity android:name=".Home2Activity" />
-        <activity
-            android:name=".CustomDialog"
-            tools:ignore="Instantiatable" />
+
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,6 +27,25 @@
         <activity
             android:name=".NoticeActivity"
             android:windowSoftInputMode="adjustPan" />
-    </application>
+        <activity android:name=".VotePostingActivity"
+            android:windowSoftInputMode="adjustPan"/>
+
+
+        <activity
+            android:name=".IntroduceProgrammerFragment"
+            android:label="@string/title_activity_introduce_programmer_fragment"
+            android:theme="@style/NoActionBar"/>
+        <activity
+            android:name=".AlarmSettingFragment"
+            android:label="@string/title_activity_alarm_setting_fragment"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".ChangePasswordFragment" />
+        <activity android:name=".ChangeProfileFragment" />
+        <activity android:name=".SsivalActivity" />
+
+        <activity
+            android:name=".CustomDialog"
+            tools:ignore="Instantiatable" />
+        </application>
 
 </manifest>
