@@ -58,18 +58,16 @@ class Register2Activity : AppCompatActivity() {
             builder.setIcon(R.drawable.before_add_profile_img)
 
             // 버튼 클릭시에 무슨 작업을 할 것인가!
-            var listener = object : DialogInterface.OnClickListener {
-                override fun onClick(p0: DialogInterface?, p1: Int) {
-                    when (p1) {
-                        DialogInterface.BUTTON_POSITIVE ->
-                            captureImageUsingCamera()//기본 카메라 앱을 실행하여 사진 촬영
+            var listener = DialogInterface.OnClickListener { p0, p1 ->
+                when (p1) {
+                    DialogInterface.BUTTON_POSITIVE ->
+                        captureImageUsingCamera()//기본 카메라 앱을 실행하여 사진 촬영
 
-                        DialogInterface.BUTTON_NEUTRAL -> { //기본 이미지로 프로필을 설정
-                            binding.profileImageView.setImageResource(R.drawable.default_profile_img)
-                        }
-                        DialogInterface.BUTTON_NEGATIVE ->
-                            pickImageFromGallery()//앨범에서 이미지 설정
+                    DialogInterface.BUTTON_NEUTRAL -> { //기본 이미지로 프로필을 설정
+                        binding.profileImageView.setImageResource(R.drawable.default_profile_img)
                     }
+                    DialogInterface.BUTTON_NEGATIVE ->
+                        pickImageFromGallery()//앨범에서 이미지 설정
                 }
             }
 
