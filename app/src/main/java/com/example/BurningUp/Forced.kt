@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.IBinder
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
-
+//강제종료시 필요한 클래스
 class Forced : Service() {
 
     private lateinit var auth : FirebaseAuth
@@ -15,9 +15,13 @@ class Forced : Service() {
     }
 
     override fun onTaskRemoved(rootIntent: Intent) { //핸들링 하는 부분
+
+        //강제 종료시 자동으로 로그아웃
         auth = FirebaseAuth.getInstance()
-        Log.e("Error", "onTaskRemoved - $rootIntent")
         auth.signOut()
+
+        Log.e("Error", "onTaskRemoved - $rootIntent")
+
         stopSelf() //서비스도 같이 종료
     }
 }
