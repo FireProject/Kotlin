@@ -98,8 +98,11 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
 
             }
             R.id.introuduce_p->{
-                introduceProgrammerFragment=IntroduceProgrammerFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,introduceProgrammerFragment).commit()
+                /*introduceProgrammerFragment=IntroduceProgrammerFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,introduceProgrammerFragment).commit()*/
+                val intent = Intent(this, AddChatRoomActivity::class.java);
+                startActivity(intent)//로그아웃 후 로그인 화면으로 이동
+
             }
             R.id.logout_btn->{
                 auth.signOut()

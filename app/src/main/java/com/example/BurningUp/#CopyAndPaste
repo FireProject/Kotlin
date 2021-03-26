@@ -1,8 +1,8 @@
 1. Binding
-private var mBinding: ActivityxxxxxxxxBinding? = null
+private var mBinding: ActivityBinding? = null
 private val binding get() = mBinding!!
 
-mBinding = ActivityxxxxxxxBinding.inflate(layoutInflater)
+mBinding = ActivityBinding.inflate(layoutInflater)
 setContentView(binding.root)
 
 2. Initial Linear Layout
@@ -15,3 +15,6 @@ setContentView(binding.root)
     android:layout_height="match_parent"
     android:orientation="vertical">
 </LinearLayout>
+
+3. Toast
+Toast.makeText(this.getApplicationContext() , " " , Toast.LENGTH_SHORT).show()
