@@ -49,7 +49,7 @@ class Register2Activity : AppCompatActivity() {
 
             var builder = AlertDialog.Builder(this)
             builder.setTitle("프로필 사진 등록")
-            builder.setIcon(R.drawable.edit_profile_img)
+            builder.setIcon(R.drawable.before_add_profile_img)
 
             // 버튼 클릭시에 무슨 작업을 할 것인가!
             var listener = object : DialogInterface.OnClickListener {

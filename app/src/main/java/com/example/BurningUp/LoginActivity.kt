@@ -1,6 +1,8 @@
 package com.example.BurningUp
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -28,8 +30,13 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
 
+        val loadingDialog = LoadingDialog(this)
+
+        loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         binding.loginBtn.setOnClickListener{//로그인버튼 클릭시
 
+            loadingDialog.show()
             if(binding.usernameEt.text.trim().isNotEmpty()&&binding.passwordEt.text.trim().isNotEmpty()){ //입력 창에 모두 입력시
                 signInUser()
             }else{
