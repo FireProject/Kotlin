@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라 권한 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 파일 읽기 권한 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 파일 쓰기 권한 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!--인터넷 연결 권한-->
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -67,6 +69,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <service android:name=".Forced" android:stopWithTask="false" />
+
     </application>
 
 </manifest>

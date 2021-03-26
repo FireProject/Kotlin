@@ -1,8 +1,11 @@
 package com.example.BurningUp
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -36,7 +39,6 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginBtn.setOnClickListener{//로그인버튼 클릭시
 
-            loadingDialog.show()
             if(binding.usernameEt.text.trim().isNotEmpty()&&binding.passwordEt.text.trim().isNotEmpty()){ //입력 창에 모두 입력시
                 signInUser()
             }else{
@@ -57,18 +59,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun signInUser(){//로그인 함수
+
+        val loadingDialog = LoadingDialog(this)
+
+        loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         auth.signInWithEmailAndPassword(binding.usernameEt.text.trim().toString(), binding.passwordEt.text.trim().toString()) //이메일 비밀번호 인증
             .addOnCompleteListener(this){
                     task->
                 if(task.isSuccessful){//로그인 성공시
                     if(auth.currentUser.isEmailVerified){//인증된 계정이면
-                        val intent = Intent(this,SsivalActivity::class.java);
+                        loadingDialog.show()
+                        val intent = Intent(this,SsivalActivity::class.java)
                         startActivity(intent);//메인화면으로 이동
                     }else{//아직 인증안한 계정일 경우 로그인 하지 않고 인증하라는 메시지 출력
-                        Toast.makeText(this, "Please verify your email address", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "이메일 인증 필요", Toast.LENGTH_LONG).show()
                     }
                 }else{//로그인 실패
-                    Toast.makeText(this, "Authentication Error "+task.exception, Toast.LENGTH_LONG).show()
+                    if(!checkInternetConnection()){
+                        Toast.makeText(this, "네트워트 연결상태를 확인해주세요",Toast.LENGTH_LONG).show()
+                    }
+                    else {
+                        Toast.makeText(this, "잘못된 이메일/비밀번호 입니다", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
     }
@@ -80,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, SsivalActivity::class.java);
             startActivity(intent)
         }else{//로그인 되어있지 않으면
-            Toast.makeText(this,"User first time login", Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"Do Your Best!", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -90,11 +103,24 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //인터넷 연결 여부를 확인하는 함수
+    fun checkInternetConnection() : Boolean {
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+
+        if (activeNetwork != null)
+            return true
+
+        return false
+    }
+
     // 액티비티가 파괴될 때..
     override fun onDestroy() {
         // onDestroy 에서 binding class 인스턴스 참조를 정리해주어야 한다.
         mBinding = null
         super.onDestroy()
     }
+
+
 
 }
