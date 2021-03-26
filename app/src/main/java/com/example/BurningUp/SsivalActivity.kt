@@ -29,7 +29,7 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
 
     companion object{
         const val TAG:String="로그"
-   }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -73,6 +73,7 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
                 chatFragment= ChatFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatFragment).commit()
             }
+
         }
 
 
@@ -102,14 +103,14 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
             }
             R.id.logout_btn->{
                 auth.signOut()
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
+
+                val intent = Intent(this, LoginActivity::class.java);
+                startActivity(intent)//로그아웃 후 로그인 화면으로 이동
             }
 
         }
 
         layout_drawer.closeDrawers()
-
         return  false
 
     }
@@ -120,7 +121,7 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
         {
             layout_drawer.closeDrawers()
         }
-        else    //서랍이 열려있지 않으면
+        else //서랍이 열려있지 않으면
         {
             super.onBackPressed()
         }
