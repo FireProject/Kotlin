@@ -62,5 +62,6 @@ class MainActivity : AppCompatActivity() {
         // onDestroy 에서 binding class 인스턴스 참조를 정리해주어야 한다.
         mBinding = null
         super.onDestroy()
+        mAuth.signOut()
     }
 }

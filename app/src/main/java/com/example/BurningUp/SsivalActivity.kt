@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.core.view.GravityCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -21,6 +23,7 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
     private lateinit var changePasswordFragment: ChangePasswordFragment
     private lateinit var settingAlarmFragment: SettingAlarmFragment
     private lateinit var introduceProgrammerFragment: IntroduceProgrammerFragment
+
 
     private lateinit var auth : FirebaseAuth
 
@@ -100,10 +103,10 @@ class SsivalActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItem
             }
             R.id.logout_btn->{
                 auth.signOut()
+
                 val intent = Intent(this, LoginActivity::class.java);
                 startActivity(intent)//로그아웃 후 로그인 화면으로 이동
             }
-
 
         }
 

@@ -5,6 +5,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.BurningUp.databinding.ActivityRegister2Binding
@@ -24,6 +26,8 @@ class Register2Activity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var database : FirebaseDatabase
 
+    var imm : InputMethodManager? = null
+
     companion object{
         const val REQUEST_FROM_CAMERA = 1001
         const val REQUEST_FROM_GALLERY = 1002
@@ -39,6 +43,8 @@ class Register2Activity : AppCompatActivity() {
 
         mBinding = ActivityRegister2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
@@ -143,6 +149,11 @@ class Register2Activity : AppCompatActivity() {
         }
     }
 
+    fun hideKeyboard(v: View){
+        if(v!=null){
+            imm?.hideSoftInputFromWindow(v.windowToken,0)
+        }
+    }
     // 액티비티가 파괴될 때..
     override fun onDestroy() {
         // onDestroy 에서 binding class 인스턴스 참조를 정리해주어야 한다.
