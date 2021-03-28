@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.BurningUp.databinding.ActivityChangePasswordBinding
 import com.example.BurningUp.databinding.ActivityLoginBinding
@@ -16,6 +18,8 @@ class ChangePasswordActivity : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
 
+    var imm : InputMethodManager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -23,6 +27,8 @@ class ChangePasswordActivity : AppCompatActivity() {
         mBinding = ActivityChangePasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
+
+        imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager?
 
         binding.sendChangePasswordBtn.setOnClickListener {
             if(binding.emailForVerifyEdit.text.isNotEmpty()) {
@@ -33,7 +39,6 @@ class ChangePasswordActivity : AppCompatActivity() {
                                 val msg = "이메일 전송 완료. 이메일을 확인해주세요"
                                 binding.emailSendStatusTv.setTextColor(Color.parseColor("#03A9F4"))
                                 binding.emailSendStatusTv.text="$msg"
-
                                 binding.sendChangePasswordBtn.setBackgroundResource(R.drawable.resend_change_password_email_btn)
                                 binding.sendChangePasswordBtn.text="비밀번호 변경 이메일 재전송"
                             }
@@ -56,6 +61,11 @@ class ChangePasswordActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
 
+    fun hideKeyboard(v: View){
+        if(v!=null){
+            imm?.hideSoftInputFromWindow(v.windowToken,0)
+        }
     }
 }

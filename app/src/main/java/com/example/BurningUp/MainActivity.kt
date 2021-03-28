@@ -1,67 +1,131 @@
 package com.example.BurningUp
 
 import android.content.Intent
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.BurningUp.databinding.ActivityMainBinding
+import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
+import androidx.core.view.GravityCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
+
+    private lateinit var homeFragment: HomeFragment
+    private lateinit var profileFragment: ProfileFragment
+    private lateinit var chatFragment: ChatFragment
+    private lateinit var changeProfileFragment: ChangeProfileFragment
+    private lateinit var changePasswordFragment: ChangePasswordFragment
+    private lateinit var settingAlarmFragment: SettingAlarmFragment
+    private lateinit var introduceProgrammerFragment: IntroduceProgrammerFragment
 
 
-class MainActivity : AppCompatActivity() {
+    private lateinit var auth : FirebaseAuth
 
-    private lateinit var mAuth : FirebaseAuth
-    private lateinit var mdatabase : FirebaseDatabase
-    private lateinit var mRef : DatabaseReference
-
-
-    private var mBinding: ActivityMainBinding? = null
-    private val binding get() = mBinding!!
-
-
+    companion object{
+        const val TAG:String="로그"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
 
-        mAuth = FirebaseAuth.getInstance()
-        mdatabase = FirebaseDatabase.getInstance()
-        mRef = mdatabase.getReference("users")
-        var uid = mAuth?.uid
+        //레이아웃과 연결결
+       setContentView(R.layout.activity_main)
+        Log.d(TAG, "MainActivity_oncreate() called")
 
-        mRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                //값이 변경된게 있으면 database의 값이 갱신되면 자동 호출된다.
 
-                val mValue = snapshot.child("$uid")
-                val mNick=mValue.child("nick").value
-                binding.textView.text="$mNick"+"님 안녕하세요!"
+        btn_navi.setOnClickListener {
+            layout_drawer.openDrawer(GravityCompat.START)   //start는 왼쪽에서 열거라는거
+        }
+        navi_view.setNavigationItemSelectedListener(this)  //네비게이션 메뉴 아이템에 클릭 속성 부여
 
+
+        bottom_nav.setOnNavigationItemReselectedListener(this)
+        //처음에는 홈화면이 나오도록 함 
+        homeFragment= HomeFragment.newInstance()
+        supportFragmentManager.beginTransaction().add(R.id.fragments_frame,homeFragment).commit()
+
+    }
+
+    override fun onNavigationItemReselected(item: MenuItem) {   //바닥에 있는 네비게이션
+        Log.d(TAG, "MainActivity_onNavi() called")
+
+        when(item.itemId)
+        {       //각각의 버튼마다 버튼이 나오면 화면이 나오도록 해둠
+            R.id.menu_home->{
+                Log.d(TAG, "MainActivity_홈버튼 ")
+                homeFragment= HomeFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }
-            override fun onCancelled(error: DatabaseError) {
-                println("Failed to read value.")
-
+            R.id.menu_profile->{
+                Log.d(TAG, "MainActivity_프로필필버튼 ")
+                profileFragment= ProfileFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
+           }
+            R.id.menu_chat->{
+                Log.d(TAG, "MainActivity_채팅버튼 ")
+                chatFragment= ChatFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatFragment).commit()
             }
-        })
-
-        binding.logoutBtn.setOnClickListener{
-
-            mAuth.signOut()
-
-            val intent = Intent(this, LoginActivity::class.java);
-            startActivity(intent)
 
         }
 
+
     }
 
+    override fun onNavigationItemSelected(item: MenuItem) :Boolean{    //메뉴버튼 눌렀을 때 네비게이션 수행
+        when(item.itemId)
+        {
+            R.id.chprofile->{
+                changeProfileFragment=ChangeProfileFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changeProfileFragment).commit()
 
-    // 액티비티가 파괴될 때..
-    override fun onDestroy() {
-        // onDestroy 에서 binding class 인스턴스 참조를 정리해주어야 한다.
-        mBinding = null
-        super.onDestroy()
-        mAuth.signOut()
+            }
+            R.id.chpassword->{
+               changePasswordFragment= ChangePasswordFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changePasswordFragment).commit()
+
+            }
+            R.id.alarm->{
+                settingAlarmFragment= SettingAlarmFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,settingAlarmFragment).commit()
+
+            }
+            R.id.introuduce_p->{
+                val intent = Intent(this, AddChatRoomActivity::class.java);
+                startActivity(intent)//로그아웃 후 로그인 화면으로 이동
+                /*introduceProgrammerFragment=IntroduceProgrammerFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,introduceProgrammerFragment).commit()
+                */
+            }
+            R.id.logout_btn->{
+                auth.signOut()
+
+                val intent = Intent(this, LoginActivity::class.java);
+                startActivity(intent)//로그아웃 후 로그인 화면으로 이동
+            }
+
+        }
+
+        layout_drawer.closeDrawers()
+        return  false
+
+    }
+
+    override fun onBackPressed() {  //안드로이드에서 제공되는 백버튼이 입력되었을때
+
+        if(layout_drawer.isDrawerOpen(GravityCompat.START)) //서랍이 열려있을때는 서랍을 닫아주도록
+        {
+            layout_drawer.closeDrawers()
+        }
+        else //서랍이 열려있지 않으면
+        {
+            //로그인화면으로 돌아가지 않게 버튼 막기
+        }
     }
 }
+

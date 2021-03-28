@@ -43,9 +43,6 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
-        <activity
-            android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize" />
 
         <activity android:name=".AddChatRoomActivity" />
         <activity
@@ -67,7 +64,11 @@
 
         <activity android:name=".ChangePasswordFragment" />
         <activity android:name=".ChangeProfileFragment" />
-        <activity android:name=".SsivalActivity" />
+
+        <!--전 SsivalActivity-->
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize"/>
 
         <activity
             android:name=".CustomDialog"

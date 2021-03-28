@@ -1,6 +1,5 @@
 package com.example.BurningUp
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -70,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){//로그인 성공시
                     if(auth.currentUser.isEmailVerified){//인증된 계정이면
                         loadingDialog.show()
-                        val intent = Intent(this,SsivalActivity::class.java)
+                        val intent = Intent(this,MainActivity::class.java)
                         startActivity(intent);//메인화면으로 이동
                     }else{//아직 인증안한 계정일 경우 로그인 하지 않고 인증하라는 메시지 출력
                         Toast.makeText(this, "이메일 인증 필요", Toast.LENGTH_LONG).show()
@@ -90,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val user = auth.currentUser
         if(user!=null){ //로그인 되어있으면 바로 메인 화면으로 이동
-            val intent = Intent(this, SsivalActivity::class.java);
+            val intent = Intent(this, MainActivity::class.java);
             startActivity(intent)
         }else{//로그인 되어있지 않으면
             Toast.makeText(this,"Do Your Best!", Toast.LENGTH_LONG).show()
@@ -112,6 +111,11 @@ class LoginActivity : AppCompatActivity() {
             return true
 
         return false
+    }
+
+    @Override
+    override fun onBackPressed() {
+        //뒤로가기 버튼 막기
     }
 
     // 액티비티가 파괴될 때..

@@ -18,7 +18,7 @@
 
         <item android:id="@+id/introuduce_p"
             android:icon="@drawable/dotimage"
-            android:title="개발자 소개"/>
+            android:title="JIWON"/>
 
         <item android:id="@+id/logout_btn"
             android:icon="@drawable/dotimage"
