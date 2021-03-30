@@ -41,7 +41,6 @@
         <activity
             android:name=".VotePostingActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ProfileList"/>
         <activity
             android:name=".IntroduceProgrammerFragment"
             android:label="@string/title_activity_introduce_programmer_fragment"
@@ -58,6 +57,7 @@
         <activity
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" /> <!-- 프로필 사진 저장을 위한 filepath -->
+        <activity android:name=".ChangeProfileActivity"></activity>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.BurningUp.fileprovider"

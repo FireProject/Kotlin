@@ -45,6 +45,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Vote Posting으로 가자" />
+            <Button
+                android:id="@+id/btn_change_profile"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="change profile로 가자" />
         </LinearLayout>
 
         <Space

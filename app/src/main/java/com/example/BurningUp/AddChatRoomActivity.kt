@@ -19,7 +19,6 @@ class AddChatRoomActivity : AppCompatActivity()
 {
     private var mBinding: ActivityAddChatRoomBinding? = null
     private val binding get() = mBinding!!
-    public var vote_rate : Int? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
 
     //exp : 어플 전체에서 사용할 static 변수
     companion object
@@ -28,8 +27,11 @@ class AddChatRoomActivity : AppCompatActivity()
         var device_height : Float = 0f
     }
 
+    private var vote_rate : Int? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
+    private var max_person : Int = 20
     //exp : DB
     private lateinit var auth : FirebaseAuth
+    private var uid : String? = null
     private lateinit var firebase : FirebaseDatabase //Web DB 객체변수
     private lateinit var rooms_ref : DatabaseReference //Web Db에서 원하는 key(이건 room) 접근하기 위한 변수
 
@@ -41,7 +43,7 @@ class AddChatRoomActivity : AppCompatActivity()
 
         //exp : DB 초기화
         auth = FirebaseAuth.getInstance()
-        var uid = auth?.uid
+        uid = auth?.uid
         firebase = FirebaseDatabase.getInstance() //web DB를 .json 파일을 참고해서 연결
         rooms_ref = firebase.getReference("rooms") //root의 자식으로 "rooms" 연결
 
@@ -49,6 +51,7 @@ class AddChatRoomActivity : AppCompatActivity()
         OpenDialog()
         OpenNotice()
         OpenVotePosting()
+        OpenChangeProfile()
 
         //Layout Method
         MakeBaseSeekBar()
@@ -74,6 +77,7 @@ class AddChatRoomActivity : AppCompatActivity()
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean)
             {
                 binding.tvMaxPersonCnt.setText(binding.seekBar.progress.toString() + " 명")
+                max_person = binding.seekBar.progress
                 /*
                 var cur_seekbar_value : Int
                 cur_seekbar_value = binding.seekBar.progress
@@ -138,6 +142,13 @@ class AddChatRoomActivity : AppCompatActivity()
             startActivity(intent)
         }
     }
+    fun OpenChangeProfile()
+    {
+        binding.btnChangeProfile.setOnClickListener {
+            val intent = Intent(this, ChangeProfileActivity::class.java);
+            startActivity(intent)
+        }
+    }
 
     //exp : 해상도를 얻는 Method
     //ref : https://www.androidhuman.com/2016-07-10-kotlin_companion_object
@@ -161,11 +172,12 @@ class AddChatRoomActivity : AppCompatActivity()
             Toast.makeText(this.getApplicationContext() , "변경사항이 저장 되었습니다" , Toast.LENGTH_SHORT).show()
 
             val map_of_rooms_members = HashMap<Any, Any>()
-            map_of_rooms_members["maxPerson"] = 15
-            map_of_rooms_members["curPerson"] = 2
+            map_of_rooms_members["curPerson"] = 1
+            map_of_rooms_members["masterUid"] = uid.toString()
+            map_of_rooms_members["MaxPerson"] = max_person.toInt()
+            map_of_rooms_members["roomName"] = binding.etChatname.text.toString()
+            map_of_rooms_members["roomNotice"] = "No Text"
             map_of_rooms_members["roomBackgroud"] = "Red"
-            map_of_rooms_members["roomName"] = "FirstChatRoom!!!"
-            map_of_rooms_members["voteRate"] = 1
             rooms_ref.push().setValue(map_of_rooms_members)
         }
     }
