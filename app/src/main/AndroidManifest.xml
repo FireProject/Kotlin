@@ -57,7 +57,8 @@
         <activity
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" /> <!-- 프로필 사진 저장을 위한 filepath -->
-        <activity android:name=".ChangeProfileActivity"></activity>
+        <activity android:name=".ChangeProfileActivity" />
+        <activity android:name=".VoteActivity"></activity>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.BurningUp.fileprovider"

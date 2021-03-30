@@ -41,9 +41,7 @@
                     android:ems="10"
                     android:gravity="start|top"
                     android:inputType="textMultiLine"
-                    android:lineSpacingMultiplier="1.5"
-                    />
-
+                    android:lineSpacingMultiplier="1.5" />
             </LinearLayout>
         </ScrollView>
 
