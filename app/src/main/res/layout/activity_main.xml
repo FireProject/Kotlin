@@ -108,7 +108,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-
                 android:background="#555454"
                 app:itemIconSize="40dp"
                 app:labelVisibilityMode="unlabeled"
