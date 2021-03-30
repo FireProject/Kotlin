@@ -17,8 +17,8 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
     private lateinit var homeFragment: HomeFragment
    // private lateinit var profileFragment: ProfileFragment
     private lateinit var chatFragment: ChatFragment
-    private lateinit var changeProfileFragment: ChangeProfileFragment
-    private lateinit var changePasswordFragment: ChangePasswordFragment
+  //  private lateinit var changeProfileFragment: ChangeProfileFragment
+   // private lateinit var changePasswordFragment: ChangePasswordFragment
     private lateinit var settingAlarmFragment: SettingAlarmFragment
     private lateinit var introduceProgrammerFragment: IntroduceProgrammerFragment
 
@@ -81,8 +81,11 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
         when(item.itemId)
         {
             R.id.chprofile->{
-                changeProfileFragment=ChangeProfileFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changeProfileFragment).commit()
+                val intent =Intent(this,ChangeProfileActivity::class.java)
+                startActivity(intent)
+
+//                changeProfileFragment=ChangeProfileFragment.newInstance()
+//                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changeProfileFragment).commit()
 
             }
             R.id.chpassword->{
