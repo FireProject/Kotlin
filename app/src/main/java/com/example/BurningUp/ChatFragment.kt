@@ -40,7 +40,7 @@ class ChatFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.d(TAG, "Chat0Frag_oncreate() called")
-        val view=inflater.inflate(R.layout.fragment_chat,container,false)
+        val view=inflater.inflate(R.layout.fragment_chatlist,container,false)
 
         return view
     }
