@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="single">
 
-        <item android:id="@+id/chprofile"
+        <item
+            android:id="@+id/chprofile"
             android:icon="@drawable/dotimage"
             android:title="프로필 편집"
+
             />
         <item
             android:id="@+id/chpassword"
             android:icon="@drawable/dotimage"
             android:title="비밀번호 변경" />
-        <item android:id="@+id/alarm"
+        <item
+            android:id="@+id/alarm"
             android:icon="@drawable/dotimage"
-            android:title="알림설정"/>
+            android:title="알림설정" />
 
-        <item android:id="@+id/introuduce_p"
+        <item
+            android:id="@+id/introuduce_p"
             android:icon="@drawable/dotimage"
-            android:title="JIWON"/>
+            android:title="JIWON" />
 
-        <item android:id="@+id/logout_btn"
+        <item
+            android:id="@+id/logout_btn"
             android:icon="@drawable/dotimage"
-            android:title="로그아웃"/>
-
-
-
+            android:title="로그아웃" />
 
 
     </group>

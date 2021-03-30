@@ -8,7 +8,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.BurningUp.databinding.ActivityChangePasswordBinding
-import com.example.BurningUp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class ChangePasswordActivity : AppCompatActivity() {
