@@ -18,27 +18,27 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/profile" />
-        <TextView
-            android:id="@+id/user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="안드로이드"
-            android:textSize="25sp"
-            android:layout_marginStart="20dp"
-            android:layout_gravity="center_vertical" />
 
         <TextView
-            android:id="@+id/state_message"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="상태메시지"
-            android:textSize="20sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:text="안드로이드"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_statemessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginStart="10sp"
             android:background="#00BCD4"
-            android:layout_gravity="center_vertical" />
+            android:text="상태메시지"
+            android:textSize="20sp" />
 
     </LinearLayout>
-
 
 
 </androidx.cardview.widget.CardView>

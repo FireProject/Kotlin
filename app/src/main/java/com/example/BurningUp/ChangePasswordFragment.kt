@@ -35,9 +35,9 @@ class ChangePasswordFragment:Fragment() {
     //프레그먼트와 레이아웃을 연결시켜주는 부분이다.
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         Log.d(TAG, "HoemFrag_oncreate() called")
         val view=inflater.inflate(R.layout.fragment_chpass,container,false)

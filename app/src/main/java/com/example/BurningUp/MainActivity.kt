@@ -86,9 +86,11 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
 
             }
             R.id.chpassword->{
-               changePasswordFragment= ChangePasswordFragment.newInstance()
+                val intent= Intent(this,ChangePasswordActivity::class.java)
+                startActivity(intent)
+            /*changePasswordFragment= ChangePasswordFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changePasswordFragment).commit()
-
+                */
             }
             R.id.alarm->{
                 settingAlarmFragment= SettingAlarmFragment.newInstance()
@@ -96,7 +98,7 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
 
             }
             R.id.introuduce_p->{
-                val intent = Intent(this, AddChatRoomActivity::class.java);
+                val intent = Intent(this, AddChatRoomActivity::class.java)
                 startActivity(intent)//로그아웃 후 로그인 화면으로 이동
                 /*introduceProgrammerFragment=IntroduceProgrammerFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,introduceProgrammerFragment).commit()
