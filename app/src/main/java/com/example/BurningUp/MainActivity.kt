@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
 
     private lateinit var homeFragment: HomeFragment
    // private lateinit var profileFragment: ProfileFragment
-    private lateinit var chatFragment: ChatFragment
+    private lateinit var chatListFragment: ChatListFragment
   //  private lateinit var changeProfileFragment: ChangeProfileFragment
    // private lateinit var changePasswordFragment: ChangePasswordFragment
     private lateinit var settingAlarmFragment: SettingAlarmFragment
@@ -68,8 +68,8 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
            }
             R.id.menu_chat->{
                 Log.d(TAG, "MainActivity_채팅버튼 ")
-                chatFragment= ChatFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatFragment).commit()
+                chatListFragment= ChatListFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatListFragment).commit()
             }
 
         }

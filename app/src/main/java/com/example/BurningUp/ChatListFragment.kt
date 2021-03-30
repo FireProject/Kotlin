@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class ChatFragment:Fragment() {
+class ChatListFragment:Fragment() {
     //채팅방 프래그먼트
     companion object{
 
         const val TAG: String ="logg"
-        fun newInstance():ChatFragment{
-            return ChatFragment()
+        fun newInstance():ChatListFragment{
+            return ChatListFragment()
         }
     }
 
