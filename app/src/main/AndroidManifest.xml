@@ -2,14 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.BurningUp">
-
     <!-- 인터넷 권한 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- camera, gallery -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라 권한 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 파일 읽기 권한 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 파일 쓰기 권한 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!--인터넷 연결 권한-->
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 인터넷 연결 권한 -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -21,29 +19,22 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        <!--스플래시 화면-->
+        <activity android:name=".ProfileList"></activity>
+        <!-- 스플래시 화면 -->
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!--로그인 및 회원 가입-->
+        </activity> <!-- 로그인 및 회원 가입 -->
         <activity android:name=".Register1Activity" />
         <activity android:name=".Register2Activity" />
-        <activity android:name=".LoginActivity" />
-
-        <!--비밀번호 변경-->
-        <activity android:name=".ChangePasswordActivity" />
-
-        <!--사진 크롭-->
+        <activity android:name=".LoginActivity" /> <!-- 비밀번호 변경 -->
+        <activity android:name=".ChangePasswordActivity" /> <!-- 사진 크롭 -->
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-
-
         <activity android:name=".AddChatRoomActivity" />
         <activity
             android:name=".NoticeActivity"
@@ -51,30 +42,22 @@
         <activity
             android:name=".VotePostingActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".IntroduceProgrammerFragment"
             android:label="@string/title_activity_introduce_programmer_fragment"
             android:theme="@style/NoActionBar" />
-
         <activity
             android:name=".AlarmSettingFragment"
             android:label="@string/title_activity_alarm_setting_fragment"
             android:theme="@style/NoActionBar" />
-
         <activity android:name=".ChangePasswordFragment" />
-        <activity android:name=".ChangeProfileFragment" />
-
-        <!--전 SsivalActivity-->
+        <activity android:name=".ChangeProfileFragment" /> <!-- 전 SsivalActivity -->
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize"/>
-
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".CustomDialog"
-            tools:ignore="Instantiatable" />
-
-        <!--프로필 사진 저장을 위한 filepath-->
+            tools:ignore="Instantiatable" /> <!-- 프로필 사진 저장을 위한 filepath -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.BurningUp.fileprovider"
@@ -83,11 +66,10 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
-
-        <!--강제 종료시 이벤트 처리를 위한 서비스 등록-->
-        <service android:name=".Forced" android:stopWithTask="false" />
-
+        </provider> <!-- 강제 종료시 이벤트 처리를 위한 서비스 등록 -->
+        <service
+            android:name=".Forced"
+            android:stopWithTask="false" />
     </application>
 
 </manifest>
