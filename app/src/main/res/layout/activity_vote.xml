@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LL_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/vote"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"/>
+        <ImageButton
+            android:id="@+id/btn_return_main"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#00ff0000"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="14"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_space_1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#808080" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        >
+        <GridLayout
+            android:id="@+id/grid_vote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:columnCount="3"
+            android:rowCount="3">
+
+            <ImageButton
+                android:id="@+id/img_1"
+                android:layout_width="0dp"
+                android:layout_height="130sp"
+                android:layout_columnWeight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/gallery" />
+
+            <ImageButton
+                android:id="@+id/img_2"
+                android:layout_width="0dp"
+                android:layout_height="130sp"
+                android:scaleType="fitXY"
+                android:layout_columnWeight="1"
+                android:src="@drawable/gallery" />
+
+            <ImageButton
+                android:id="@+id/img_4"
+                android:layout_width="0dp"
+                android:layout_height="130sp"
+                android:scaleType="fitXY"
+                android:layout_columnWeight="1"
+                android:src="@drawable/gallery" />
+            <ImageButton
+                android:id="@+id/img_5"
+                android:layout_width="0dp"
+                android:layout_height="130sp"
+                android:scaleType="fitXY"
+                android:layout_columnWeight="1"
+                android:src="@drawable/gallery" />
+            <ImageButton
+                android:id="@+id/img_6"
+                android:layout_width="0dp"
+                android:layout_height="130sp"
+                android:scaleType="fitXY"
+                android:layout_columnWeight="1"
+                android:src="@drawable/gallery" />
+
+        </GridLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/img_space_2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="#808080"/>
+
+</LinearLayout>

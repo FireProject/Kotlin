@@ -42,6 +42,7 @@ class ChangeProfileActivity : AppCompatActivity()
         user_ref = firebase.getReference("usersTest").child(uid.toString())
         ChangePhoto()
         ChangeUserData()
+        ReturnMainActivity()
     }
     //TODO : 사진은 추후에
     fun ChangePhoto()
@@ -61,6 +62,14 @@ class ChangeProfileActivity : AppCompatActivity()
         }
     }
 
+    fun ReturnMainActivity()
+    {
+        binding.btnReturnMain.setOnClickListener {
+            Toast.makeText(this.getApplicationContext() , "프로필 변경을 취소하셨습니다." , Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java);
+            startActivity(intent)
+        }
+    }
     fun GetUserDataPractice()
     {
         val map = HashMap<Any, Any>()
