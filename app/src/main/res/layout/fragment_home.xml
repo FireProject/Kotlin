@@ -16,10 +16,15 @@
 
         <ImageView
             android:id="@+id/room_inform"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/roomback" />
+            app:srcCompat="@drawable/roomback">
+
+        </ImageView>
+
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -30,8 +35,8 @@
 
         <ImageView
             android:id="@+id/memo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/memo" />
     </LinearLayout>

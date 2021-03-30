@@ -74,9 +74,6 @@
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" />
 
-        <activity android:name=".friendsList"/>
-
-
         <!--프로필 사진 저장을 위한 filepath-->
         <provider
             android:name="androidx.core.content.FileProvider"

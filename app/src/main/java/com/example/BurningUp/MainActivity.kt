@@ -15,10 +15,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var homeFragment: HomeFragment
-    private lateinit var profileFragment: ProfileFragment
+   // private lateinit var profileFragment: ProfileFragment
     private lateinit var chatFragment: ChatFragment
-    private lateinit var changeProfileFragment: ChangeProfileFragment
-    private lateinit var changePasswordFragment: ChangePasswordFragment
+  //  private lateinit var changeProfileFragment: ChangeProfileFragment
+   // private lateinit var changePasswordFragment: ChangePasswordFragment
     private lateinit var settingAlarmFragment: SettingAlarmFragment
     private lateinit var introduceProgrammerFragment: IntroduceProgrammerFragment
 
@@ -62,9 +62,9 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }
             R.id.menu_profile->{
-                Log.d(TAG, "MainActivity_프로필필버튼 ")
-                profileFragment= ProfileFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
+                val intent=Intent(this,ProfileList::class.java)
+                startActivity(intent)
+
            }
             R.id.menu_chat->{
                 Log.d(TAG, "MainActivity_채팅버튼 ")
@@ -81,14 +81,19 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
         when(item.itemId)
         {
             R.id.chprofile->{
-                changeProfileFragment=ChangeProfileFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changeProfileFragment).commit()
+                val intent =Intent(this,ChangeProfileActivity::class.java)
+                startActivity(intent)
+
+//                changeProfileFragment=ChangeProfileFragment.newInstance()
+//                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changeProfileFragment).commit()
 
             }
             R.id.chpassword->{
-               changePasswordFragment= ChangePasswordFragment.newInstance()
+                val intent= Intent(this,ChangePasswordActivity::class.java)
+                startActivity(intent)
+            /*changePasswordFragment= ChangePasswordFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changePasswordFragment).commit()
-
+                */
             }
             R.id.alarm->{
                 settingAlarmFragment= SettingAlarmFragment.newInstance()
@@ -96,7 +101,7 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
 
             }
             R.id.introuduce_p->{
-                val intent = Intent(this, AddChatRoomActivity::class.java);
+                val intent = Intent(this, AddChatRoomActivity::class.java)
                 startActivity(intent)//로그아웃 후 로그인 화면으로 이동
                 /*introduceProgrammerFragment=IntroduceProgrammerFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,introduceProgrammerFragment).commit()

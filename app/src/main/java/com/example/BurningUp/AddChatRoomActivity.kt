@@ -6,18 +6,19 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.widget.RadioGroup
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 
 //exp : 당분간(3월)은 박지원의 MainActivity
 class AddChatRoomActivity : AppCompatActivity()
 {
     private var mBinding: ActivityAddChatRoomBinding? = null
     private val binding get() = mBinding!!
-    public var vote_rate : Int? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
 
     //exp : 어플 전체에서 사용할 static 변수
     companion object
@@ -26,9 +27,13 @@ class AddChatRoomActivity : AppCompatActivity()
         var device_height : Float = 0f
     }
 
-    private lateinit var mAuth : FirebaseAuth
-    private lateinit var mdatabase : FirebaseDatabase
-    private lateinit var mRef : DatabaseReference
+    private var vote_rate : Int? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
+    private var max_person : Int = 20
+    //exp : DB
+    private lateinit var auth : FirebaseAuth
+    private var uid : String? = null
+    private lateinit var firebase : FirebaseDatabase //Web DB 객체변수
+    private lateinit var rooms_ref : DatabaseReference //Web Db에서 원하는 key(이건 room) 접근하기 위한 변수
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -36,17 +41,17 @@ class AddChatRoomActivity : AppCompatActivity()
         mBinding = ActivityAddChatRoomBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        mAuth = FirebaseAuth.getInstance()
-        mdatabase = FirebaseDatabase.getInstance()
-        mRef = mdatabase.getReference("users")
-        var uid = mAuth?.uid
-        Log.d("jiwon" , uid.toString());
+        //exp : DB 초기화
+        auth = FirebaseAuth.getInstance()
+        uid = auth?.uid
+        firebase = FirebaseDatabase.getInstance() //web DB를 .json 파일을 참고해서 연결
+        rooms_ref = firebase.getReference("rooms") //root의 자식으로 "rooms" 연결
 
         //Move other Page Method
         OpenDialog()
         OpenNotice()
         OpenVotePosting()
+        OpenChangeProfile()
 
         //Layout Method
         MakeBaseSeekBar()
@@ -55,6 +60,7 @@ class AddChatRoomActivity : AppCompatActivity()
 
         //Other Method
         GetResolution()
+        Finally_Make_Chatroom()
     }
 
     fun MakeBaseSeekBar()
@@ -71,6 +77,7 @@ class AddChatRoomActivity : AppCompatActivity()
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean)
             {
                 binding.tvMaxPersonCnt.setText(binding.seekBar.progress.toString() + " 명")
+                max_person = binding.seekBar.progress
                 /*
                 var cur_seekbar_value : Int
                 cur_seekbar_value = binding.seekBar.progress
@@ -135,6 +142,13 @@ class AddChatRoomActivity : AppCompatActivity()
             startActivity(intent)
         }
     }
+    fun OpenChangeProfile()
+    {
+        binding.btnChangeProfile.setOnClickListener {
+            val intent = Intent(this, ChangeProfileActivity::class.java);
+            startActivity(intent)
+        }
+    }
 
     //exp : 해상도를 얻는 Method
     //ref : https://www.androidhuman.com/2016-07-10-kotlin_companion_object
@@ -149,32 +163,22 @@ class AddChatRoomActivity : AppCompatActivity()
         var density = resources.displayMetrics.density
         device_height = outMetrics.heightPixels / density
         device_width = outMetrics.widthPixels / density
-        //Log.d("jiwon" , device_width.toString() + " " +device_height.toString())
     }
 
-    /*
-    fun TestFirebase()
+    //exp : 지금까지 작성한 모든 정보를 포함해서 새로운 chat_room을 제작
+    fun Finally_Make_Chatroom()
     {
-        Log.d("jiwon" , "call up")
+        binding.btnMake.setOnClickListener {
+            Toast.makeText(this.getApplicationContext() , "변경사항이 저장 되었습니다" , Toast.LENGTH_SHORT).show()
 
-        my_ref.child("Rooms").child("curPerson").setValue(3)
-        var str = my_ref.child("users").child("nickname").get()
-        Log.d("jiwon" , str.toString());
-        my_ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>()
-                Log.d("jiwon",
-                        "Value is: $value")
-            }
-
-            override fun onCancelled(error: DatabaseError)
-            {
-                Log.d("jiwon",
-                        "Failed to read value.", error.toException())
-
-            }
-        })
-    }*/
+            val map_of_rooms_members = HashMap<Any, Any>()
+            map_of_rooms_members["curPerson"] = 1
+            map_of_rooms_members["masterUid"] = uid.toString()
+            map_of_rooms_members["MaxPerson"] = max_person.toInt()
+            map_of_rooms_members["roomName"] = binding.etChatname.text.toString()
+            map_of_rooms_members["roomNotice"] = "No Text"
+            map_of_rooms_members["roomBackgroud"] = "Red"
+            rooms_ref.push().setValue(map_of_rooms_members)
+        }
+    }
 }

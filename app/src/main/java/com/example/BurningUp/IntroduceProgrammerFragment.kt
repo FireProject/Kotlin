@@ -40,7 +40,7 @@ class IntroduceProgrammerFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.d(TAG, "HoemFrag_oncreate() called")
-        val view=inflater.inflate(R.layout.fragment_chprofile,container,false)
+        val view=inflater.inflate(R.layout.fragment_introduce_p,container,false)
 
         return view
     }
