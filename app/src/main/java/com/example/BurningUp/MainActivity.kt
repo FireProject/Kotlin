@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
         auth = FirebaseAuth.getInstance()
 
         //레이아웃과 연결결
-       setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main)
         Log.d(TAG, "MainActivity_oncreate() called")
 
 
@@ -62,12 +62,13 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }
             R.id.menu_profile->{
+                Log.d(TAG, "MainActivity_친구목록버튼 ")
                 val intent=Intent(this,ProfileList::class.java)
                 startActivity(intent)
 
            }
             R.id.menu_chat->{
-                Log.d(TAG, "MainActivity_채팅버튼 ")
+                Log.d(TAG, "MainActivity_채팅목록버튼 ")
                 chatListFragment= ChatListFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatListFragment).commit()
             }
