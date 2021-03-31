@@ -27,17 +27,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- 로그인 및 회원 가입 -->
+        </activity> <!-- 로그인 및 회원 가입 -->
         <activity android:name=".Register1Activity" />
         <activity android:name=".Register2Activity" />
-        <activity android:name=".LoginActivity" />
-
-        <!-- 비밀번호 변경 -->
-        <activity android:name=".ChangePasswordActivity" />
-
-        <!-- 사진 크롭 -->
+        <activity android:name=".LoginActivity" /> <!-- 비밀번호 변경 -->
+        <activity android:name=".ChangePasswordActivity" /> <!-- 사진 크롭 -->
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
@@ -58,23 +52,14 @@
             android:theme="@style/NoActionBar" />
         <activity android:name=".ChangePasswordFragment" />
         <activity android:name=".ChangeProfileFragment" />
-
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" />
-
-        <activity android:name=".ChatRoomActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <!-- 프로필 사진 저장을 위한 filepath -->
+        <activity android:name=".ChatRoomActivity"></activity>
+        <activity android:name=".ProfileList" /> <!-- 프로필 사진 저장을 위한 filepath -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.BurningUp.fileprovider"
