@@ -6,9 +6,7 @@
         <item
             android:id="@+id/chprofile"
             android:icon="@drawable/dotimage"
-            android:title="프로필 편집"
-
-            />
+            android:title="프로필 편집" />
         <item
             android:id="@+id/chpassword"
             android:icon="@drawable/dotimage"
