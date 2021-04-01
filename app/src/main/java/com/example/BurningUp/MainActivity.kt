@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var homeFragment: HomeFragment
-   // private lateinit var profileFragment: ProfileFragment
+    private lateinit var profileFragment: ProfileFragment
     private lateinit var chatFragment: ChatFragment
   //  private lateinit var changeProfileFragment: ChangeProfileFragment
    // private lateinit var changePasswordFragment: ChangePasswordFragment
@@ -62,8 +62,10 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }
             R.id.menu_profile->{
-                val intent=Intent(this,ProfileList::class.java)
-                startActivity(intent)
+//                val intent=Intent(this,ProfileList::class.java)
+//                startActivity(intent)
+                profileFragment= ProfileFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
 
            }
             R.id.menu_chat->{

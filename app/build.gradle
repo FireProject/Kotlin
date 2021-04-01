@@ -89,6 +89,7 @@ dependencies {
 
     //ImagePicker
     implementation 'com.github.dhaval2404:imagepicker:1.7.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
