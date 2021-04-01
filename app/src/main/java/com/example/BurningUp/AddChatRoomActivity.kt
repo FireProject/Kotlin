@@ -48,10 +48,10 @@ class AddChatRoomActivity : AppCompatActivity()
         rooms_ref = firebase.getReference("rooms") //root의 자식으로 "rooms" 연결
 
         //Move other Page Method
-        OpenDialog()
-        OpenNotice()
-        OpenVotePosting()
-        OpenChangeProfile()
+        MoveDialogActivity()
+        MoveNoticeActivity()
+        MoveVoteActivity()
+        MoveVotePostingActivity()
 
         //Layout Method
         MakeBaseSeekBar()
@@ -119,7 +119,7 @@ class AddChatRoomActivity : AppCompatActivity()
     }
 
     //exp : button을 누르면 내부에서 CustomDialog 자체를 호출해 버림.
-    fun OpenDialog()
+    fun MoveDialogActivity()
     {
         binding.btnDialog.setOnClickListener {
             val dialog = CustomDialog(this) //hard : dialog가 CustomDialog의 객체이며 생성자를 추가하여 호출.
@@ -127,7 +127,7 @@ class AddChatRoomActivity : AppCompatActivity()
         }
     }
 
-    fun OpenNotice()
+    fun MoveNoticeActivity()
     {
         binding.btnNotice.setOnClickListener {
             val intent = Intent(this, NoticeActivity::class.java);
@@ -135,20 +135,21 @@ class AddChatRoomActivity : AppCompatActivity()
         }
     }
 
-    fun OpenVotePosting()
+    fun MoveVoteActivity()
+    {
+        binding.btnVote.setOnClickListener {
+            val intent = Intent(this, VoteActivity::class.java);
+            startActivity(intent)
+        }
+    }
+    fun MoveVotePostingActivity()
     {
         binding.btnVotePosting.setOnClickListener {
             val intent = Intent(this, VotePostingActivity::class.java);
             startActivity(intent)
         }
     }
-    fun OpenChangeProfile()
-    {
-        binding.btnChangeProfile.setOnClickListener {
-            val intent = Intent(this, ChangeProfileActivity::class.java);
-            startActivity(intent)
-        }
-    }
+
 
     //exp : 해상도를 얻는 Method
     //ref : https://www.androidhuman.com/2016-07-10-kotlin_companion_object

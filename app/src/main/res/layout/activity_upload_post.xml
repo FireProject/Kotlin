@@ -41,7 +41,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:text="게시물 투표하기"
+                android:text="게시물 올리기"
                 android:textSize="30sp"
                 android:gravity="center"
                 android:textStyle="bold"/>
@@ -77,50 +77,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
-
-        </LinearLayout>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5" />
-        <LinearLayout
-            android:id="@+id/LL_33"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2" />
-
-            <ImageButton
-                android:id="@+id/btn_smile"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="0sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/black_smile"
-                />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-            <ImageButton
-                android:id="@+id/btn_angry"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="0sp"
-                android:scaleType="fitXY"
-                android:src="@drawable/black_angry"
-                />
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2" />
         </LinearLayout>
 
         <Space
@@ -141,6 +97,34 @@
             android:lineSpacingMultiplier="1.5"
             android:maxLines="5"/>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/btn_upload_success"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/black"
+                android:text="인증"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
