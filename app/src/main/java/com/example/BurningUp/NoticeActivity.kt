@@ -7,6 +7,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_PX
+import android.widget.Toast
 import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
 import com.example.BurningUp.databinding.ActivityLoginBinding
 import com.example.BurningUp.databinding.ActivityNoticeBinding
@@ -38,10 +39,14 @@ class NoticeActivity : AppCompatActivity()
     //TODO : 지금은 AddChatRoomActivity로 돌아가지만 추후에는 ChatRoomActivity로
     fun ReturnChatRoom()
     {
-        binding.btnReturnChatroom.setOnClickListener {
+        binding.btnReturnAddChatRoom.setOnClickListener {
             val intent = Intent(this, AddChatRoomActivity::class.java);
             startActivity(intent)
         }
-
+        binding.btnSuccessReturnAddChatRoom.setOnClickListener {
+            Toast.makeText(this.getApplicationContext() , "공지 작성을 완료했습니다." , Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, AddChatRoomActivity::class.java);
+            startActivity(intent)
+        }
     }
 }

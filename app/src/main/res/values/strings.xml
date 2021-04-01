@@ -2,7 +2,7 @@
     <string name="app_name">Burning Up</string>
 
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        
+
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">

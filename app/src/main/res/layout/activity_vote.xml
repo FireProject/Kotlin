@@ -19,16 +19,33 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"/>
         <ImageButton
-            android:id="@+id/btn_return_main"
+            android:id="@+id/btn_return_add_chat_room"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:background="#00ff0000"/>
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="14"/>
+        <ImageButton
+            android:id="@+id/btn_upload_post"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.2"
+            android:background="#00ff0000"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
     </LinearLayout>
+    <Button
+        android:id="@+id/btn_add_posting"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="DB에 존재하는 데이터 만큼 \ngrid_layout에 view 추가 Button"/>
 
     <ImageView
         android:id="@+id/img_space_1"
@@ -48,46 +65,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10sp"
             android:columnCount="3"
-            android:rowCount="3">
-
-            <ImageButton
-                android:id="@+id/img_1"
-                android:layout_width="0dp"
-                android:layout_height="130sp"
-                android:layout_columnWeight="1"
-                android:scaleType="fitXY"
-                android:src="@drawable/gallery" />
-
-            <ImageButton
-                android:id="@+id/img_2"
-                android:layout_width="0dp"
-                android:layout_height="130sp"
-                android:scaleType="fitXY"
-                android:layout_columnWeight="1"
-                android:src="@drawable/gallery" />
-
-            <ImageButton
-                android:id="@+id/img_4"
-                android:layout_width="0dp"
-                android:layout_height="130sp"
-                android:scaleType="fitXY"
-                android:layout_columnWeight="1"
-                android:src="@drawable/gallery" />
-            <ImageButton
-                android:id="@+id/img_5"
-                android:layout_width="0dp"
-                android:layout_height="130sp"
-                android:scaleType="fitXY"
-                android:layout_columnWeight="1"
-                android:src="@drawable/gallery" />
-            <ImageButton
-                android:id="@+id/img_6"
-                android:layout_width="0dp"
-                android:layout_height="130sp"
-                android:scaleType="fitXY"
-                android:layout_columnWeight="1"
-                android:src="@drawable/gallery" />
-
+            android:rowCount="10">
         </GridLayout>
     </ScrollView>
 

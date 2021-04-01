@@ -23,7 +23,12 @@ Toast.makeText(this.getApplicationContext() , " " , Toast.LENGTH_SHORT).show()
 private lateinit var auth : FirebaseAuth
 private var uid : String? = null
 private lateinit var firebase : FirebaseDatabase
-private lateinit var rooms_ref : DatabaseReference
+private lateinit var refer : DatabaseReference
+
+auth = FirebaseAuth.getInstance()
+uid = auth?.uid
+firebase = FirebaseDatabase.getInstance()
+refer = firebase.getReference("경로")
 
 5. Intent
 val intent = Intent(this, Activity::class.java);
@@ -43,3 +48,7 @@ startActivity(intent)
                 android:clickable="true"
                 android:focusable="true"
                 ></de.hdodenhof.circleimageview.CircleImageView>
+
+7. Method 이름
+1) 이동 : Move.....Activity
+2) 돌아오기 : Return.....Activity

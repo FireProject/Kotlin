@@ -19,6 +19,7 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".UploadPostActivity"></activity>
         <!-- 스플래시 화면 -->
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -57,8 +58,10 @@
         <activity
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" /> <!-- 프로필 사진 저장을 위한 filepath -->
-        <activity android:name=".ChangeProfileActivity"></activity>
-        <activity android:name=".ProfileList"/>
+        <activity android:name=".ChangeProfileActivity" />
+        <activity android:name=".ProfileList" />
+        <activity android:name=".VoteActivity"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.BurningUp.fileprovider"
