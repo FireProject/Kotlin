@@ -12,8 +12,8 @@ import kotlinx.android.synthetic.main.activity_profile_list.*
 class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener {
 
     private lateinit var homeFragment: HomeFragment
-    // private lateinit var profileFragment: ProfileFragment
-    private lateinit var chatFragment: ChatFragment
+     private lateinit var profileFragment: ProfileFragment
+    private lateinit var chatFragment: ChatListFragment
 
 
 
@@ -56,7 +56,7 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
             }
             R.id.menu_chat->{
 
-                chatFragment= ChatFragment()
+                chatFragment= ChatListFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatFragment).commit()
             }
 
