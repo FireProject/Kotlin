@@ -1,10 +1,12 @@
 package com.example.BurningUp
 
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.coroutines.coroutineContext
 
 class ProfileAdapter(val profileList:ArrayList<Profiles>):RecyclerView.Adapter<ProfileAdapter.CustomViewHolder>()
 {
@@ -29,13 +31,13 @@ class ProfileAdapter(val profileList:ArrayList<Profiles>):RecyclerView.Adapter<P
        return profileList.size
     }
 
-
+    //뷰 연결할 때 사용할거임
     class CustomViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
         //여기에 프로필 사진이랑 레벨 추가하기
         //현재는 이름이랑 상태 메시지만 추가해둠
         val name=itemView.findViewById<TextView>(R.id.tv_name)
-        val statemessage=itemView.findViewById<TextView>(R.id.tv_statemessage)
+        val statemessage =itemView.findViewById<TextView>(R.id.tv_statemessage)
     }
 
 }
