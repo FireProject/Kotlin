@@ -62,9 +62,7 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }
             R.id.menu_profile->{
-//                val intent=Intent(this,ProfileList::class.java)
-//                startActivity(intent)
-                profileFragment= ProfileFragment.newInstance()
+                profileFragment = ProfileFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
 
            }
@@ -131,6 +129,7 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
         }
         else //서랍이 열려있지 않으면
         {
+            super.onBackPressed()
             //로그인화면으로 돌아가지 않게 버튼 막기
         }
     }

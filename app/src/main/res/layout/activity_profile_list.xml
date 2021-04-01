@@ -59,27 +59,34 @@
                 android:background="#090909" />
 
         </LinearLayout>
-<!--        <LinearLayout-->
+
+
+        <!--        <RelativeLayout-->
 <!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:id="@+id/btm_navi">-->
+<!--            android:layout_height="match_parent">-->
+
+<!--            <FrameLayout-->
+<!--                android:id="@+id/fragments_frame"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_above="@id/bottom_nav"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:background="@color/design_default_color_primary" />-->
 
 <!--            <com.google.android.material.bottomnavigation.BottomNavigationView-->
 
 <!--                android:id="@+id/bottom_nav"-->
 <!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentBottom="true"-->
 <!--                android:background="#555454"-->
 <!--                app:itemIconSize="40dp"-->
 <!--                app:labelVisibilityMode="unlabeled"-->
 <!--                app:menu="@menu/bottom_nav_menu" />-->
 
+<!--        </RelativeLayout>-->
 
-
-
-
-<!--        </LinearLayout>-->
 
 
 

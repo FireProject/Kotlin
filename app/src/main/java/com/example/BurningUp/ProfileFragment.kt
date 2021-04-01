@@ -8,15 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.BurningUp.databinding.ActivityChatRoomBinding
 import kotlinx.android.synthetic.main.activity_profile_list.*
 import java.lang.Appendable
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(){
+    private var mBinding: ActivityChatRoomBinding? = null
+    private val binding get() = mBinding!!
+
 
     companion object {
         fun newInstance(): ProfileFragment {
             return ProfileFragment()
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,18 +42,15 @@ class ProfileFragment : Fragment() {
 
         )
 
-        //rv_profile.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        rv_profile.layoutManager= LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
         rv_profile.setHasFixedSize(true)
         rv_profile.adapter= ProfileAdapter(profileList)
 
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.activity_profile_list, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
 
