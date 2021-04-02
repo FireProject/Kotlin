@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var profileFragment: ProfileFragment
-    private lateinit var chatFragment: ChatListFragment
+
   //  private lateinit var changeProfileFragment: ChangeProfileFragment
    // private lateinit var changePasswordFragment: ChangePasswordFragment
     private lateinit var settingAlarmFragment: SettingAlarmFragment
@@ -71,9 +71,12 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
 
            }
             R.id.menu_chat->{
-                Log.d(TAG, "MainActivity_채팅버튼 ")
-                chatFragment= ChatListFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatFragment).commit()
+
+                val intent = Intent(this,ChatListActivity::class.java)
+                startActivity(intent)
+//                Log.d(TAG, "MainActivity_채팅버튼 ")
+//                chatFragment= ChatListFragment()
+//                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatFragment).commit()
             }
 
         }
