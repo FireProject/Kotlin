@@ -1,89 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/black">
+<!--    <fragment-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        -->
+<!--        />-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        >
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp"
-                android:text="친구"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/addfriends"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="9">
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            >
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_profile"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="#090909" />
+                android:layout_weight="5">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:text="친구"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/addfriends"/>
+            </LinearLayout>
 
         </LinearLayout>
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            android:layout_weight="1"-->
-        <!--            android:id="@+id/btm_navi">-->
 
-        <!--            <com.google.android.material.bottomnavigation.BottomNavigationView-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="9">
 
-        <!--                android:id="@+id/bottom_nav"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                android:background="#555454"-->
-        <!--                app:itemIconSize="40dp"-->
-        <!--                app:labelVisibilityMode="unlabeled"-->
-        <!--                app:menu="@menu/bottom_nav_menu" />-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#090909" />
+
+            </LinearLayout>
+            <!--        <LinearLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="0dp"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:id="@+id/btm_navi">-->
+
+            <!--            <com.google.android.material.bottomnavigation.BottomNavigationView-->
+
+            <!--                android:id="@+id/bottom_nav"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:background="#555454"-->
+            <!--                app:itemIconSize="40dp"-->
+            <!--                app:labelVisibilityMode="unlabeled"-->
+            <!--                app:menu="@menu/bottom_nav_menu" />-->
 
 
 
 
 
-        <!--        </LinearLayout>-->
+            <!--        </LinearLayout>-->
 
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+
 
 
 

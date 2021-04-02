@@ -54,7 +54,10 @@
         <activity android:name=".ChangeProfileFragment" /> <!-- 전 SsivalActivity -->
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize">
+
+    
+        </activity>
         <activity
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" /> <!-- 프로필 사진 저장을 위한 filepath -->
