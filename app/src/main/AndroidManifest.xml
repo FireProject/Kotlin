@@ -46,6 +46,7 @@
             android:name=".IntroduceProgrammerFragment"
             android:label="@string/title_activity_introduce_programmer_fragment"
             android:theme="@style/NoActionBar" />
+        <activity android:name=".ProfileList"/>
         <activity
             android:name=".AlarmSettingFragment"
             android:label="@string/title_activity_alarm_setting_fragment"
@@ -62,7 +63,7 @@
             android:name=".CustomDialog"
             tools:ignore="Instantiatable" /> <!-- 프로필 사진 저장을 위한 filepath -->
         <activity android:name=".ChangeProfileActivity" />
-        <activity android:name=".ProfileList" />
+
         <activity android:name=".VoteActivity"/>
 
         <provider

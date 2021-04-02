@@ -62,8 +62,12 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }
             R.id.menu_profile->{
-                profileFragment = ProfileFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
+                val intent=Intent(this,ProfileList::class.java)
+                startActivity(intent)
+
+
+              //  profileFragment = ProfileFragment.newInstance()
+               // supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
 
            }
             R.id.menu_chat->{
@@ -84,16 +88,12 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
                 val intent =Intent(this,ChangeProfileActivity::class.java)
                 startActivity(intent)
 
-//                changeProfileFragment=ChangeProfileFragment.newInstance()
-//                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changeProfileFragment).commit()
 
             }
             R.id.chpassword->{
                 val intent= Intent(this,ChangePasswordActivity::class.java)
                 startActivity(intent)
-            /*changePasswordFragment= ChangePasswordFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,changePasswordFragment).commit()
-                */
+
             }
             R.id.alarm->{
                 settingAlarmFragment= SettingAlarmFragment.newInstance()
