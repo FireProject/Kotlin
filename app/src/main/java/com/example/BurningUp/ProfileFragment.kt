@@ -9,11 +9,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.BurningUp.databinding.ActivityChatRoomBinding
+import com.example.BurningUp.databinding.FragmentProfileBinding
 import kotlinx.android.synthetic.main.activity_profile_list.*
 import java.lang.Appendable
 
 class ProfileFragment : Fragment(){
-    private var mBinding: ActivityChatRoomBinding? = null
+    private var mBinding: FragmentProfileBinding? = null
     private val binding get() = mBinding!!
 
 
@@ -38,7 +39,6 @@ class ProfileFragment : Fragment(){
                 Profiles("김미미","메롱"),
                 Profiles("황규백","메롱"),
                 Profiles("신용태","메롱")
-
 
         )
 
