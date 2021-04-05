@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/change_profile"
+        android:background="#D1CFCF"
         android:orientation="horizontal">
 
         <Space
@@ -22,12 +22,21 @@
             android:id="@+id/btn_return_main"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#00ff0000"/>
+            android:layout_weight="1.5"
+            android:background="@drawable/back_btn"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="14"
+            android:text="프로필 변경"
+            android:textSize="35sp"
+            android:gravity="center"
+            android:textColor="@color/black"/>
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="14"/>
+            android:layout_weight="2"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -73,8 +82,8 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/before_add_profile_img"
                     android:layout_gravity="center_vertical"
-                    app:civ_border_width="3sp"
-                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1sp"
+                    app:civ_border_color="#1B1A1A"
                     android:clickable="true"
                     android:focusable="true"
                     ></de.hdodenhof.circleimageview.CircleImageView>

@@ -123,8 +123,13 @@
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navi_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:headerLayout="@layout/navi_header"
+        android:fitsSystemWindows="true"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        android:background="@color/black"
         app:menu="@menu/navi_menu">
 
     </com.google.android.material.navigation.NavigationView>
