@@ -1,6 +1,8 @@
 package com.example.BurningUp
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -33,7 +35,7 @@ class Register1Activity : AppCompatActivity() {
             if(binding.passwordEdit.text.toString() != binding.passwordEditC.text.toString()){
                 Toast.makeText(this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show()
             }else if(binding.emailEdit.text.isNotEmpty()&&binding.passwordEdit.text.isNotEmpty()&&binding.passwordEditC.text.isNotEmpty()){
-                sendVerifyEmail();
+                sendVerifyEmail()
             }else{
                 Toast.makeText(this, "이메일/비밀번호를 입력해주세요", Toast.LENGTH_LONG).show()
             }
@@ -45,17 +47,20 @@ class Register1Activity : AppCompatActivity() {
 
     private fun sendVerifyEmail(){
 
+        val loadingDialog = LoadingDialog(this)
+        loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         auth.createUserWithEmailAndPassword(binding.emailEdit.text.trim().toString(), binding.passwordEdit.text.trim().toString())
             .addOnCompleteListener(this){
                 task->
                 if(task.isSuccessful){
                     //이메일 인증 보내기
-                    val user = auth.currentUser;
+                    val user = auth.currentUser
+                    loadingDialog.show()
                     user!!.sendEmailVerification()
                             .addOnCompleteListener{task->
                                 if(task.isSuccessful){
                                     Toast.makeText(this, "이메일 인증이 발송되었습니다.", Toast.LENGTH_LONG).show()
-                                    //auth.signOut();
                                     val intent = Intent(this, Register2Activity::class.java)
                                     startActivity(intent)
                                 }else{

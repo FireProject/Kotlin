@@ -3,6 +3,8 @@ package com.example.BurningUp
 import android.Manifest
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -33,10 +35,10 @@ class Register2Activity : AppCompatActivity() {
         const val REQUEST_FROM_GALLERY = 1002
     }
 
-    data class UserInfo(var uid : String? = null,
-                        var email : String?=null,
-                        var Nick : String?=null,
-                        var profileImage : String?=null)
+    data class UserInfo(var friends : Array<String>?=null,
+                        var nickName : String?=null,
+                        var roomId : Array<String>?=null,
+                        var stateMessage : String?=null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +50,10 @@ class Register2Activity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
+        var uid = auth?.uid
+
+        val loadingDialog = LoadingDialog(this)
+        loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.profileImageView.setOnClickListener {
 
@@ -63,16 +69,12 @@ class Register2Activity : AppCompatActivity() {
                     DialogInterface.BUTTON_POSITIVE ->
                         captureImageUsingCamera()//기본 카메라 앱을 실행하여 사진 촬영
 
-                    DialogInterface.BUTTON_NEUTRAL -> { //기본 이미지로 프로필을 설정
-                        binding.profileImageView.setImageResource(R.drawable.default_profile_img)
-                    }
                     DialogInterface.BUTTON_NEGATIVE ->
                         pickImageFromGallery()//앨범에서 이미지 설정
                 }
             }
 
             //왜 긍정적 부정적 중립인지 모르겠음...ㅋㅋ
-            builder.setNeutralButton("기본 이미지 설정", listener)
             builder.setNegativeButton("앨범에서 가져오기", listener)
             builder.setPositiveButton("사진 촬영", listener)
 
@@ -80,17 +82,17 @@ class Register2Activity : AppCompatActivity() {
         }
 
         binding.registerBtn.setOnClickListener{
+
             val userInfo = UserInfo(
-                uid = auth?.uid,
-                email = auth?.currentUser?.email,
-                Nick = binding.nicknameEdit.text.toString(),
-                profileImage = profileImg
+                nickName = binding.nicknameEdit.text.toString(), stateMessage = ""
             )
 
-            database.reference.child("users").child("${userInfo.uid}")
+            database.reference.child("users").child("$uid")
                 .setValue(userInfo)
 
-            val intent = Intent(this, MainActivity::class.java);
+            loadingDialog.show()
+            auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java);
             startActivity(intent)
 
         }
@@ -145,6 +147,7 @@ class Register2Activity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     fun hideKeyboard(v: View){

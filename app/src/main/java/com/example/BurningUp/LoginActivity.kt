@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
                     if(auth.currentUser.isEmailVerified){//인증된 계정이면
                         loadingDialog.show()
                         val intent = Intent(this,MainActivity::class.java)
-                        startActivity(intent);//메인화면으로 이동
+                        startActivity(intent)//메인화면으로 이동
                     }else{//아직 인증안한 계정일 경우 로그인 하지 않고 인증하라는 메시지 출력
                         Toast.makeText(this, "이메일 인증 필요", Toast.LENGTH_LONG).show()
                     }

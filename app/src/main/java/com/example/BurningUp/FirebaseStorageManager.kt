@@ -31,9 +31,8 @@ class FirebaseStorageManager {
         val mReference = FirebaseStorage.getInstance().reference
 
         var uid = mAuth?.uid
-        var email = mAuth?.currentUser?.email
 
-        val imageFileName = "users/${email}/profilePic${System.currentTimeMillis()}.png"
+        val imageFileName = "users/${uid}/profileImage.png"
         val uploadTask = mReference.child(imageFileName).putFile(imageURI)
 
         uploadTask.addOnSuccessListener {
