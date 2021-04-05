@@ -1,17 +1,28 @@
 package com.example.BurningUp
 
+import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.BurningUp.databinding.ActivityChangeProfileBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import com.google.firebase.database.ktx.getValue
-import java.security.Key
-import java.util.HashMap
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.lang.Exception
+import java.util.*
+
 
 class ChangeProfileActivity : AppCompatActivity()
 {
@@ -23,6 +34,21 @@ class ChangeProfileActivity : AppCompatActivity()
     private lateinit var firebase : FirebaseDatabase
     private lateinit var users_test_ref : DatabaseReference //연습용
     private lateinit var user_ref: DatabaseReference
+    private lateinit var storage : FirebaseStorage
+    private lateinit var storage_ref : StorageReference
+
+    private val PICK_FROM_ALBUM = 1
+    /*
+        TODO : 나중에 다른 액티비티에서 사용
+        users_test_ref = firebase.getReference("usersTest").child(uid.toString()).child("nickname")
+        GetUserDataPractice()
+    */
+
+    //exp : App 실행동안 값을 메모리에 유지
+    companion object
+    {
+        var bitmap : Bitmap ?= null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -33,24 +59,92 @@ class ChangeProfileActivity : AppCompatActivity()
         auth = FirebaseAuth.getInstance()
         uid = auth?.uid
         firebase = FirebaseDatabase.getInstance()
-        /*
-        TODO : 나중에 다른 액티비티에서 사용
-        users_test_ref = firebase.getReference("usersTest").child(uid.toString()).child("nickname")
-        GetUserDataPractice()
-        */
+        storage = FirebaseStorage.getInstance()
 
         user_ref = firebase.getReference("usersTest").child(uid.toString())
-        ChangePhoto()
+        storage_ref = storage.reference
+
+        var uid = auth?.uid
+        var email = auth?.currentUser?.email
+        //GetProfileFromStorage()
+
+        //call Function
+        MoveGallery()
         ChangeUserData()
         ReturnMainActivity()
     }
-    //TODO : 사진은 추후에
-    fun ChangePhoto()
-    {
-        binding.circleview.setOnClickListener {
-            Toast.makeText(this.getApplicationContext() , "사진 추가 기능 구현하세요." , Toast.LENGTH_SHORT).show()
+
+    //exp : activity가 front에 올 때 마다 실행
+    // 자주 호출 되므로 Unity의 Update()라고 생각하고 복잡도 낮춰야 합니다.
+    override fun onResume() {
+        super.onResume()
+        if(bitmap != null)
+        {
+            binding.circleview.setImageBitmap(bitmap)
         }
     }
+
+    fun MoveGallery()
+    {
+        //갤러리에 접근
+        binding.circleview.setOnClickListener {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.setType("image/*")
+            startActivityForResult(intent , PICK_FROM_ALBUM)
+        }
+    }
+
+    //exp :
+    // 1. 갤러리의 사진을 누르면 호출되어 Dialog(builder 객체 이용)로 사용자의 클릭에 대한 확인 작업을 합니다.
+    // 2. get의 return값은 uri타입 , 그걸 getbitmap으로 return값을 bitmap 타입으로
+    //ref : https://taekwang.tistory.com/6
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+    {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == PICK_FROM_ALBUM && resultCode == Activity.RESULT_OK)
+        {
+            var builder = AlertDialog.Builder(this) //dialog 제작
+            builder.setTitle("프로필 사진을 변경하시겠습니까?")
+            builder.setIcon(R.drawable.icon)
+
+            var listener = object : DialogInterface.OnClickListener
+            {
+                override fun onClick(p0: DialogInterface?, btn_num: Int)
+                {
+                    when (btn_num)
+                    {
+                        DialogInterface.BUTTON_POSITIVE -> {
+                            var current_image_url = data?.data
+                            //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, current_image_url)
+                            bitmap = MediaStore.Images.Media.getBitmap(contentResolver, current_image_url)
+                            binding.circleview.setImageBitmap(bitmap)
+                            Log.d("jiwon" , "변경 O")
+                        }
+                        DialogInterface.BUTTON_NEGATIVE ->{
+                            Log.d("jiwon" , "변경 X")
+                        }
+                    }
+                }
+            }
+            builder.setPositiveButton("네", listener)
+            builder.setNegativeButton("아니오", listener)
+            builder.show()
+
+            //exp : no dialog code
+            /*
+            var current_image_url = data?.data
+            try {
+                Log.d("jiwon" , "click gallery")
+                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,current_image_url)
+                binding.circleview.setImageBitmap(bitmap)
+            }
+            catch (e:Exception)
+            {
+                e.printStackTrace()
+            }*/
+        }
+    }
+
     fun ChangeUserData()
     {
         binding.btnConfirm.setOnClickListener{
@@ -60,6 +154,7 @@ class ChangeProfileActivity : AppCompatActivity()
             val intent = Intent(this, MainActivity::class.java);
             startActivity(intent)
         }
+
     }
 
     fun ReturnMainActivity()
@@ -70,6 +165,16 @@ class ChangeProfileActivity : AppCompatActivity()
             startActivity(intent)
         }
     }
+
+    fun GetProfileFromStorage()
+    {
+        Log.d("jiwon" , "come")
+        val imageFileName = "users/IAtbYnVcBZdxKuZLzBJ8izWM9mr1/profileImage.png"
+        val uploadTask = storage_ref.child(imageFileName)
+        Log.d("jiwon" , uploadTask.name.toString())
+    }
+
+    //exp : 연습
     fun GetUserDataPractice()
     {
         val map = HashMap<Any, Any>()
