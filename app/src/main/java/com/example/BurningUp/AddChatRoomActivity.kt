@@ -1,18 +1,26 @@
 package com.example.BurningUp
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.util.DisplayMetrics
 import android.util.Log
 import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.HandlerCompat.postDelayed
 import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import petrov.kristiyan.colorpicker.ColorPicker
+import petrov.kristiyan.colorpicker.ColorPicker.OnButtonListener
+import petrov.kristiyan.colorpicker.ColorPicker.OnChooseColorListener
 import java.util.*
+import kotlin.collections.HashMap
+
 
 //exp : 당분간(3월)은 박지원의 MainActivity
 class AddChatRoomActivity : AppCompatActivity()
@@ -27,13 +35,17 @@ class AddChatRoomActivity : AppCompatActivity()
         var device_height : Float = 0f
     }
 
-    private var vote_rate : Int? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
+    private var vote_rate : String? = null //0 : 매일 , 1 : 일주일 , 2 : 한달
     private var max_person : Int = 20
+    private var room_color : Int = 0
+
     //exp : DB
     private lateinit var auth : FirebaseAuth
     private var uid : String? = null
     private lateinit var firebase : FirebaseDatabase //Web DB 객체변수
     private lateinit var rooms_ref : DatabaseReference //Web Db에서 원하는 key(이건 room) 접근하기 위한 변수
+
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -103,27 +115,53 @@ class AddChatRoomActivity : AppCompatActivity()
             {
                 if(checked_id == binding.rbDay.id)
                 {
-                    vote_rate = 0;
+                    vote_rate = "daily"
                 }
                 else if(checked_id == binding.rbWeek.id)
                 {
-                    vote_rate = 1;
+                    vote_rate = "weekly"
                 }
                 else
                 {
-                    vote_rate = 2;
+                    vote_rate = "monthly"
                 }
                 Log.d("jiwon" , vote_rate.toString());
             }
         })
     }
 
-    //exp : button을 누르면 내부에서 CustomDialog 자체를 호출해 버림.
+    /*
+    //button을 누르면 내부에서 CustomDialog 자체를 호출해 버림.
+    hard : dialog가 CustomDialog의 객체이며 생성자를 추가하여 호출.
+    val dialog = CustomDialog(this)
+    dialog.myDig()
+    */
+
+    //exp : color picker
+    //ref : https://www.youtube.com/watch?v=ToFuHG0jXcE
     fun MoveDialogActivity()
     {
-        binding.btnDialog.setOnClickListener {
-            val dialog = CustomDialog(this) //hard : dialog가 CustomDialog의 객체이며 생성자를 추가하여 호출.
-            dialog.myDig()
+        binding.btnColorPicker.setOnClickListener {
+            val color_picker = ColorPicker(this)
+            color_picker.setOnChooseColorListener(object : OnChooseColorListener {
+                override fun onChooseColor(position: Int, color: Int)
+                {
+                    //hard : android에서 color 값은 음수인가 봄.
+                    //TODO : 채팅방을 만들면 이 색으로 변경
+                    Log.d("jiwon" , position.toString() + " " + color.toString())
+                    binding.LL1.setBackgroundColor(color)
+                    room_color = color
+                }
+
+                override fun onCancel()
+                {
+                }
+            })
+                //.disableDefaultButtons(true)
+                .setTitle("배경색 설정")
+                .setColumns(5)
+                .setRoundColorButton(true)
+                .show()
         }
     }
 
@@ -173,13 +211,29 @@ class AddChatRoomActivity : AppCompatActivity()
             Toast.makeText(this.getApplicationContext() , "변경사항이 저장 되었습니다" , Toast.LENGTH_SHORT).show()
 
             val map_of_rooms_members = HashMap<Any, Any>()
+            val users = HashMap<Any,Any>()
+
+            users["0"] = uid.toString() //hard : map의 value에는 map을 넣을 수 있습니다.
             map_of_rooms_members["curPerson"] = 1
             map_of_rooms_members["masterUid"] = uid.toString()
             map_of_rooms_members["MaxPerson"] = max_person.toInt()
+            map_of_rooms_members["roomColor"] = room_color
             map_of_rooms_members["roomName"] = binding.etChatname.text.toString()
             map_of_rooms_members["roomNotice"] = "No Text"
-            map_of_rooms_members["roomBackgroud"] = "Red"
+            map_of_rooms_members["voteCycle"] = vote_rate.toString()
+            map_of_rooms_members["users"] = users
             rooms_ref.push().setValue(map_of_rooms_members)
+
+            MakeDelay()
         }
     }
+
+    fun MakeDelay() //exp : delay
+    {
+        Handler().postDelayed({
+            val intent = Intent(this, MainActivity::class.java);
+            startActivity(intent)
+        },2000)
+    }
+
 }
