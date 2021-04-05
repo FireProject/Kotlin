@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -136,5 +137,6 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
             //로그인화면으로 돌아가지 않게 버튼 막기
         }
     }
+
 }
 
