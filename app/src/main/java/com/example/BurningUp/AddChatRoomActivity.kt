@@ -158,6 +158,8 @@ class AddChatRoomActivity : AppCompatActivity()
     fun GetResolution()
     {
         val display = windowManager.defaultDisplay
+
+
         val outMetrics = DisplayMetrics()
         display.getRealMetrics(outMetrics)
 

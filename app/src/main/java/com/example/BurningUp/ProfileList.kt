@@ -3,10 +3,13 @@ package com.example.BurningUp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile_list.*
 
 class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener {
@@ -16,25 +19,54 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
     //private lateinit var chatFragment: ChatListFragment
 
 
+    private lateinit var auth: FirebaseAuth
+    private var uid: String? = null
+    private lateinit var firebase: FirebaseDatabase
+    private lateinit var users_ref:DatabaseReference
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_list)
 
+        //DB초기화
+        auth = FirebaseAuth.getInstance()
+        uid=auth?.uid
+        firebase= FirebaseDatabase.getInstance()
+        users_ref=firebase.getReference("users")   //루트의 자식으로 "users" 연결->DB 테이블 연결
+        //프로필 리스트 목록 읽어오기
 
-        val profileList= arrayListOf(
+        val profileList = arrayListOf<Profiles>()
 
-            Profiles("조민영","메롱"),
-            Profiles("이정진","메롱"),
-            Profiles("최종선","메롱"),
-            Profiles("김미미","메롱"),
-            Profiles("황규백","메롱"),
-            Profiles("신용태","메롱")
+        users_ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //파이어베이스 데이터를 받아오는 곳
+                profileList.clear()
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        }
 
 
-        )
+                // val ProfileList= arrayListOf(
 
-        rv_profile.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+
+//            Profiles("조민영","메롱"),
+//            Profiles("이정진","메롱"),
+//            Profiles("최종선","메롱"),
+//            Profiles("김미미","메롱"),
+//            Profiles("황규백","메롱"),
+//            Profiles("신용태","메롱")
+
+
+                //    )
+                rv_profile.layoutManager = LinearLayoutManager (this,
+                LinearLayoutManager.VERTICAL,
+                false)
         rv_profile.setHasFixedSize(true)
 
         rv_profile.adapter = ProfileAdapter(profileList)
