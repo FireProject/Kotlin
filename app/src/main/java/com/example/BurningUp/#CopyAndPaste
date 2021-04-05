@@ -52,3 +52,11 @@ startActivity(intent)
 7. Method 이름
 1) 이동 : Move.....Activity
 2) 돌아오기 : Return.....Activity
+
+8. Delay
+fun MakeDelay()
+    {
+        Handler().postDelayed({
+            //function
+        },5000)
+    }

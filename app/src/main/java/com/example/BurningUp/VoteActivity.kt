@@ -13,6 +13,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.frame_layout.view.*
+import kotlinx.coroutines.*
+import kotlin.math.log
 
 class VoteActivity : AppCompatActivity()
 {
@@ -62,35 +64,36 @@ class VoteActivity : AppCompatActivity()
     fun GetPostingCountFromFirebase() : Int
     {
         var cur_posting_cnt : Int = 0
-        count_data_ref.child("curPostCount").get().addOnSuccessListener {
-            cur_posting_cnt = it.getValue().toString().toInt()
-            Log.d("jiwon" , "1 " + cur_posting_cnt.toString())
+        runBlocking {
+            val get_coroutine = launch{
+                count_data_ref.child("curPostCount").get().addOnSuccessListener {
+                    cur_posting_cnt = it.getValue().toString().toInt()
+                    Log.d("jiwon", "1 " + cur_posting_cnt.toString())
+                }
+            }
+            get_coroutine.join()
+            Log.d("jiwon" , "2 " + cur_posting_cnt.toString())
         }
-        Log.d("jiwon" , "2 " + cur_posting_cnt.toString())
         return cur_posting_cnt
-
-        //TODO : 현재 log_2가 log_1보다 먼저 나오는 걸로 보아 DB에서 값을 받아오기 전에 초기화한 0이 그냥 리턴되버림.
     }
 
     //exp : DB에서 받아온 인증 게시물의 개수만큼 게시물을 GridLayout에 표현
     //TODO : 지금은 버튼 호출이지만 추후에는 들어오자마자 call-back
-    fun MakeCurrentPosting()
-    {
+    fun MakeCurrentPosting() {
         val cur_posting_cnt = GetPostingCountFromFirebase()
-
         //ref : https://www.javaer101.com/article/6583845.html
         binding.btnAddPosting.setOnClickListener {
             //for (i in (0..cur_posting_cnt))// TODO : 세마포어(비동기) 한 후에 해결
-            for(i in (1..12)) //hard : 1 ~ 12가 12개임
+            for (i in (1..12)) //hard : 1 ~ 12가 12개임
             {
                 val frame = ScrollView(this) // create frame
                 layoutInflater.inflate(R.layout.frame_layout, frame) // add layout to frame
                 frame.tag = i.toString() //add tag to enable finding specific frame at runtime
                 //frame.descTextView.text = "Section $i" // change textView on frame ( use string resources! not hardcoded string like me)
-                
+
                 binding.gridVote.addView(frame) //exp : 만들어 놓은 frame을 grid_layout에 추가
             }
-            Toast.makeText(this.getApplicationContext() , "게시물을 추가했습니다." , Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.getApplicationContext(), "게시물을 추가했습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
