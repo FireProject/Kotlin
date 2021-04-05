@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="single">
-
         <item
             android:id="@+id/chprofile"
             android:icon="@drawable/dotimage"
-            android:title="프로필 편집" />
+            android:title="프로필 편집"
+            />
         <item
             android:id="@+id/chpassword"
             android:icon="@drawable/dotimage"
@@ -14,7 +15,7 @@
         <item
             android:id="@+id/alarm"
             android:icon="@drawable/dotimage"
-            android:title="알림설정" />
+            android:title="개발자 소개" />
 
         <item
             android:id="@+id/introuduce_p"
@@ -23,7 +24,7 @@
 
         <item
             android:id="@+id/logout_btn"
-            android:icon="@drawable/dotimage"
+            android:icon="@drawable/logout_icon"
             android:title="로그아웃" />
 
 

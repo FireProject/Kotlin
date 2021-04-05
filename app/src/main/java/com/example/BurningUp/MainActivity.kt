@@ -5,13 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import com.example.BurningUp.databinding.ActivityChangePasswordBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.navi_header.view.*
 
 class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
 
@@ -23,8 +28,11 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
     private lateinit var settingAlarmFragment: SettingAlarmFragment
     private lateinit var introduceProgrammerFragment: IntroduceProgrammerFragment
 
+    lateinit var navView: NavigationView
 
     private lateinit var auth : FirebaseAuth
+    private lateinit var mdatabase : FirebaseDatabase
+    private lateinit var mRef : DatabaseReference
 
     companion object{
         const val TAG:String="로그"
@@ -34,16 +42,17 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
 
         auth = FirebaseAuth.getInstance()
 
-        //레이아웃과 연결결
-       setContentView(R.layout.activity_main)
+        //레이아웃과 연결
+        setContentView(R.layout.activity_main)
+
         Log.d(TAG, "MainActivity_oncreate() called")
 
 
         btn_navi.setOnClickListener {
             layout_drawer.openDrawer(GravityCompat.START)   //start는 왼쪽에서 열거라는거
         }
-        navi_view.setNavigationItemSelectedListener(this)  //네비게이션 메뉴 아이템에 클릭 속성 부여
 
+        navi_view.setNavigationItemSelectedListener(this)  //네비게이션 메뉴 아이템에 클릭 속성 부여
 
         bottom_nav.setOnNavigationItemReselectedListener(this)
         //처음에는 홈화면이 나오도록 함 
@@ -85,7 +94,9 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
 
     }
 
-    override fun onNavigationItemSelected(item: MenuItem) :Boolean{    //메뉴버튼 눌렀을 때 네비게이션 수행
+    override fun onNavigationItemSelected(item: MenuItem) :Boolean{ //메뉴버튼 눌렀을 때 네비게이션 수행
+
+
         when(item.itemId)
         {
             R.id.chprofile->{
@@ -106,7 +117,7 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
             }
             R.id.introuduce_p->{
                 val intent = Intent(this, AddChatRoomActivity::class.java)
-                startActivity(intent)//로그아웃 후 로그인 화면으로 이동
+                startActivity(intent)
                 /*introduceProgrammerFragment=IntroduceProgrammerFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,introduceProgrammerFragment).commit()
                 */
