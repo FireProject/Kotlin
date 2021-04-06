@@ -68,6 +68,7 @@ class LoginActivity : AppCompatActivity() {
                     task->
                 if(task.isSuccessful){//로그인 성공시
                     if(auth.currentUser.isEmailVerified){//인증된 계정이면
+                        Users.readInfo()
                         loadingDialog.show()
                         val intent = Intent(this,MainActivity::class.java)
                         startActivity(intent)//메인화면으로 이동
