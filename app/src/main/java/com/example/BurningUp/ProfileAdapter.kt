@@ -1,12 +1,10 @@
 package com.example.BurningUp
 
-import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.coroutines.coroutineContext
 
 class ProfileAdapter(val profileList:ArrayList<Profiles>):RecyclerView.Adapter<ProfileAdapter.CustomViewHolder>()
 {
