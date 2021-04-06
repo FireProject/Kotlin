@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.navi_header.view.*
 
-class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
+open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var profileFragment: ProfileFragment
@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
     private lateinit var settingAlarmFragment: SettingAlarmFragment
     private lateinit var introduceProgrammerFragment: IntroduceProgrammerFragment
 
-    lateinit var navView: NavigationView
-
     private lateinit var auth : FirebaseAuth
     private lateinit var mdatabase : FirebaseDatabase
     private lateinit var mRef : DatabaseReference
+
+    private lateinit var header : View
 
     companion object{
         const val TAG:String="로그"
@@ -53,8 +53,10 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
             layout_drawer.openDrawer(GravityCompat.START)   //start는 왼쪽에서 열거라는거
         }
 
-        navi_view.setNavigationItemSelectedListener(this)  //네비게이션 메뉴 아이템에 클릭 속성 부여
+        navi_view.setNavigationItemSelectedListener(this)
 
+
+        //네비게이션 메뉴 아이템에 클릭 속성 부여
         bottom_nav.setOnNavigationItemReselectedListener(this)
         //처음에는 홈화면이 나오도록 함 
         homeFragment= HomeFragment.newInstance()
@@ -96,7 +98,6 @@ class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemRe
     }
 
     override fun onNavigationItemSelected(item: MenuItem) :Boolean{ //메뉴버튼 눌렀을 때 네비게이션 수행
-
 
         when(item.itemId)
         {
