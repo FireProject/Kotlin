@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/chprofile"
@@ -26,8 +25,5 @@
             android:id="@+id/logout_btn"
             android:icon="@drawable/logout_icon"
             android:title="로그아웃" />
-
-
     </group>
-
 </menu>
