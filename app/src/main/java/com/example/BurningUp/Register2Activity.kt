@@ -83,7 +83,7 @@ class Register2Activity : AppCompatActivity() {
 
         binding.registerBtn.setOnClickListener{
 
-            val userInfo = UserInfo(
+            val userInfo = Users.Companion.Info(
                 nickName = binding.nicknameEdit.text.toString(), stateMessage = ""
             )
 

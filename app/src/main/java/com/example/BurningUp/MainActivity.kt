@@ -54,9 +54,9 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
 
         navi_view.setNavigationItemSelectedListener(this)
 
-
         //네비게이션 메뉴 아이템에 클릭 속성 부여
         bottom_nav.setOnNavigationItemReselectedListener(this)
+
         //처음에는 홈화면이 나오도록 함 
         homeFragment= HomeFragment.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.fragments_frame,homeFragment).commit()
