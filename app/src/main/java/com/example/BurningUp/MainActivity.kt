@@ -40,12 +40,13 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         auth = FirebaseAuth.getInstance()
 
         //레이아웃과 연결
         setContentView(R.layout.activity_main)
 
-        Log.d(TAG, "MainActivity_oncreate() called")
+        Log.d("Minyoung", "MainActivity_oncreate() called")
 
 
         btn_navi.setOnClickListener {
