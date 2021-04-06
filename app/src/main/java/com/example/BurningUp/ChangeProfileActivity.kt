@@ -72,6 +72,9 @@ class ChangeProfileActivity : AppCompatActivity()
         MoveGallery()
         ChangeUserData()
         ReturnMainActivity()
+
+        //test at 04/06
+        Rooms.GetRooms()
     }
 
     //exp : activity가 front에 올 때 마다 실행
