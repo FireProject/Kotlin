@@ -1,15 +1,12 @@
 package com.example.BurningUp
 
 import android.content.Intent
-import android.graphics.Insets.add
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import androidx.core.view.OneShotPreDrawListener.add
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile_list.*
@@ -30,12 +27,17 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_list)
 
+        Friends.Companion.info
+
         var ProfileList= arrayListOf<Profiles>()
         //DB초기화
         auth = FirebaseAuth.getInstance()
         uid=auth?.uid
         firebase= FirebaseDatabase.getInstance()
         users_ref=firebase.getReference("users/freinds")   //루트의 자식으로 "users" 연결->DB 테이블 연결
+
+
+        Friends.GetValue(users_ref)
 
 
         var tmp:Array<String>

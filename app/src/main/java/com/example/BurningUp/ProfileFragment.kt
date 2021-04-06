@@ -6,12 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.BurningUp.databinding.ActivityChatRoomBinding
 import com.example.BurningUp.databinding.FragmentProfileBinding
 import kotlinx.android.synthetic.main.activity_profile_list.*
-import java.lang.Appendable
 
 class ProfileFragment : Fragment(){
     private var mBinding: FragmentProfileBinding? = null
