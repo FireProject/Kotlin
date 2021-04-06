@@ -1,5 +1,6 @@
 package com.example.BurningUp
 
+import android.nfc.Tag
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -27,13 +28,35 @@ class Users {
                 override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
                     // A new comment has been added, add it to the displayed list
 
-                    val info = dataSnapshot.getValue<Info>()
-                    val commentKey = dataSnapshot.key
-                    if (commentKey == "roomId") {
-                        Rooms.GetRooms()
-                    } else if (commentKey == "friends"){
-                        Friends.GetFriends()
+                   // dataSnapshot::class.simpleName?.let { Log.d("예진", it) }
+
+
+
+
+                    val commentKey = when(dataSnapshot.key) {
+                        "roomId" -> {
+                            info.roomId = dataSnapshot.value as ArrayList<String>
+                            //Rooms.GetRooms()
+                        }
+                        "friends" -> {
+                            info.friends = dataSnapshot.value as ArrayList<String>
+                            //Friends.GetFriends()
+                        }
+                        "nickName" -> {
+                            info.nickName = dataSnapshot.value as String
+                            Log.d("예진", info.nickName)
+                        }
+                        "stateMessage" -> {
+                            info.stateMessage = dataSnapshot.value as String
+                        }
+
+                        else ->  {
+
+                        }
                     }
+
+
+
                     // ...
                 }
 
@@ -50,9 +73,9 @@ class Users {
                     val info = dataSnapshot.getValue<Info>()
                     val commentKey = dataSnapshot.key
                     if (commentKey == "roomId") {
-                        Rooms.GetRooms()
+                        //Rooms.GetRooms()
                     } else if (commentKey == "friends"){
-                        Friends.GetFriends()
+                        //Friends.GetFriends()
                     }
                 }
 
