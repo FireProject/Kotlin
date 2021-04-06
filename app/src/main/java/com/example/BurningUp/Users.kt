@@ -31,7 +31,7 @@ class Users {
                    // dataSnapshot::class.simpleName?.let { Log.d("예진", it) }
 
 
-
+                    //이렇게 하세요
 
                     val commentKey = when(dataSnapshot.key) {
                         "roomId" -> {
