@@ -19,10 +19,7 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".Friends"
-            android:label="@string/title_activity_friends"
-            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".Rooms"></activity>
         <activity android:name=".ChatListActivity" />
         <activity android:name=".UploadPostActivity" /> <!-- 스플래시 화면 -->
         <activity android:name=".SplashActivity">
