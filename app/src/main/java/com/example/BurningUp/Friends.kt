@@ -10,11 +10,11 @@ import com.google.firebase.database.FirebaseDatabase
 
 class Friends : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
-    private var uid: String? = null
-    private lateinit var firebase: FirebaseDatabase
-    private lateinit var users_ref: DatabaseReference
-    //DB초기화
+//    private lateinit var auth: FirebaseAuth
+//    private var uid: String? = null
+//    private lateinit var firebase: FirebaseDatabase
+//    private lateinit var users_ref: DatabaseReference
+//    //DB초기화
 
 
 
@@ -24,13 +24,25 @@ class Friends : AppCompatActivity() {
             var stateMessage:String="nomessage"
         )
 
-        var info=Info()
+        var info= arrayListOf<Info>()
 
-        var friends_list= arrayListOf<Info>()
+
 
         fun GetFriends()
         {
-            for (friends in Users.info.friends)
+            for (friends in Users.info.friends) {
+                 lateinit var auth: FirebaseAuth
+                 var uid: String? = null
+                 lateinit var firebase: FirebaseDatabase
+                 lateinit var users_ref: DatabaseReference
+                //DB초기화
+                auth = FirebaseAuth.getInstance()
+                uid=auth?.uid
+                firebase= FirebaseDatabase.getInstance()
+                users_ref=firebase.getReference("users/freinds")   //루트의 자식으로 "users" 연결->DB 테이블 연결
+
+
+            }
 
         }
 
@@ -45,14 +57,12 @@ class Friends : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
-        uid=auth?.uid
-        firebase= FirebaseDatabase.getInstance()
-        users_ref=firebase.getReference("users/freinds")   //루트의 자식으로 "users" 연결->DB 테이블 연결
+    }
+
 
 
     }
 
 
-}
+
 

@@ -36,8 +36,8 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         firebase= FirebaseDatabase.getInstance()
         users_ref=firebase.getReference("users/freinds")   //루트의 자식으로 "users" 연결->DB 테이블 연결
 
-
-        Friends.GetValue(users_ref)
+//
+  //      Friends.GetValue(users_ref)
 
 
         var tmp:Array<String>
