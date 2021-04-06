@@ -34,9 +34,26 @@ class Rooms : AppCompatActivity()
                 // 2. 가져온 users 데이터를 로컬의 my_rooms_list에 추가
                 */
 
-                //current_room
+                //Users.info.roomId가 배열인데 그걸 split하니까
                 for (room_id in Users.info.roomId)
                 {
+                    Log.d("jiwon" , room_id.toString())
+                    lateinit var auth : FirebaseAuth
+                    var uid : String? = null
+                    lateinit var firebase : FirebaseDatabase
+                    lateinit var refer : DatabaseReference
+
+                    auth = FirebaseAuth.getInstance()
+                    uid = auth?.uid
+                    firebase = FirebaseDatabase.getInstance()
+                    refer = firebase.getReference("rooms/${room_id}")
+
+                    Log.d("jiwon" , "loglog")
+                    refer.get().addOnSuccessListener{
+                        Log.d("jiwon" , "${it.value}") //exp : 공식 Kotlin 형식
+                        Log.d("jiwon" , "hahaha" + it.getValue().toString()) //exp : getValue()를 이용하는 형식 -> 이게 익숙
+                    }
+
 
                 }
             }

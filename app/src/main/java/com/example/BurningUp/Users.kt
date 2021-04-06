@@ -32,7 +32,7 @@ class Users {
                     if (commentKey == "roomId") {
                         Rooms.GetRooms()
                     } else if (commentKey == "friends"){
-                        Friends.GetFriends()
+                        //Friends.GetFriends()
                     }
                     // ...
                 }
@@ -52,7 +52,7 @@ class Users {
                     if (commentKey == "roomId") {
                         Rooms.GetRooms()
                     } else if (commentKey == "friends"){
-                        Friends.GetFriends()
+                        //Friends.GetFriends()
                     }
                 }
 
