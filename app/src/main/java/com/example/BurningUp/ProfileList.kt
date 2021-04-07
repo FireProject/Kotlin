@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.BurningUp.Friends.Companion.GetFriends
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -27,7 +28,7 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_list)
 
-        Friends.Companion.info
+        Friends.Companion.friends_constainer
 
         var ProfileList= arrayListOf<Profiles>()
         //DB초기화
@@ -37,7 +38,8 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         users_ref=firebase.getReference("users/freinds")   //루트의 자식으로 "users" 연결->DB 테이블 연결
 
 ////
-        Friends.GetFriends()
+      //  val profileList= arrayListOf<Profiles>()
+        val profileList= GetFriends()
 
 
 //        var tmp:Array<String>
@@ -78,8 +80,7 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
 
         rv_profile.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rv_profile.setHasFixedSize(true)
-
-     //   rv_profile.adapter = ProfileAdapter(profileList)
+        rv_profile.adapter = ProfileAdapter(profileList)
     }
 
 
