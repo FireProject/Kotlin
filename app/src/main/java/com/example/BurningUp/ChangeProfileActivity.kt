@@ -59,10 +59,10 @@ class ChangeProfileActivity : AppCompatActivity()
         auth = FirebaseAuth.getInstance()
         uid = auth?.uid
         firebase = FirebaseDatabase.getInstance()
-        storage = FirebaseStorage.getInstance()
-
         user_ref = firebase.getReference("usersTest").child(uid.toString())
-        storage_ref = storage.reference
+
+        storage = FirebaseStorage.getInstance()
+        storage_ref = storage.reference //storage's root
 
         var uid = auth?.uid
         var email = auth?.currentUser?.email
@@ -73,13 +73,15 @@ class ChangeProfileActivity : AppCompatActivity()
         ChangeUserData()
         ReturnMainActivity()
 
-        //test at 04/06
-        Rooms.GetRooms()
+        //test at 04/07
+        Users.readInfo() //exp : Users의 method를 통해 DB의 데이터를 읽어옵니다.
+        Rooms.PushLocalContainer() //exp : DB에서 가져온 데이터를 로컬화
     }
 
     //exp : activity가 front에 올 때 마다 실행
     // 자주 호출 되므로 Unity의 Update()라고 생각하고 복잡도 낮춰야 합니다.
-    override fun onResume() {
+    override fun onResume()
+    {
         super.onResume()
         if(bitmap != null)
         {
@@ -118,9 +120,11 @@ class ChangeProfileActivity : AppCompatActivity()
                     {
                         DialogInterface.BUTTON_POSITIVE -> {
                             var current_image_url = data?.data
-                            //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, current_image_url)
                             bitmap = MediaStore.Images.Media.getBitmap(contentResolver, current_image_url)
                             binding.circleview.setImageBitmap(bitmap)
+                            //hard : !!문법이 ?type을 ?아닌 type으로 하는 듯
+                            //아래의 코드 한 줄로 유저의 프로필 사진을 올립니다. -> 이미 데이터가 있다면 어떻게 될까?
+                            val user_storage = storage_ref.child("users/${uid}/profileImage.png").putFile(current_image_url!!)
                             Log.d("jiwon" , "변경 O")
                         }
                         DialogInterface.BUTTON_NEGATIVE ->{
