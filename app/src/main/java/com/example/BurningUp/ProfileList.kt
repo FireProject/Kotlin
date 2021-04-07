@@ -6,12 +6,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.BurningUp.Friends.Companion.friends_constainer
+import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
+import com.example.BurningUp.databinding.ActivityProfileListBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_profile_list.*
 
 class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener {
+
+    private var mBinding: ActivityProfileListBinding? = null
+    private val binding get() = mBinding!!
 
     private lateinit var homeFragment: HomeFragment
     //private lateinit var profileFragment: ProfileFragment
@@ -27,7 +33,11 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_list)
 
-        Friends.Companion.info
+
+        //큰일 이거 로그 왜안뜨지
+        Log.d("mmm","profileList is called()")
+
+        Friends.Companion.friends_constainer
 
         var ProfileList= arrayListOf<Profiles>()
         //DB초기화
@@ -36,50 +46,18 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         firebase= FirebaseDatabase.getInstance()
         users_ref=firebase.getReference("users/freinds")   //루트의 자식으로 "users" 연결->DB 테이블 연결
 
-////
-        Friends.GetFriends()
+
+        val profileList= arrayListOf<Friends.Companion.Info>()
+        for(i in friends_constainer)
+        {
+            profileList.add(i)
+        }
 
 
-//        var tmp:Array<String>
-//
-//        users_ref.addValueEventListener(object: ValueEventListener{
-//
-//
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                for(DataSnapshot in snapshot.children)
-//                {
-//                    tmp = DataSnapshot as Array<String>
-//                    Log.d("Minyoung",tmp.toString())
-//                }
-//            }
-//
-//
-//
-//            override fun onCancelled(error: DatabaseError) {
-//
-//            }
-//
-//        })
-
-        //Log.d("Minyoung", tmp.toString())
-
-//            val profileList= arrayListOf(
-//
-//            Profiles("조민영","메롱"),
-//            Profiles("이정진","메롱"),
-//            Profiles("최종선","메롱"),
-//            Profiles("김미미","메롱"),
-//            Profiles("황규백","메롱"),
-//            Profiles("신용태","메롱")
-//
-//
-//       )
-       // Log.d("Minyoung",tmp.toString() )
 
         rv_profile.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rv_profile.setHasFixedSize(true)
-
-     //   rv_profile.adapter = ProfileAdapter(profileList)
+        rv_profile.adapter = ProfileAdapter(profileList)
     }
 
 

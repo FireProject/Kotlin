@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.navi_header.view.*
 open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var homeFragment: HomeFragment
-    private lateinit var profileFragment: ProfileFragment
+  //  private lateinit var profileFragment: ProfileFragment
 
   //  private lateinit var changeProfileFragment: ChangeProfileFragment
    // private lateinit var changePasswordFragment: ChangePasswordFragment
@@ -61,6 +61,7 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
         //처음에는 홈화면이 나오도록 함 
         homeFragment= HomeFragment.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.fragments_frame,homeFragment).commit()
+
 
     }
 
