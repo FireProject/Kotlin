@@ -10,7 +10,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 
-class Friends : AppCompatActivity() {
+class Friends (val name:String, val statemessage:String)  : AppCompatActivity() {
 
 //    private lateinit var auth: FirebaseAuth
 //    private var uid: String? = null
@@ -43,16 +43,17 @@ class Friends : AppCompatActivity() {
 
 
                 getfriends_ref.get().addOnSuccessListener {
-
+                    Log.d("mmm","success1")
                 }
 
                 test_ref_1.get().addOnSuccessListener {
                     obj.nickName=it.getValue().toString()
-
+                    Log.d("mmm","success2")
                 }
 
                 test_ref_2.get().addOnSuccessListener {
                     obj.stateMessage=it.getValue().toString()
+                    Log.d("mmm","success3")
                 }
                 friends_constainer.add(obj)
             }
@@ -63,13 +64,14 @@ class Friends : AppCompatActivity() {
         {
             var friends_num : Int=1;
             for(element in friends_constainer)
-
             {
                 friends_num++
             }
         }
 
-//
+
+
+
 //        fun GetFriends()
 //        {
 //            //Users.info.friend가 배열이고, spilt해서 저장?

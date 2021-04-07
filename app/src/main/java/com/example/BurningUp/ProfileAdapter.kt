@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ProfileAdapter(val profileList:ArrayList<Profiles>):RecyclerView.Adapter<ProfileAdapter.CustomViewHolder>()
+class ProfileAdapter(val profileList: ArrayList<Friends.Companion.Info>):RecyclerView.Adapter<ProfileAdapter.CustomViewHolder>()
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileAdapter.CustomViewHolder {
@@ -20,9 +20,9 @@ class ProfileAdapter(val profileList:ArrayList<Profiles>):RecyclerView.Adapter<P
 
         //프로필 사진의 경우
         //holder.profile.setImagResource(ProfileList.get(position).profile)
-        holder.name.text = profileList.get(position).name
-        holder.statemessage.text=   profileList.get(position).statemessage
-        //레벨 등 숫자ㅣ로 입력 받을경우에는 위에 똑같이 쓰고 마지막에 .toString()써주기
+        holder.name.text = profileList.get(position).nickName
+        holder.statemessage.text=  profileList.get(position).stateMessage
+        //레벨 등 숫자로 입력 받을경우에는 위에 똑같이 쓰고 마지막에 .toString()써주기
     }
 
     override fun getItemCount(): Int {
