@@ -36,30 +36,30 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         firebase= FirebaseDatabase.getInstance()
         users_ref=firebase.getReference("users/freinds")   //루트의 자식으로 "users" 연결->DB 테이블 연결
 
+////
+        Friends.GetFriends()
+
+
+//        var tmp:Array<String>
 //
-  //      Friends.GetValue(users_ref)
-
-
-        var tmp:Array<String>
-
-        users_ref.addValueEventListener(object: ValueEventListener{
-
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for(DataSnapshot in snapshot.children)
-                {
-                    tmp = DataSnapshot as Array<String>
-                    Log.d("Minyoung",tmp.toString())
-                }
-            }
-
-
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-        })
+//        users_ref.addValueEventListener(object: ValueEventListener{
+//
+//
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                for(DataSnapshot in snapshot.children)
+//                {
+//                    tmp = DataSnapshot as Array<String>
+//                    Log.d("Minyoung",tmp.toString())
+//                }
+//            }
+//
+//
+//
+//            override fun onCancelled(error: DatabaseError) {
+//
+//            }
+//
+//        })
 
         //Log.d("Minyoung", tmp.toString())
 

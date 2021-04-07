@@ -28,13 +28,16 @@ class Friends : AppCompatActivity() {
 
 
 
+
         fun GetFriends()
         {
+            //Users.info.friend가 배열이고, spilt해서 저장?
             for (friends in Users.info.friends) {
                  lateinit var auth: FirebaseAuth
                  var uid: String? = null
                  lateinit var firebase: FirebaseDatabase
                  lateinit var users_ref: DatabaseReference
+
                 //DB초기화
                 auth = FirebaseAuth.getInstance()
                 uid=auth?.uid
