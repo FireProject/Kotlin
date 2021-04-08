@@ -3,6 +3,7 @@ package com.example.BurningUp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.BurningUp.Friends.Companion.friends_constainer
@@ -32,40 +33,28 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         setContentView(R.layout.activity_profile_list)
 
 
-        //큰일 이거 로그 왜안뜨지
-        //Log.d("mmm","profileList is called()")
-
         Users.readInfo()
         Friends.GetFriends()
-        //Friends.friends_constainer()
 
-        //var ProfileList= arrayListOf<Profiles>()
         //DB초기화
         auth = FirebaseAuth.getInstance()
         uid=auth?.uid
         firebase= FirebaseDatabase.getInstance()
         users_ref=firebase.getReference("users").child(uid.toString())  //루트의 자식으로 "users" 연결->DB 테이블 연결
 
-
         var profileList= arrayListOf<Friends.Companion.Info>()
-        UserData.GetUsr()
-        var usrInfo:Users.Companion.Info
-
-
-
-
 
         for(obj in friends_constainer)
         {
             profileList.add(obj)
         }
 
-
-
         rv_profile.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rv_profile.setHasFixedSize(true)
         rv_profile.adapter = ProfileAdapter(profileList)
     }
+
+
 
 
     override fun onNavigationItemReselected(item: MenuItem) {
@@ -85,8 +74,7 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
 
                 val intent = Intent(this,ChatListActivity::class.java)
                 startActivity(intent)
-//                chatFragment= ChatListFragment()
-//                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatFragment).commit()
+
             }
 
         }
