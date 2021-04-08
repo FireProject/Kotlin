@@ -3,11 +3,9 @@ package com.example.BurningUp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.BurningUp.Friends.Companion.friends_constainer
-import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
 import com.example.BurningUp.databinding.ActivityProfileListBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -35,22 +33,31 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
 
 
         //큰일 이거 로그 왜안뜨지
-        Log.d("mmm","profileList is called()")
+        //Log.d("mmm","profileList is called()")
 
-        Friends.Companion.friends_constainer
+        Users.readInfo()
+        Friends.GetFriends()
+        //Friends.friends_constainer()
 
-        var ProfileList= arrayListOf<Profiles>()
+        //var ProfileList= arrayListOf<Profiles>()
         //DB초기화
         auth = FirebaseAuth.getInstance()
         uid=auth?.uid
         firebase= FirebaseDatabase.getInstance()
-        users_ref=firebase.getReference("users/freinds")   //루트의 자식으로 "users" 연결->DB 테이블 연결
+        users_ref=firebase.getReference("users").child(uid.toString())  //루트의 자식으로 "users" 연결->DB 테이블 연결
 
 
-        val profileList= arrayListOf<Friends.Companion.Info>()
-        for(i in friends_constainer)
+        var profileList= arrayListOf<Friends.Companion.Info>()
+        UserData.GetUsr()
+        var usrInfo:Users.Companion.Info
+
+
+
+
+
+        for(obj in friends_constainer)
         {
-            profileList.add(i)
+            profileList.add(obj)
         }
 
 
