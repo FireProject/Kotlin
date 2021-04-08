@@ -42,11 +42,11 @@ class Rooms : AppCompatActivity()
             {
                 var obj = Info() //hard : obj를 비우는 method X, 그러므로 그냥 새로운 객체 선언
                 var user_contained_rooms_ref : DatabaseReference
-                var room_num : Int = 1
+                var room_num : Int = 0
                 for (room_id in Users.info.roomId)
                 {
                     Log.d("jiwon" , room_num.toString() + " : " + room_id)
-                    room_num++
+
 
                     //TODO : user_contained_rooms_ref에서 읽어오면 Dictionary형식인데 이거 한번에 하는 게있을텐데 지금을 모름.
                     user_contained_rooms_ref = Firebase.database.getReference("rooms").child(room_id)//room_id가 변경되면서
@@ -77,10 +77,13 @@ class Rooms : AppCompatActivity()
                     
                     //2. 객체를 Container에 추가
                     rooms_contain_specific_user.add(obj)
-
+                    Log.d("jiwon", "Local Container 04/08 " + room_num.toString() + "번 방 : " + rooms_contain_specific_user[room_num].cur_person.toString() + rooms_contain_specific_user[room_num].master_uid.toString() + rooms_contain_specific_user[room_num].room_name.toString())
+                    room_num++
                 }
                 //TODO : 세마포어를 이용해서 아래의 코드가 for문 내부의 비동기 firebase를 완료하고 호출되어야 합니다.
-                ReadRoomsContainSpecificUser()
+                //hard : 연습해보니까 함수 호출은 메인스레드여서 걍 빨리 해버리나
+
+                //ReadRoomsContainSpecificUser()
             }
 
             //ref : https://www.javaer101.com/ko/article/45145109.html
