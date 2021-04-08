@@ -19,10 +19,11 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".FindFriendsActivity"></activity>
         <activity
             android:name=".UserData"
             android:label="@string/title_activity_user_data"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar" />
         <activity android:name=".Rooms" />
         <activity android:name=".ChatListActivity" />
         <activity android:name=".UploadPostActivity" /> <!-- 스플래시 화면 -->

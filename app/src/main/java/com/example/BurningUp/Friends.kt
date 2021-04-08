@@ -12,12 +12,6 @@ import com.google.firebase.ktx.Firebase
 
 class Friends (val name:String, val statemessage:String)  : AppCompatActivity() {
 
-//    private lateinit var auth: FirebaseAuth
-//    private var uid: String? = null
-//    private lateinit var firebase: FirebaseDatabase
-//    private lateinit var users_ref: DatabaseReference
-//    //DB초기화
-
 
     companion object {
         data class Info(
@@ -43,16 +37,15 @@ class Friends (val name:String, val statemessage:String)  : AppCompatActivity() 
 
 
                 getfriends_ref.get().addOnSuccessListener {
-                    //Log.d("mmm", "success1")
+                    Log.d("mmm","success1")
                 }
-
                 test_ref_1.get().addOnSuccessListener {
+                    Log.d("mmm","success2")
                     obj.nickName = it.getValue().toString()
-                   // Log.d("mmm", "success2")
                 }
-                test_ref_2.get().addOnSuccessListener {
+                test_ref_2.get().addOnSuccessListener{
+                    Log.d("mmm","success3")
                     obj.stateMessage = it.getValue().toString()
-                    //Log.d("mmm", "success3")
                 }
                 friends_constainer.add(obj) //객체를 Info형태의 friends_container에 넣어줌
             }
@@ -70,34 +63,4 @@ class Friends (val name:String, val statemessage:String)  : AppCompatActivity() 
     }
 }
 
-
-
-
-//        fun GetFriends()
-//        {
-//            //Users.info.friend가 배열이고, spilt해서 저장?
-//            for (friends in Users.info.friends) {
-//                 lateinit var auth: FirebaseAuth
-//                 var uid: String? = null
-//                 lateinit var firebase: FirebaseDatabase
-//                 lateinit var users_ref: DatabaseReference
-//
-//                //DB초기화
-//                auth = FirebaseAuth.getInstance()
-//                uid=auth?.uid
-//                firebase= FirebaseDatabase.getInstance()
-//                users_ref=firebase.getReference("users/freinds")   //루트의 자식으로 "users" 연결->DB 테이블 연결
-//
-//
-//            }
-//
-//        }
-
-        //1. 예진 user정보에서  friends리스트를 가져오기
-        //2. 가져온 ㅇuser의 데이터를 내 friends_list에서 가져오기
-
-
-//    }
-
-//}
 
