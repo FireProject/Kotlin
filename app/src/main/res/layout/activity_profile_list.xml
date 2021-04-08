@@ -11,10 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:padding="10dp"
+        android:orientation="vertical"
         >
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -23,10 +27,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="5dp"
+                android:padding="3dp"
                 android:text="친구"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="25dp" />
 
         </LinearLayout>
         <LinearLayout
@@ -39,6 +43,55 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/addfriends"/>
         </LinearLayout>
+        </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1.5"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:padding="10dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/profile_img"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_weight="1.5"-->
+<!--                android:src="@drawable/profile" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_name"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_weight="2"-->
+<!--                android:text="dfajkld"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="15sp" />-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_weight="1"-->
+<!--                android:src="@drawable/fire_mini" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_statemessage"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="10sp"-->
+<!--                android:layout_weight="5"-->
+<!--                android:background="#63CEFF"-->
+<!--                android:text="상태메시지"-->
+<!--                android:textColor="#000000"-->
+<!--                android:textSize="20sp" />-->
+
+<!--        </LinearLayout>-->
+
 
     </LinearLayout>
 

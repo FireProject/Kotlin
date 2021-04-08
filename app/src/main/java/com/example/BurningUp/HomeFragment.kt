@@ -21,14 +21,14 @@ class HomeFragment:Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "HoemFrag_oncreate() called")
+        Log.d("mmm", "HoemFrag_oncreate() called")
     }
     //
     // 프래그먼트가 메인 액티비티에 붙게되는(?)
     //프래그먼트를 안고 있는 액티비티에 붙었을 때
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.d(TAG, "HoemFrag_oncreate() called")
+        Log.d("mmm", "HoemFrag_oncreate() called")
     }
 
     //뷰가 생성 되었을 때
@@ -39,7 +39,7 @@ class HomeFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d(TAG, "HoemFrag_oncreate() called")
+        Log.d("mmm", "HoemFrag_oncreate() called")
         val view=inflater.inflate(R.layout.fragment_home,container,false)
 
         return view

@@ -44,7 +44,7 @@ class Users {
                         }
                         "nickName" -> {
                             info.nickName = dataSnapshot.value as String
-                            Log.d("예진", info.nickName)
+                            //Log.d("예진", info.nickName)
                         }
                         "stateMessage" -> {
                             info.stateMessage = dataSnapshot.value as String
