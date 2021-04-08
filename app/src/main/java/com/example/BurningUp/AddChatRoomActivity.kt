@@ -73,6 +73,20 @@ class AddChatRoomActivity : AppCompatActivity()
         //Other Method
         GetResolution()
         Finally_Make_Chatroom()
+
+        //exp : Practice For Coroutine(erase)
+        binding.btnInitializeDb.setOnClickListener {
+            PracticeCoroutineJiwon.Practice()
+        }
+        /*binding.btnInitializeDb.setOnClickListener {
+            Toast.makeText(this.getApplicationContext() , "DB를 최초로 읽었다. 이제 이 버튼 누르면 큰일남" , Toast.LENGTH_SHORT).show()
+            PracticeCoroutineJiwon.Test()
+        }
+        binding.btnReadDb.setOnClickListener {
+            Toast.makeText(this.getApplicationContext() , "local에 저장된 DB를 읽었다" , Toast.LENGTH_SHORT).show()
+            PracticeCoroutineJiwon.ReadDataInContainer()
+        }*/
+        
     }
 
     fun MakeBaseSeekBar()
@@ -187,7 +201,6 @@ class AddChatRoomActivity : AppCompatActivity()
             startActivity(intent)
         }
     }
-
 
     //exp : 해상도를 얻는 Method
     //ref : https://www.androidhuman.com/2016-07-10-kotlin_companion_object
