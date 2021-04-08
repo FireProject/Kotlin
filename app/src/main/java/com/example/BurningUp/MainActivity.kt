@@ -46,7 +46,7 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
         //레이아웃과 연결
         setContentView(R.layout.activity_main)
 
-        Log.d("Minyoung", "MainActivity_oncreate() called")
+        Log.d("mmm", "MainActivity_oncreate() called")
 
 
         btn_navi.setOnClickListener {
@@ -66,12 +66,12 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
     }
 
     override fun onNavigationItemReselected(item: MenuItem) {   //바닥에 있는 네비게이션
-        Log.d(TAG, "MainActivity_onNavi() called")
+        Log.d("mmm", "MainActivity_onNavi() called")
 
         when(item.itemId)
         {       //각각의 버튼마다 버튼이 나오면 화면이 나오도록 해둠
             R.id.menu_home->{
-                Log.d(TAG, "MainActivity_홈버튼 ")
+                Log.d("mmm", "MainActivity_홈버튼 ")
                 homeFragment= HomeFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }

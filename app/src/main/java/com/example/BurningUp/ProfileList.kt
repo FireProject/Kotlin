@@ -28,21 +28,23 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
     private lateinit var users_ref: DatabaseReference
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_list)
 
+        var profileList= arrayListOf<Friends.Companion.Info>()
 
+        Log.d("mmm","profileList_is called()")
+        profileList.clear()
+        //함수호출
         Users.readInfo()
         Friends.GetFriends()
-
         //DB초기화
         auth = FirebaseAuth.getInstance()
         uid=auth?.uid
         firebase= FirebaseDatabase.getInstance()
         users_ref=firebase.getReference("users").child(uid.toString())  //루트의 자식으로 "users" 연결->DB 테이블 연결
-
-        var profileList= arrayListOf<Friends.Companion.Info>()
 
         for(obj in friends_constainer)
         {
@@ -52,6 +54,7 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         rv_profile.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rv_profile.setHasFixedSize(true)
         rv_profile.adapter = ProfileAdapter(profileList)
+
     }
 
 
@@ -64,17 +67,13 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
                 homeFragment= HomeFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }
-
             R.id.menu_profile->{
                 val intent= Intent(this,ProfileList::class.java)
                 startActivity(intent)
-
             }
             R.id.menu_chat->{
-
                 val intent = Intent(this,ChatListActivity::class.java)
                 startActivity(intent)
-
             }
 
         }
