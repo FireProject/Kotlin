@@ -78,24 +78,25 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
             R.id.menu_profile->{
                 val intent=Intent(this,ProfileList::class.java)
                 startActivity(intent)
-
-
               //  profileFragment = ProfileFragment.newInstance()
                // supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
-
            }
-            R.id.menu_chat->{
+            //exp : go ppt_8
+            R.id.menu_chat->
+            {
+                val fragment_manager = supportFragmentManager.beginTransaction()
+                fragment_manager.replace(R.id.fragments_frame , ChatListFragment()).commit()
+                //replace : 교체 , commit : 저장
 
+                /*민영
                 val intent = Intent(this,ChatListActivity::class.java)
                 startActivity(intent)
 //                Log.d(TAG, "MainActivity_채팅버튼 ")
 //                chatFragment= ChatListFragment()
 //                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,chatFragment).commit()
+                 */
             }
-
         }
-
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem) :Boolean{ //메뉴버튼 눌렀을 때 네비게이션 수행
