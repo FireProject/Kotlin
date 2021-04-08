@@ -37,30 +37,29 @@ class Friends (val name:String, val statemessage:String)  : AppCompatActivity() 
                 friends_num++
 
                 //레퍼런스에서 읽어오면 딕셔너리 형태.
-                getfriends_ref = Firebase.database.getReference("users/friends").child(friends)
-                var test_ref_1 = Firebase.database.getReference("users/friends").child(friends).child("nickName")
-                var test_ref_2 = Firebase.database.getReference("users/friends").child(friends).child("stateMessage")
+                getfriends_ref = Firebase.database.getReference("users").child(friends)
+                var test_ref_1 = Firebase.database.getReference("users").child(friends).child("nickName")
+                var test_ref_2 = Firebase.database.getReference("users").child(friends).child("stateMessage")
 
 
                 getfriends_ref.get().addOnSuccessListener {
-                    Log.d("mmm", "success1")
+                    //Log.d("mmm", "success1")
                 }
 
                 test_ref_1.get().addOnSuccessListener {
                     obj.nickName = it.getValue().toString()
-                    Log.d("mmm", "success2")
+                   // Log.d("mmm", "success2")
                 }
-
                 test_ref_2.get().addOnSuccessListener {
                     obj.stateMessage = it.getValue().toString()
-                    Log.d("mmm", "success3")
+                    //Log.d("mmm", "success3")
                 }
                 friends_constainer.add(obj) //객체를 Info형태의 friends_container에 넣어줌
             }
             ReadFriendsContainSpecificUser()
         }
 
-        //
+
         fun ReadFriendsContainSpecificUser() {
             var friends_num: Int = 1
             for (element in friends_constainer) {
