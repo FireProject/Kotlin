@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:text="친구"
                 android:textColor="@color/white"
                 android:textSize="25dp" />
