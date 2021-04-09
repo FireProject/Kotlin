@@ -21,10 +21,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".PracticeCoroutineJiwon"></activity>
         <activity android:name=".FindFriendsActivity" />
-        <activity
-            android:name=".UserData"
-            android:label="@string/title_activity_user_data"
-            android:theme="@style/NoActionBar" />
+
         <activity android:name=".Rooms" />
         <activity android:name=".ChatListActivity" />
         <activity android:name=".UploadPostActivity" /> <!-- 스플래시 화면 -->
@@ -50,17 +47,9 @@
         <activity
             android:name=".VotePostingActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".IntroduceProgrammerFragment"
-            android:label="@string/title_activity_introduce_programmer_fragment"
-            android:theme="@style/NoActionBar" />
+
         <activity android:name=".ProfileList" />
-        <activity
-            android:name=".AlarmSettingFragment"
-            android:label="@string/title_activity_alarm_setting_fragment"
-            android:theme="@style/NoActionBar" />
-        <activity android:name=".ChangePasswordFragment" />
-        <activity android:name=".ChangeProfileFragment" /> <!-- 전 SsivalActivity -->
+
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
