@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.BurningUp.databinding.ActivityChangePasswordBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -16,6 +17,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.bottom_nav
+import kotlinx.android.synthetic.main.activity_profile_list.*
 import kotlinx.android.synthetic.main.navi_header.view.*
 
 open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
@@ -79,6 +82,7 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
 //                startActivity(intent)
                 profileListFragment= com.example.BurningUp.profileListFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileListFragment).commit()
+                //rv_profile.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                // supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
            }
             //exp : go ppt_8
