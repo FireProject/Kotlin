@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ProfileAdapter(val profileList: ArrayList<Friends.Companion.Info>):RecyclerView.Adapter<ProfileAdapter.CustomViewHolder>()
+class ProfileAdapter( val profileList: ArrayList<Friends.Companion.Info>):RecyclerView.Adapter<ProfileAdapter.CustomViewHolder>()
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileAdapter.CustomViewHolder {

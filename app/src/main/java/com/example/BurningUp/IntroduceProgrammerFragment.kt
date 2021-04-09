@@ -18,7 +18,6 @@ class IntroduceProgrammerFragment:Fragment() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "HoemFrag_oncreate() called")

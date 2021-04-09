@@ -21,8 +21,7 @@ import kotlinx.android.synthetic.main.navi_header.view.*
 open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var homeFragment: HomeFragment
-  //  private lateinit var profileFragment: ProfileFragment
-
+    private lateinit var profileListFragment: profileListFragment
   //  private lateinit var changeProfileFragment: ChangeProfileFragment
    // private lateinit var changePasswordFragment: ChangePasswordFragment
     private lateinit var settingAlarmFragment: SettingAlarmFragment
@@ -76,9 +75,10 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }
             R.id.menu_profile->{
-                val intent=Intent(this,ProfileList::class.java)
-                startActivity(intent)
-              //  profileFragment = ProfileFragment.newInstance()
+//                val intent=Intent(this,ProfileList::class.java)
+//                startActivity(intent)
+                profileListFragment= com.example.BurningUp.profileListFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileListFragment).commit()
                // supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
            }
             //exp : go ppt_8
