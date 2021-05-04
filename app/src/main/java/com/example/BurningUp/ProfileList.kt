@@ -59,6 +59,7 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
 
 
 
+    //바닥에 네비게이션 바
 
     override fun onNavigationItemReselected(item: MenuItem) {
         when(item.itemId)
