@@ -19,9 +19,10 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".PracticeCoroutineJiwon"></activity>
+        <activity
+            android:name=".TestRecycleActivity" />
+        <activity android:name=".PracticeCoroutineJiwon" />
         <activity android:name=".FindFriendsActivity" />
-
         <activity android:name=".Rooms" />
         <activity android:name=".ChatListActivity" />
         <activity android:name=".UploadPostActivity" /> <!-- 스플래시 화면 -->
@@ -47,9 +48,7 @@
         <activity
             android:name=".VotePostingActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity android:name=".ProfileList" />
-
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
