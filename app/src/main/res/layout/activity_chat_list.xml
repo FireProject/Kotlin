@@ -8,28 +8,46 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/LL_2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:orientation="horizontal"
-        android:background="@drawable/chat_list_above">
-
+        android:background="@drawable/chatlist_head"
+        android:layout_weight="1">
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="13" />
-
+            android:layout_weight="1" />
         <Button
-            android:id="@+id/btn_go_add_chat_room"
+            android:id="@+id/btn_return_main_at_chatlist"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1.5"
+            android:text="뒤"
+            android:textSize="30sp"
+            android:textColor="@color/white"
             android:background="#00ff0000"/>
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5" />
+            android:layout_weight="4" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="채팅"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4" />
+        <Button
+            android:id="@+id/btn_go_add_chat_room"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2.5"
+            android:background="#00ff0000"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_chatlist"

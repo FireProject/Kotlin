@@ -19,8 +19,7 @@
         android:roundIcon="@mipmap/ic_burning_up_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".TestRecycleActivity" />
+
         <activity android:name=".PracticeCoroutineJiwon" />
         <activity android:name=".FindFriendsActivity" />
         <activity android:name=".Rooms" />

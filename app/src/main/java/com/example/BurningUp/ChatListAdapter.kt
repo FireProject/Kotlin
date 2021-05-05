@@ -25,18 +25,20 @@ class ChatListAdapter(val chatlist : ArrayList<ChatListOutlineValue>) : Recycler
     //exp : 계속 호출되며 RecycleView 갱신
     override fun onBindViewHolder(holder: ChatListAdapter.CustomViewHolder, position: Int)
     {
-        //holder.chatlist_img.setImageResource(chatlist.get(position).chatroom_image);
-        holder.txt_1.text = chatlist.get(position).a;
-        holder.txt_2.text = chatlist.get(position).b;
+        holder.chatlist_img.setImageResource(chatlist.get(position).chatlist_img);
+        holder.chatroom_name.text = chatlist.get(position).chatroom_name;
+        holder.chatroom_member_cnt.text = chatlist.get(position).chatroom_member_cnt;
+        holder.chatroom_cur_msg.text = chatlist.get(position).chatroom_cur_msg;
     }
 
-
     //exp : RecyclerView 상속받은 custom
+    //TODO : 인원수 3/15 는 3을 아마 DB에서 계속 갱신해가며 체크해야 합니다.
     class CustomViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
     {
-        //val chatlist_img = itemView.findViewById<ImageView>(R.id.img_chatroom_profile);
-        val txt_1 = itemView.findViewById<TextView>(R.id.tv_test_1);
-        val txt_2 = itemView.findViewById<TextView>(R.id.tv_test_2);
+        val chatlist_img = itemView.findViewById<ImageView>(R.id.img_recycle_chatlist);
+        val chatroom_name = itemView.findViewById<TextView>(R.id.tv_recycle_chatroom_name);
+        val chatroom_member_cnt = itemView.findViewById<TextView>(R.id.tv_recycle_chatroom_member_cnt);
+        val chatroom_cur_msg = itemView.findViewById<TextView>(R.id.tv_recycle_chatroom_current_message);
     }
 
 

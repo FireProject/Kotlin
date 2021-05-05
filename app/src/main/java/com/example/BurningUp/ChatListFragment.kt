@@ -20,16 +20,16 @@ import kotlinx.android.synthetic.main.fragment_chat_list.view.*
 class ChatListFragment : Fragment()
 {
     //ref : 홍드로이드 -> https://duckssi.tistory.com/42
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    /*override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         //exp : fragment_chat_list(xml)과 연결시켜줍니다.
         var view = inflater.inflate(R.layout.fragment_chat_list , container , false)
 
         //여기에 DB 추가 -> 이게 MainActivity
         val chatlist = arrayListOf(
-            ChatListOutlineValue("a","b"),
-            ChatListOutlineValue("c","d"),
-            ChatListOutlineValue("e","f")
+                ChatListOutlineValue(R.drawable.black_smile,"a","b"),
+                ChatListOutlineValue(R.drawable.loading_image,"c","d"),
+                ChatListOutlineValue(R.drawable.fire_mini,"e","ggggg")
         )
         Log.d("jiwon" , "ERROR_1");
         rv_chatlist.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false); //여기서 에러
@@ -41,7 +41,7 @@ class ChatListFragment : Fragment()
 
         MoveAddChatRoomActivity(view)
         return view
-    }
+    }*/
 
     fun MoveAddChatRoomActivity(view : View)
     {
