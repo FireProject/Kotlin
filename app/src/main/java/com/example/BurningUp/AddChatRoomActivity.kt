@@ -64,7 +64,6 @@ class AddChatRoomActivity : AppCompatActivity()
         MoveNoticeActivity()
         MoveVoteActivity()
         MoveVotePostingActivity()
-        MoveTestRecycleActivity()
 
         //Layout Method
         MakeBaseSeekBar()
@@ -199,14 +198,6 @@ class AddChatRoomActivity : AppCompatActivity()
     {
         binding.btnVotePosting.setOnClickListener {
             val intent = Intent(this, VotePostingActivity::class.java);
-            startActivity(intent)
-        }
-    }
-
-    fun MoveTestRecycleActivity()
-    {
-        binding.btnTest.setOnClickListener {
-            val intent = Intent(this, TestRecycleActivity::class.java);
             startActivity(intent)
         }
     }
