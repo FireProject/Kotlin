@@ -52,8 +52,8 @@ class profileListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         // var profileList = arrayListOf<Friends.Companion.Info>()
-        Log.d("mmm", "profileList's Database is  called()")
-        profileList.clear()
+//        Log.d("mmm", "profileList's Database is  called()")
+        //profileList.clear()
 
         Users.readInfo()
         Friends.GetFriends()
@@ -63,7 +63,7 @@ class profileListFragment : Fragment() {
         users_ref =firebase.getReference("users").child(uid.toString())  //루트의 자식으로 "users" 연결->DB 테이블 연결
 
         rv_profile.layoutManager=linearLayoutManager
-
+        profileList.clear()
         for (obj in Friends.friends_constainer) {
             profileList.add(obj)
         }
