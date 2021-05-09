@@ -28,5 +28,6 @@
     <string name="title_activity_friends">Friends</string>
     <string name="title_activity_user_data">UserData</string>
     <string name="title_activity_test_recycle">TestRecycle</string>
+    <string name="title_activity_mini_profile">mini_profile</string>
 
 </resources>

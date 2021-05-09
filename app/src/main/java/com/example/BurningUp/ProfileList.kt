@@ -33,10 +33,10 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_list)
 
-        var profileList= arrayListOf<Friends.Companion.Info>()
+        var profileList= arrayListOf<Friends.Companion.Info>()  //프로필 리스트 배열 선언
 
-        Log.d("mmm","profileList_is called()")
-        profileList.clear()
+
+       // profileList.clear()
         //함수호출
         Users.readInfo()
         Friends.GetFriends()
@@ -46,6 +46,12 @@ class ProfileList : AppCompatActivity(),BottomNavigationView.OnNavigationItemRes
         firebase= FirebaseDatabase.getInstance()
         users_ref=firebase.getReference("users").child(uid.toString())  //루트의 자식으로 "users" 연결->DB 테이블 연결
 
+            //0번째 배열에 user 이름 넣어주고싶었는데 왜 안되지ㅜㅜ
+
+        profileList[0].nickName=Users.info.nickName
+        profileList[0].stateMessage=Users.info.stateMessage
+
+        //profileList.clear()
         for(obj in friends_constainer)
         {
             profileList.add(obj)
