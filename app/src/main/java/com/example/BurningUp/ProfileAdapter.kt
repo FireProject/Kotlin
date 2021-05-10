@@ -1,5 +1,6 @@
 package com.example.BurningUp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,8 @@ class ProfileAdapter( val profileList: ArrayList<Friends.Companion.Info>):Recycl
             itemView.setOnClickListener {
                 val curPos:Int=adapterPosition  //현재 위치를 저장하는 변수
                 val Profile: Friends.Companion.Info =profileList.get(curPos)
-                Toast.makeText(parent.context,"이름: ${Profile.nickName}  상태메시지: ${Profile.stateMessage}",Toast.LENGTH_SHORT).show()
+                    //함수로 이름이랑 상태메시지, 프사 인자로 넘겨주고  intent 해줘야 할듯?
+//                Toast.makeText(parent.context,"이름: ${Profile.nickName}  상태메시지: ${Profile.stateMessage}",Toast.LENGTH_SHORT).show()
 
             }
 
