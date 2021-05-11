@@ -63,8 +63,6 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
         //처음에는 홈화면이 나오도록 함 
         homeFragment= HomeFragment.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.fragments_frame,homeFragment).commit()
-
-
     }
 
     override fun onNavigationItemReselected(item: MenuItem) {   //바닥에 있는 네비게이션
@@ -88,12 +86,12 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
             //exp : go ppt_8
             R.id.menu_chat->
             {
-                val intent =Intent(this,ChatListActivity::class.java)
-                startActivity(intent)
+                /*val intent =Intent(this,ChatListActivity::class.java)
+                startActivity(intent)*/
                 
                 //TODO : 아래 코드를 이용하면 Fragment로 이동하지만 , ERROR가 발생해서 일단 위의 방식처럼 Activity로 구현
-                /*val fragment_manager = supportFragmentManager.beginTransaction()
-                fragment_manager.replace(R.id.fragments_frame , ChatListFragment()).commit()*/
+                val fragment_manager = supportFragmentManager.beginTransaction()
+                fragment_manager.replace(R.id.fragments_frame , ChatListFragment()).commit()
                 //exp : replace : 교체 , commit : 저장
             }
         }
