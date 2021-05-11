@@ -21,6 +21,7 @@ class FindFriendsActivity : AppCompatActivity() {
     private lateinit var firebase: FirebaseDatabase
     private lateinit var users_ref: DatabaseReference
 
+//수정수정
 
 
 
