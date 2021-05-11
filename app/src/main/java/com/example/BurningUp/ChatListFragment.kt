@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.BurningUp.databinding.FragmentChatListBinding
 import kotlinx.android.synthetic.main.activity_test_recycle.*
 import kotlinx.android.synthetic.main.fragment_chat_list.*
 import kotlinx.android.synthetic.main.fragment_chat_list.view.*
@@ -20,28 +19,40 @@ import kotlinx.android.synthetic.main.fragment_chat_list.view.*
 class ChatListFragment : Fragment()
 {
     //ref : 홍드로이드 -> https://duckssi.tistory.com/42
-    /*override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         //exp : fragment_chat_list(xml)과 연결시켜줍니다.
         var view = inflater.inflate(R.layout.fragment_chat_list , container , false)
+        MoveAddChatRoomActivity(view);
+
+        return view
+    }
+
+    //이거 추가해서 괜찮.
+    override fun onActivityCreated(savedInstanceState: Bundle?)
+    {
+        super.onActivityCreated(savedInstanceState)
 
         //여기에 DB 추가 -> 이게 MainActivity
         val chatlist = arrayListOf(
-                ChatListOutlineValue(R.drawable.black_smile,"a","b"),
-                ChatListOutlineValue(R.drawable.loading_image,"c","d"),
-                ChatListOutlineValue(R.drawable.fire_mini,"e","ggggg")
+                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_1","11/15" , "a"),
+                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_2","10/15" , "b"),
+                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_3","9/15" , " 안녕하세요 안녕하세요안녕하세요 안녕하세요안녕하세요 안녕하세요안녕하세요 안녕하세요안녕하세요 안녕하세요"),
+                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_4","8/15" , "d"),
+                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_5","7/15" , "e"),
+                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_6","6/15" , "f"),
+                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_7","5/15" , "g"),
+                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_8","4/15" , "h")
         )
         Log.d("jiwon" , "ERROR_1");
-        rv_chatlist.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false); //여기서 에러
+        rv_chatlist.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false);
         Log.d("jiwon" , "ERROR_2");
         rv_chatlist.setHasFixedSize(true);
         Log.d("jiwon" , "ERROR_3");
         rv_chatlist.adapter = ChatListAdapter(chatlist);
         Log.d("jiwon" , "ERROR_4");
 
-        MoveAddChatRoomActivity(view)
-        return view
-    }*/
+    }
 
     fun MoveAddChatRoomActivity(view : View)
     {

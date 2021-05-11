@@ -75,7 +75,6 @@ class ChangeProfileActivity : AppCompatActivity()
 
         //test at 04/07
         Users.readInfo() //exp : Users의 method를 통해 DB의 데이터를 읽어옵니다.
-        Rooms.PushLocalContainer() //exp : DB에서 가져온 데이터를 로컬화
     }
 
     //exp : activity가 front에 올 때 마다 실행

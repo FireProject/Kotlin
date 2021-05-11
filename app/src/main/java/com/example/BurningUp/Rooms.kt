@@ -38,15 +38,17 @@ class Rooms : AppCompatActivity()
                   3. For문을 돌려서 나의 Local Container에 저장하면 메모리 상에서 빠르게 가져올 수 있습니다.
                   4. 소속된 Room을 읽어오기 때문에 그 후에는 DB에 접근합니다.
             */
-            fun PushLocalContainer()
+            fun GetRooms()
             {
                 var obj = Info() //hard : obj를 비우는 method X, 그러므로 그냥 새로운 객체 선언
                 var user_contained_rooms_ref : DatabaseReference
                 var room_num : Int = 0
+
+                Log.d("jiwon " ,"111");
                 for (room_id in Users.info.roomId)
                 {
+                    Log.d("jiwon " ,"22");
                     Log.d("jiwon" , room_num.toString() + " : " + room_id)
-
 
                     //TODO : user_contained_rooms_ref에서 읽어오면 Dictionary형식인데 이거 한번에 하는 게있을텐데 지금을 모름.
                     user_contained_rooms_ref = Firebase.database.getReference("rooms").child(room_id)//room_id가 변경되면서

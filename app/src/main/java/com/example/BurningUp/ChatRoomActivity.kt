@@ -52,7 +52,6 @@ class ChatRoomActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
             R.id.logout_btn -> {
                 Log.d(TAG, "ChatFrag_oncreate() called")
             }
-
         }
         return false
     }
