@@ -21,10 +21,9 @@ class PracticeCoroutineJiwon : AppCompatActivity()
         val rooms_contain_specific_user = arrayListOf<Info>()
         fun Practice()
         {
-
                 var user_contained_rooms_ref: DatabaseReference
-                var tmp = Firebase.database.getReference("rooms").child("-MX_KAsCVg4pnYjY5xYB").child("roomName")
-                var tmp2 = Firebase.database.getReference("rooms").child("-MXWJyn0-zsp35IIgeLW").child("roomName")
+                var tmp = Firebase.database.getReference("rooms").child("-M_Pd_YfhAdcvZNcb1gz").child("roomName")
+                var tmp2 = Firebase.database.getReference("rooms").child("-M_Pdm-zYTsMfr3L8rDg").child("roomName")
                 var obj = Info()
 
                 for(i in (0..3))

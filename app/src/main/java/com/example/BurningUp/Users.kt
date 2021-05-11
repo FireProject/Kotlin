@@ -21,6 +21,7 @@ class Users {
         var info = Info()
         fun readInfo(){
 
+            Log.d("jiwon" , "bbbb");
             val mAuth = FirebaseAuth.getInstance()
             val mRef = Firebase.database.getReference("users/${mAuth.uid}")
 
@@ -34,9 +35,10 @@ class Users {
                     //이렇게 하세요
 
                     val commentKey = when(dataSnapshot.key) {
-                        "roomId" -> {
+                        "roomIds" -> {
                             info.roomId = dataSnapshot.value as ArrayList<String>
-                            //Rooms.GetRooms()
+                            Log.d("jiwon" , "ssss");
+                            Rooms.GetRooms()
                         }
                         "friends" -> {
                             info.friends = dataSnapshot.value as ArrayList<String>

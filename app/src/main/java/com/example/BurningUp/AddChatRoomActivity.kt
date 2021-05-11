@@ -15,6 +15,7 @@ import com.example.BurningUp.databinding.ActivityAddChatRoomBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.collections.HashMap
 import petrov.kristiyan.colorpicker.ColorPicker
@@ -44,7 +45,7 @@ class AddChatRoomActivity : AppCompatActivity()
     private var uid : String? = null
     private lateinit var firebase : FirebaseDatabase //Web DB 객체변수
     private lateinit var rooms_ref : DatabaseReference //Web Db에서 원하는 key(이건 room) 접근하기 위한 변수
-
+    private lateinit var users_ref : DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -58,7 +59,7 @@ class AddChatRoomActivity : AppCompatActivity()
         uid = auth?.uid
         firebase = FirebaseDatabase.getInstance() //web DB를 .json 파일을 참고해서 연결
         rooms_ref = firebase.getReference("rooms") //root의 자식으로 "rooms" 연결
-
+        users_ref = firebase.getReference("users")
         //Move other Page Method
         MoveDialogActivity()
         MoveNoticeActivity()
@@ -76,7 +77,9 @@ class AddChatRoomActivity : AppCompatActivity()
 
         //exp : Practice For Coroutine(erase)
         binding.btnInitializeDb.setOnClickListener {
-            PracticeCoroutineJiwon.Practice()
+            //PracticeCoroutineJiwon.Practice()
+            Log.d("jiwon" , "call");
+            //Rooms.PushLocalContainer()
         }
         /*binding.btnInitializeDb.setOnClickListener {
             Toast.makeText(this.getApplicationContext() , "DB를 최초로 읽었다. 이제 이 버튼 누르면 큰일남" , Toast.LENGTH_SHORT).show()
@@ -235,8 +238,17 @@ class AddChatRoomActivity : AppCompatActivity()
             map_of_rooms_members["roomNotice"] = "No Text"
             map_of_rooms_members["voteCycle"] = vote_rate.toString()
             map_of_rooms_members["users"] = users
-            rooms_ref.push().setValue(map_of_rooms_members)
 
+            //DB의 Users에 내용 추가
+            val room_id = rooms_ref.push().key!!
+            var user_included_rooms = Users.info.roomId //배열.
+            for(i in Users.info.roomId)
+            {
+                Log.d("jiwon" , i.toString());
+            }
+            rooms_ref.child(room_id).setValue(map_of_rooms_members) //해당하는 room_id에 위에서 설정한 값을 모두 추가.
+            user_included_rooms.add(room_id) //memory영역에 추가
+            users_ref.child(uid.toString()).child("roomIds").setValue(user_included_rooms)
             MakeDelay()
         }
     }
