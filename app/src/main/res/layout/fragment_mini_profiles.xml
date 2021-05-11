@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#03A9F4"
     android:orientation="vertical"
-    tools:context=".MiniProfile">
+    tools:context=".MiniProfilesFragment">
 
 
     <!-- 투명색으로 설정ㅎ해주기 -->
@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
-        android:background="#00FFFFFF" />
+        android:background="#00FFFFFF"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,12 +52,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="9">
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/profile" />
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/profile" />
 
                 </LinearLayout>
                 <LinearLayout

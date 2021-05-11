@@ -42,7 +42,7 @@ class Users {
                         }
                         "friends" -> {
                             info.friends = dataSnapshot.value as ArrayList<String>
-                            //Friends.GetFriends()
+                            Friends.GetFriends()
                         }
                         "nickName" -> {
                             info.nickName = dataSnapshot.value as String

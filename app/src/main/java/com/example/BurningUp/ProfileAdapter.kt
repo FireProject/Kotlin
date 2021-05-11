@@ -8,6 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
+//수정수정수정
+
 class ProfileAdapter( val profileList: ArrayList<Friends.Companion.Info>):RecyclerView.Adapter<ProfileAdapter.CustomViewHolder>()
 {
 
@@ -20,7 +22,7 @@ class ProfileAdapter( val profileList: ArrayList<Friends.Companion.Info>):Recycl
                 val curPos:Int=adapterPosition  //현재 위치를 저장하는 변수
                 val Profile: Friends.Companion.Info =profileList.get(curPos)
                     //함수로 이름이랑 상태메시지, 프사 인자로 넘겨주고  intent 해줘야 할듯?
-//                Toast.makeText(parent.context,"이름: ${Profile.nickName}  상태메시지: ${Profile.stateMessage}",Toast.LENGTH_SHORT).show()
+               Toast.makeText(parent.context,"이름: ${Profile.nickName}  상태메시지: ${Profile.stateMessage}",Toast.LENGTH_SHORT).show()
 
             }
 

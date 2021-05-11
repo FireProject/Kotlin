@@ -41,10 +41,19 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <ImageView
-                android:layout_width="match_parent"
+<!--            <ImageView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/addfriends"/>-->
+
+
+            <ImageButton
+                android:id="@+id/addFriends_btn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/addfriends"/>
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                app:srcCompat="@drawable/addfriends" />
         </LinearLayout>
 
     </LinearLayout>
