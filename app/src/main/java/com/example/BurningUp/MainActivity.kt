@@ -78,18 +78,20 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
             R.id.menu_profile->{
 //                val intent=Intent(this,ProfileList::class.java)
 //                startActivity(intent)
+
                 profileListFragment= com.example.BurningUp.profileListFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileListFragment).commit()
                 //rv_profile.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                // supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
+
            }
             //exp : go ppt_8
             R.id.menu_chat->
             {
                 /*val intent =Intent(this,ChatListActivity::class.java)
                 startActivity(intent)*/
-                
-                //TODO : 아래 코드를 이용하면 Fragment로 이동하지만 , ERROR가 발생해서 일단 위의 방식처럼 Activity로 구현
+
+                // 프래그먼트로 이동
                 val fragment_manager = supportFragmentManager.beginTransaction()
                 fragment_manager.replace(R.id.fragments_frame , ChatListFragment()).commit()
                 //exp : replace : 교체 , commit : 저장

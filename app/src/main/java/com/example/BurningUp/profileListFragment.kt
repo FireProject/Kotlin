@@ -1,5 +1,6 @@
 package com.example.BurningUp
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.BurningUp.databinding.ActivityChangePasswordBinding
 import com.example.BurningUp.databinding.FragmentProfileListBinding
@@ -18,13 +21,15 @@ import kotlinx.android.synthetic.main.activity_find_friends.*
 import kotlinx.android.synthetic.main.activity_profile_list.*
 import kotlinx.android.synthetic.main.activity_profile_list.rv_profile
 import kotlinx.android.synthetic.main.fragment_profile_list.*
+import kotlinx.android.synthetic.main.fragment_profile_list.view.*
+import kotlin.coroutines.coroutineContext
 
 class profileListFragment : Fragment() {
 
     private var mBinding: FragmentProfileListBinding? = null
     private val binding get() = mBinding!!
 
-     private val linearLayoutManager by lazy {LinearLayoutManager(context)}
+    private val linearLayoutManager by lazy {LinearLayoutManager(context)}
 
     private lateinit var auth: FirebaseAuth
     private var uid: String? = null
@@ -45,31 +50,18 @@ class profileListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        mBinding = FragmentProfileListBinding.inflate(layoutInflater)
-//       // setContentView(binding.root)
-//        //auth = FirebaseAuth.getInstance()
-//
-//        binding.addFriendsBtn.setOnClickListener{
-//            val intent= Intent(getActivity(), FindFriendsActivity::class.java)
-//            startActivity(intent)
-//        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_profile_list, container, false)
-
-
-
+        MoveAddFriends(view);
 
         return view
 
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-          //Users.readInfo()
-        //Friends.GetFriends()
+         super.onActivityCreated(savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
         uid = auth?.uid
@@ -83,6 +75,8 @@ class profileListFragment : Fragment() {
         var tmp = Friends.Companion.Info()
         tmp.nickName=Users.info.nickName
         tmp.stateMessage=Users.info.stateMessage
+
+
         profileList.add(tmp)
         for (obj in Friends.friends_constainer) {
             profileList.add(obj)
@@ -94,17 +88,17 @@ class profileListFragment : Fragment() {
 
 
 
+    }
 
-    //이걸 어디에다가 끼워넣어야하지??
+    //친구 추가 버튼이 눌렸을 때 친구 추가 화면으로 전환
+    fun MoveAddFriends(view:View)
+    {
+        view.addFriends_btn.setOnClickListener{
+            val intent=Intent(activity, FindFriendsActivity::class.java)
+            startActivity(intent)
 
-//        mBinding = FragmentProfileListBinding.inflate(layoutInflater)
-//        // setContentView(binding.root)
-//        //auth = FirebaseAuth.getInstance()
-//
-//        binding.addFriendsBtn.setOnClickListener{
-//            val intent= Intent(getActivity(), FindFriendsActivity::class.java)
-//            startActivity(intent)
-//        }
-
+        }
     }
 }
+
+
