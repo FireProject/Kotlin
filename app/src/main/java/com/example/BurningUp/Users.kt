@@ -20,8 +20,7 @@ class Users {
                         var profileImg: String ="noURI")
         var info = Info()
         fun readInfo(){
-
-            Log.d("jiwon" , "bbbb");
+            Log.d("jiwon" , "readInfo Success");
             val mAuth = FirebaseAuth.getInstance()
             val mRef = Firebase.database.getReference("users/${mAuth.uid}")
 
@@ -37,7 +36,7 @@ class Users {
                     val commentKey = when(dataSnapshot.key) {
                         "roomIds" -> {
                             info.roomId = dataSnapshot.value as ArrayList<String>
-                            Log.d("jiwon" , "ssss");
+                            Log.d("jiwon" , "call GetRooms() Success");
                             Rooms.GetRooms()
                         }
                         "friends" -> {
