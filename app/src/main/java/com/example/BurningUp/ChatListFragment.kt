@@ -33,9 +33,10 @@ class ChatListFragment : Fragment()
     {
         super.onActivityCreated(savedInstanceState)
 
+        val test = Rooms.rooms_contain_specific_user[0].room_name;
         //여기에 DB 추가 -> 이게 MainActivity
         val chatlist = arrayListOf(
-                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_1","11/15" , "a"),
+                ChatListOutlineValue(R.drawable.black_smile,test,"11/15" , "a"),
                 ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_2","10/15" , "b"),
                 ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_3","9/15" , " 안녕하세요 안녕하세요안녕하세요 안녕하세요안녕하세요 안녕하세요안녕하세요 안녕하세요안녕하세요 안녕하세요"),
                 ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_4","8/15" , "d"),
