@@ -36,16 +36,17 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:orientation="horizontal">
-        <Space
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:background="@color/black"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_chatlist"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="10" />
-        <Space
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
