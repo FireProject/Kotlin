@@ -33,25 +33,18 @@ class ChatListFragment : Fragment()
     {
         super.onActivityCreated(savedInstanceState)
 
-        val test = Rooms.rooms_contain_specific_user[0].room_name;
-        //여기에 DB 추가 -> 이게 MainActivity
+        //test
+        val first_room_name = Rooms.rooms_contain_specific_user[0].room_name;
+        val first_cur_cnt = Rooms.rooms_contain_specific_user[0].cur_person.toString();
+        val first_max_cnt = Rooms.rooms_contain_specific_user[0].max_person.toString();
+        //exp : Rooms의 자료구조에 저장한 데이터를 여기서 사용합니다.
         val chatlist = arrayListOf(
-                ChatListOutlineValue(R.drawable.black_smile,test,"11/15" , "a"),
-                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_2","10/15" , "b"),
-                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_3","9/15" , " 안녕하세요 안녕하세요안녕하세요 안녕하세요안녕하세요 안녕하세요안녕하세요 안녕하세요안녕하세요 안녕하세요"),
-                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_4","8/15" , "d"),
-                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_5","7/15" , "e"),
-                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_6","6/15" , "f"),
-                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_7","5/15" , "g"),
-                ChatListOutlineValue(R.drawable.black_smile,"취업 준비방_8","4/15" , "h")
+                ChatListOutlineValue(R.drawable.black_smile,first_room_name,"("+first_cur_cnt+"/"+first_max_cnt+")", "아직 DB에 없음")
         )
-        Log.d("jiwon" , "ERROR_1");
         rv_chatlist.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false);
-        Log.d("jiwon" , "ERROR_2");
         rv_chatlist.setHasFixedSize(true);
-        Log.d("jiwon" , "ERROR_3");
         rv_chatlist.adapter = ChatListAdapter(chatlist);
-        Log.d("jiwon" , "ERROR_4");
+
 
     }
 

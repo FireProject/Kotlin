@@ -58,7 +58,6 @@ class Rooms : AppCompatActivity()
 
                     //1. DB에서 데이터 읽어 오기 : 성공
                     user_contained_rooms_ref = Firebase.database.getReference("rooms").child(room_id)//room_id가 변경되면서
-                    test = Firebase.database.getReference("rooms").child(room_id).child("roomName")
 
                     user_contained_rooms_ref.get().addOnSuccessListener {
                         //Log.d("jiwon" , "${it.value}") //exp : ${문장} : 문장을 string으로 하는 것.
