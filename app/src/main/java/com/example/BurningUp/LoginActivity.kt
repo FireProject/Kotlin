@@ -5,11 +5,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.BurningUp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -57,12 +58,12 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    fun signInUser(){//로그인 함수
+    fun signInUser(){//로그인 함수 
 
         val loadingDialog = LoadingDialog(this)
 
         loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
+        Log.d("daeho", "this is signINUser")
         auth.signInWithEmailAndPassword(binding.usernameEt.text.trim().toString(), binding.passwordEt.text.trim().toString()) //이메일 비밀번호 인증
             .addOnCompleteListener(this){
                     task->
@@ -87,11 +88,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onStart() {//자동 로그인 함수
+        Log.d("daeho", "this is signINUser")
         super.onStart()
         val user = auth.currentUser
         if(user!=null){ //로그인 되어있으면 바로 메인 화면으로 이동
             val intent = Intent(this, MainActivity::class.java);
             startActivity(intent)
+            Users.readInfo()
         }else{//로그인 되어있지 않으면
             Toast.makeText(this,"Do Your Best!", Toast.LENGTH_LONG).show()
         }

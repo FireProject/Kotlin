@@ -1,17 +1,13 @@
 package com.example.BurningUp
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_test_recycle.*
 import kotlinx.android.synthetic.main.fragment_chat_list.*
 import kotlinx.android.synthetic.main.fragment_chat_list.view.*
 
@@ -44,8 +40,6 @@ class ChatListFragment : Fragment()
         rv_chatlist.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false);
         rv_chatlist.setHasFixedSize(true);
         rv_chatlist.adapter = ChatListAdapter(chatlist);
-
-
     }
 
     fun MoveAddChatRoomActivity(view : View)

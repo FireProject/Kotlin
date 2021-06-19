@@ -1,18 +1,11 @@
 package com.example.BurningUp
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.tasks.await
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
+
 
 class Rooms : AppCompatActivity()
 {
@@ -26,7 +19,7 @@ class Rooms : AppCompatActivity()
             var cur_person : Int = 3,
             var room_color : Int = 0,
             var room_name : String = "",
-            //var users: ArrayList<String> = arrayListOf(),
+            var users: ArrayList<String> = arrayListOf(),
             var vote_cycle : String = ""
             )
 
@@ -42,7 +35,7 @@ class Rooms : AppCompatActivity()
 
             fun GetRooms()
             {
-                var obj = RoomInfo() //새로운 객체 선언
+                 //새로운 객체 선언
                 var user_contained_rooms_ref : DatabaseReference
                 var test : DatabaseReference
                 var room_num : Int = 0
@@ -53,46 +46,28 @@ class Rooms : AppCompatActivity()
                 val tmp : Int = 0;
                 for (room_id in Users.info.roomId)
                 {
-                    Log.d("jiwon" , tmp.toString() + "번째 Test")
-                    Log.d("jiwon" , room_num.toString() + " : " + room_id)
+                    var obj = RoomInfo()
+                    Log.d("roomGetrooms" , "${tmp}번째 roomID : ${room_id}")
 
                     //1. DB에서 데이터 읽어 오기 : 성공
+
                     user_contained_rooms_ref = Firebase.database.getReference("rooms").child(room_id)//room_id가 변경되면서
 
                     user_contained_rooms_ref.get().addOnSuccessListener {
-                        //Log.d("jiwon" , "${it.value}") //exp : ${문장} : 문장을 string으로 하는 것.
-                        Log.d("jiwon", "for문 user_contained rooms_ref : " + it.getValue().toString()) //exp : getValue()를 이용하는 C_Language 형식
-                        Log.d("jiwon", "Err_1111")
 
-                        //2. 읽어온 데이터 Local 자료구조인 rooms_contain_specific_user 에 넣기 : 성공
-                        // exp : datasnapshot 타입의 자료를 HashMap으로 형변환 하기 위해서 , HashMap을 만들고 , 해당 HashMap을 채운다음 객체에 넣어줍니다.
-                        val my_map = HashMap<String,Any> ()
-                        for(i in it.getChildren())
-                        {
-                            my_map[i.key.toString()] = i.value!!
+                        it.children.forEach {
+                            Log.d("roomGetrooms","${it.getValue()}")
                         }
-                        obj.max_person = my_map["MaxPerson"].toString().toInt()
-                        obj.cur_person = my_map["curPerson"].toString().toInt()
-                        obj.master_uid = my_map["masterUid"].toString()
-                        obj.room_color = my_map["roomColor"].toString().toInt()
-                        obj.room_name = my_map["roomName"].toString()
-                        obj.vote_cycle = my_map["voteCycle"].toString()
-                        //obj.room_name = it.getValue().toString();
-                        rooms_contain_specific_user.add(obj) //스레드
-                        Log.d("jiwon" , rooms_contain_specific_user[0].max_person.toString() + " " + rooms_contain_specific_user[0].room_name + " " + rooms_contain_specific_user[0].cur_person)
 
-                        /*user_contained_rooms_ref.get().addOnSuccessListener{
-                        //Log.d("jiwon" , "${it.value}") //exp : ${문장} : 문장을 string으로 하는 것.
-                        Log.d("jiwon" , "for문 user_contained rooms_ref : " + it.getValue().toString()) //exp : getValue()를 이용하는 C_Language 형식
-                        Log.d("jiwon" , "Err_1")
 
-                        rooms_contain_specific_user.add(obj) //스레드
-                         */
+                        Log.d("roomGetrooms" , "MaxPerson : ${obj.max_person}")
+                        Log.d("roomGetrooms" , "curPerson : ${obj.cur_person}")
+                        Log.d("roomGetrooms" , "masteruid : ${obj.master_uid}")
+                        Log.d("roomGetrooms" , "roomColor : ${obj.room_color}")
+                        Log.d("roomGetrooms" , "roomName : ${obj.room_name}")
+                        Log.d("roomGetrooms" , "voteCycle : ${obj.vote_cycle}")
+
                     }
-
-                    //2. 객체를 Container에 추가
-                    Log.d("jiwon" , "Err_2222")
-                    //Log.d("jiwon", "Local Container 04/08 " + room_num.toString() + "번 방 : " + rooms_contain_specific_user[room_num].cur_person.toString() + rooms_contain_specific_user[room_num].master_uid.toString() + rooms_contain_specific_user[room_num].room_name.toString())
                     room_num++
                 }
             }

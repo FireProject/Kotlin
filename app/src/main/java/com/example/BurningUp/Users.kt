@@ -1,13 +1,13 @@
 package com.example.BurningUp
 
-import android.nfc.Tag
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import org.w3c.dom.Comment
 
 
 class Users {
@@ -20,7 +20,7 @@ class Users {
                         var profileImg: String ="noURI")
         var info = Info()
         fun readInfo(){
-            Log.d("jiwon" , "readInfo Success");
+            Log.d("User.readInfo", "start")
             val mAuth = FirebaseAuth.getInstance()
             val mRef = Firebase.database.getReference("users/${mAuth.uid}")
 
@@ -36,19 +36,22 @@ class Users {
                     val commentKey = when(dataSnapshot.key) {
                         "roomIds" -> {
                             info.roomId = dataSnapshot.value as ArrayList<String>
-                            Log.d("jiwon" , "call GetRooms() Success");
+                            Log.d("User.readInfo", "success to get roomdata : ${info.roomId}")
                             Rooms.GetRooms()
                         }
                         "friends" -> {
                             info.friends = dataSnapshot.value as ArrayList<String>
+                            Log.d("User.readInfo", "success to get friendsData : ${info.friends}")
                             Friends.GetFriends()
                         }
                         "nickName" -> {
                             info.nickName = dataSnapshot.value as String
+                            Log.d("User.readInfo", "success to get nameData : ${info.nickName}")
                             //Log.d("예진", info.nickName)
                         }
                         "stateMessage" -> {
                             info.stateMessage = dataSnapshot.value as String
+                            Log.d("User.readInfo", "success to get stateMessage : ${info.stateMessage}")
                         }
 
                         else ->  {
