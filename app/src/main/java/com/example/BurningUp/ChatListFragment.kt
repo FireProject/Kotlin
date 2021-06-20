@@ -24,19 +24,28 @@ class ChatListFragment : Fragment()
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
     //이거 추가해서 괜찮.
     override fun onActivityCreated(savedInstanceState: Bundle?)
     {
         super.onActivityCreated(savedInstanceState)
 
         //test
-        val first_room_name = Rooms.rooms_contain_specific_user[0].room_name;
-        val first_cur_cnt = Rooms.rooms_contain_specific_user[0].cur_person.toString();
-        val first_max_cnt = Rooms.rooms_contain_specific_user[0].max_person.toString();
+        //val first_room_name = Rooms.rooms_contain_specific_user[0].room_name;
+        //val first_cur_cnt = Rooms.rooms_contain_specific_user[0].cur_person.toString();
+        //val first_max_cnt = Rooms.rooms_contain_specific_user[0].max_person.toString();
         //exp : Rooms의 자료구조에 저장한 데이터를 여기서 사용합니다.
-        val chatlist = arrayListOf(
+        /*al chatlist = arrayListOf(
                 ChatListOutlineValue(R.drawable.black_smile,first_room_name,"("+first_cur_cnt+"/"+first_max_cnt+")", "아직 DB에 없음")
-        )
+        )*/
+        val chatlist = arrayListOf<ChatListOutlineValue>()
+        for (room in Rooms.rooms_contain_specific_user) {
+            chatlist.add(ChatListOutlineValue(R.drawable.black_smile, room.room_name, "(${room.cur_person}/${room.max_person}", "test"))
+        }
+
         rv_chatlist.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false);
         rv_chatlist.setHasFixedSize(true);
         rv_chatlist.adapter = ChatListAdapter(chatlist);

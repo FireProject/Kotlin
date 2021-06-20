@@ -35,11 +35,9 @@ class Friends (val name:String, val statemessage:String)  : AppCompatActivity() 
 
 
                 test_ref_1.get().addOnSuccessListener {
-                    Log.d("mmm","success2")
                     obj.nickName = it.getValue().toString()
                 }
                 test_ref_2.get().addOnSuccessListener{
-                    Log.d("mmm","success3")
                     obj.stateMessage = it.getValue().toString()
                 }
                 friends_constainer.add(obj) //객체를 Info형태의 friends_container에 넣어줌

@@ -47,7 +47,7 @@ class Rooms : AppCompatActivity()
                 for (room_id in Users.info.roomId)
                 {
                     var obj = RoomInfo()
-                    Log.d("roomGetrooms" , "${tmp}번째 roomID : ${room_id}")
+
 
                     //1. DB에서 데이터 읽어 오기 : 성공
 
@@ -56,17 +56,32 @@ class Rooms : AppCompatActivity()
                     user_contained_rooms_ref.get().addOnSuccessListener {
 
                         it.children.forEach {
-                            Log.d("roomGetrooms","${it.getValue()}")
+                            Log.d("roomGetrooms" , "roomID : ${room_id}, key : ${it.key}, value : ${it.value}")
+                            val key = when(it.key) {
+                                "roomName" -> {
+                                    obj.room_name = it.value as String
+                                }
+                                "masterUid" -> {
+                                    obj.master_uid = it.value as String
+                                }
+                                "curPerson" -> {
+                                    obj.cur_person = it.value.toString().toInt()
+                                }
+                                "maxPerson" -> {
+                                    obj.max_person = it.value.toString().toInt()
+                                }
+                                "voteCycle" -> {
+                                    obj.vote_cycle = it.value as String
+                                }
+                                "users" -> {
+                                    obj.users = it.value as ArrayList<String>
+                                }
+                                else -> {
+
+                                }
+                            }
                         }
-
-
-                        Log.d("roomGetrooms" , "MaxPerson : ${obj.max_person}")
-                        Log.d("roomGetrooms" , "curPerson : ${obj.cur_person}")
-                        Log.d("roomGetrooms" , "masteruid : ${obj.master_uid}")
-                        Log.d("roomGetrooms" , "roomColor : ${obj.room_color}")
-                        Log.d("roomGetrooms" , "roomName : ${obj.room_name}")
-                        Log.d("roomGetrooms" , "voteCycle : ${obj.vote_cycle}")
-
+                        rooms_contain_specific_user.add(obj)
                     }
                     room_num++
                 }

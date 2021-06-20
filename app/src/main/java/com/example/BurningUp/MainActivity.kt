@@ -1,27 +1,21 @@
 package com.example.BurningUp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.BurningUp.databinding.ActivityChangePasswordBinding
+import androidx.core.view.isVisible
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.bottom_nav
-import kotlinx.android.synthetic.main.activity_profile_list.*
-import kotlinx.android.synthetic.main.navi_header.view.*
 
-open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener {
+open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationItemReselectedListener,NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var profileListFragment: profileListFragment
@@ -58,12 +52,15 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
         navi_view.setNavigationItemSelectedListener(this)
 
         //네비게이션 메뉴 아이템에 클릭 속성 부여
-        bottom_nav.setOnNavigationItemReselectedListener(this)
-
+        //bottom_nav.setOnNavigationItemReselectedListener(this)
+        bottom_nav.setOnNavigationItemSelectedListener(this)
+        bottom_nav.menu.getItem(1).isChecked = true
         //처음에는 홈화면이 나오도록 함 
         homeFragment= HomeFragment.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.fragments_frame,homeFragment).commit()
+
     }
+
 
     override fun onNavigationItemReselected(item: MenuItem) {   //바닥에 있는 네비게이션
         Log.d("mmm", "MainActivity_onNavi() called")
@@ -71,14 +68,15 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
         when(item.itemId)
         {       //각각의 버튼마다 버튼이 나오면 화면이 나오도록 해둠
             R.id.menu_home->{
-                Log.d("mmm", "MainActivity_홈버튼 ")
+                Log.d("naviItemBUtton", "MainActivity_홈버튼 ")
+                topBar.isVisible = true
                 homeFragment= HomeFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
             }
             R.id.menu_profile->{
 //                val intent=Intent(this,ProfileList::class.java)
 //                startActivity(intent)
-
+                topBar.isVisible = false
                 profileListFragment= com.example.BurningUp.profileListFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileListFragment).commit()
                 //rv_profile.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -92,6 +90,7 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
                 startActivity(intent)*/
 
                 // 프래그먼트로 이동
+                topBar.isVisible = false
                 val fragment_manager = supportFragmentManager.beginTransaction()
                 fragment_manager.replace(R.id.fragments_frame , ChatListFragment()).commit()
                 //exp : replace : 교체 , commit : 저장
@@ -133,6 +132,37 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
                 startActivity(intent)//로그아웃 후 로그인 화면으로 이동
             }
 
+            R.id.menu_home->{
+                Log.d("naviItemBUtton", "MainActivity_홈버튼 ")
+                topBar.isVisible = true
+                item.isChecked = true
+                homeFragment= HomeFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
+            }
+            R.id.menu_profile->{
+//                val intent=Intent(this,ProfileList::class.java)
+//                startActivity(intent)
+                topBar.isVisible = false
+                item.isChecked = true
+                profileListFragment= com.example.BurningUp.profileListFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileListFragment).commit()
+                //rv_profile.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                // supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
+
+            }
+            //exp : go ppt_8
+            R.id.menu_chat->
+            {
+                /*val intent =Intent(this,ChatListActivity::class.java)
+                startActivity(intent)*/
+
+                // 프래그먼트로 이동
+                topBar.isVisible = false
+                item.isChecked = true
+                val fragment_manager = supportFragmentManager.beginTransaction()
+                fragment_manager.replace(R.id.fragments_frame , ChatListFragment()).commit()
+                //exp : replace : 교체 , commit : 저장
+            }
         }
 
         layout_drawer.closeDrawers()
@@ -154,4 +184,6 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
     }
 
 }
+
+
 
