@@ -2,6 +2,7 @@ package com.example.BurningUp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +43,9 @@ class ChatListFragment : Fragment()
                 ChatListOutlineValue(R.drawable.black_smile,first_room_name,"("+first_cur_cnt+"/"+first_max_cnt+")", "아직 DB에 없음")
         )*/
         val chatlist = arrayListOf<ChatListOutlineValue>()
-        for (room in Rooms.rooms_contain_specific_user) {
+
+        for (room in Rooms.rooms_contain_specific_user)
+        {
             chatlist.add(ChatListOutlineValue(R.drawable.black_smile, room.room_name, "(${room.cur_person}/${room.max_person}", "test"))
         }
 
@@ -54,6 +57,7 @@ class ChatListFragment : Fragment()
     fun MoveAddChatRoomActivity(view : View)
     {
         view.btn_go_add_chat_room.setOnClickListener {
+            Log.d("jiwon" , "채팅방 만들어");
             Toast.makeText(activity, "채팅방을 만들어 봅시다." , Toast.LENGTH_SHORT).show()
             val intent = Intent(activity, AddChatRoomActivity::class.java);
             startActivity(intent)
