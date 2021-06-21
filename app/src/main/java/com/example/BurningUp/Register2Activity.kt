@@ -54,9 +54,13 @@ class Register2Activity : AppCompatActivity() {
         val loadingDialog = LoadingDialog(this)
         loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        if(nickName!="noNamed"){//변경사항일때
-           binding.nicknameEdit.text=nickName
 
+        if(nickName!="noNamed"){//변경사항일때
+            binding.nicknameEdit.setText(nickName)
+
+        }
+        if (stateMessage != "") {
+            binding.statemessageEdit.setText(stateMessage)
         }
 
         binding.profileImageView.setOnClickListener {
