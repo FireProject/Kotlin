@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.BurningUp.databinding.ActivityRegister1Binding
+
 import com.google.firebase.auth.FirebaseAuth
 
 class Register1Activity : AppCompatActivity() {

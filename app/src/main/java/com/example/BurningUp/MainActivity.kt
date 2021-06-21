@@ -105,26 +105,18 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
             R.id.chprofile->{
                 val intent =Intent(this,ChangeProfileActivity::class.java)
                 startActivity(intent)
-
-
             }
+
             R.id.chpassword->{
-                val intent= Intent(this,ChangePasswordActivity::class.java)
+                val intent =Intent(this,ChangePasswordActivity::class.java)
                 startActivity(intent)
-
             }
-            R.id.alarm->{
-                settingAlarmFragment= SettingAlarmFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,settingAlarmFragment).commit()
 
-            }
             R.id.introuduce_p->{
-                val intent = Intent(this, AddChatRoomActivity::class.java)
-                startActivity(intent)
-                /*introduceProgrammerFragment=IntroduceProgrammerFragment()
+                introduceProgrammerFragment=IntroduceProgrammerFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,introduceProgrammerFragment).commit()
-                */
             }
+
             R.id.logout_btn->{
                 auth.signOut()
 
@@ -132,37 +124,6 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
                 startActivity(intent)//로그아웃 후 로그인 화면으로 이동
             }
 
-            R.id.menu_home->{
-                Log.d("naviItemBUtton", "MainActivity_홈버튼 ")
-                topBar.isVisible = true
-                item.isChecked = true
-                homeFragment= HomeFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,homeFragment).commit()
-            }
-            R.id.menu_profile->{
-//                val intent=Intent(this,ProfileList::class.java)
-//                startActivity(intent)
-                topBar.isVisible = false
-                item.isChecked = true
-                profileListFragment= com.example.BurningUp.profileListFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileListFragment).commit()
-                //rv_profile.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                // supportFragmentManager.beginTransaction().replace(R.id.fragments_frame,profileFragment).commit()
-
-            }
-            //exp : go ppt_8
-            R.id.menu_chat->
-            {
-                /*val intent =Intent(this,ChatListActivity::class.java)
-                startActivity(intent)*/
-
-                // 프래그먼트로 이동
-                topBar.isVisible = false
-                item.isChecked = true
-                val fragment_manager = supportFragmentManager.beginTransaction()
-                fragment_manager.replace(R.id.fragments_frame , ChatListFragment()).commit()
-                //exp : replace : 교체 , commit : 저장
-            }
         }
 
         layout_drawer.closeDrawers()
