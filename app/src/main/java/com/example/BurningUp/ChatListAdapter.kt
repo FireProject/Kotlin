@@ -1,10 +1,17 @@
 package com.example.BurningUp
 
+import android.app.Activity
+import android.app.PendingIntent.getActivity
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class ChatListAdapter(val chatlist : ArrayList<ChatListOutlineValue>) : RecyclerView.Adapter<ChatListAdapter.CustomViewHolder>()
@@ -29,6 +36,13 @@ class ChatListAdapter(val chatlist : ArrayList<ChatListOutlineValue>) : Recycler
         holder.chatroom_name.text = chatlist.get(position).chatroom_name;
         holder.chatroom_member_cnt.text = chatlist.get(position).chatroom_member_cnt;
         holder.chatroom_cur_msg.text = chatlist.get(position).chatroom_cur_msg;
+        Log.d("jiwon" , "눌렸어1");
+        holder.itemView.setOnClickListener{
+            Log.d("jiwon" , "눌렸어2");
+            val intent = Intent(holder.itemView?.context , ChatRoomActivity::class.java);
+            ContextCompat.startActivity(holder.itemView.context , intent , null);
+            Log.d("jiwon" , "눌렸어3");
+        }
     }
 
     //exp : RecyclerView 상속받은 custom
