@@ -28,17 +28,16 @@ class Register2Activity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var database : FirebaseDatabase
 
+
+    private var uid: String? = null
+    private var nickName:String?=Users.info.nickName
+    private var stateMessage:String?=Users.info.stateMessage
     var imm : InputMethodManager? = null
 
     companion object{
         const val REQUEST_FROM_CAMERA = 1001
         const val REQUEST_FROM_GALLERY = 1002
     }
-
-    data class UserInfo(var friends : Array<String>?=null,
-                        var nickName : String?=null,
-                        var roomId : Array<String>?=null,
-                        var stateMessage : String?=null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +54,11 @@ class Register2Activity : AppCompatActivity() {
         val loadingDialog = LoadingDialog(this)
         loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        if(nickName!="noNamed"){//변경사항일때
+           binding.nicknameEdit.text=nickName
+
+        }
+
         binding.profileImageView.setOnClickListener {
 
             setPermission()//최초에 권한을 설정
@@ -64,7 +68,7 @@ class Register2Activity : AppCompatActivity() {
             builder.setIcon(R.drawable.before_add_profile_img)
 
             // 버튼 클릭시에 무슨 작업을 할 것인가!
-            var listener = DialogInterface.OnClickListener { p0, p1 ->
+            var listener = DialogInterface.OnClickListener { _, p1 ->
                 when (p1) {
                     DialogInterface.BUTTON_POSITIVE ->
                         captureImageUsingCamera()//기본 카메라 앱을 실행하여 사진 촬영

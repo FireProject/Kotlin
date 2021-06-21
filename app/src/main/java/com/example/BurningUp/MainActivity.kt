@@ -36,7 +36,6 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         auth = FirebaseAuth.getInstance()
 
         //레이아웃과 연결
@@ -103,7 +102,7 @@ open class MainActivity : AppCompatActivity(),BottomNavigationView.OnNavigationI
         when(item.itemId)
         {
             R.id.chprofile->{
-                val intent =Intent(this,ChangeProfileActivity::class.java)
+                val intent =Intent(this,Register2Activity::class.java)
                 startActivity(intent)
             }
 
