@@ -39,6 +39,7 @@ class ChatListAdapter(val chatlist : ArrayList<ChatListOutlineValue>) : Recycler
         Log.d("jiwon" , "눌렸어1");
         holder.itemView.setOnClickListener{
             Log.d("jiwon" , "눌렸어2");
+            Rooms.current_room = Rooms.rooms_contain_specific_user.get(position)
             val intent = Intent(holder.itemView?.context , ChatRoomActivity::class.java);
             ContextCompat.startActivity(holder.itemView.context , intent , null);
             Log.d("jiwon" , "눌렸어3");

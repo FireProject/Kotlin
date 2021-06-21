@@ -24,7 +24,7 @@ class Rooms : AppCompatActivity()
             )
 
             var rooms_contain_specific_user = arrayListOf<RoomInfo>()
-
+            var current_room:RoomInfo? = null
             /*
                 exp : Users.readInfo() + GetRooms() 설명
                   1. Users.readInfo()에서 DB의 데이터를 읽어오고 Datasnapshot까지 String으로 Parsing을 해주기 때문에 호출만 하면 DB는 해결

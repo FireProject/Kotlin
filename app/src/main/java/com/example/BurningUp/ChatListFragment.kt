@@ -29,6 +29,7 @@ class ChatListFragment : Fragment()
         super.onResume()
 
     }
+
     //이거 추가해서 괜찮.
     override fun onActivityCreated(savedInstanceState: Bundle?)
     {
