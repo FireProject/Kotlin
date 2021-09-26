@@ -1,5 +1,2 @@
-# Kotlin
-
-layout 설명
-activity_login : 로그인 화면 레이아웃
-activity_chat_room : 채팅방 내부 레이아웃
+# BurningUp (Android_Kotlin)
+목표 달성을 위한 채팅 애플리케이션
